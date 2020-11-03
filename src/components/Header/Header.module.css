@@ -1,0 +1,15 @@
+.header {
+    height: 80px;
+
+    background-color: cornflowerblue;
+}
+
+.wrapper {
+    padding-left: 40px;
+}
+
+.header__img {
+    height: 80px;
+
+    filter: invert(100%);
+}
