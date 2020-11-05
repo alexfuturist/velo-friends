@@ -1,5 +1,13 @@
 .content {
-    width: 100%;
+    /* width: calc(100%-320px); */
+
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 80px;
+    margin-left: 270px;
+
+    min-height: calc(100vh - 120px);
 
     background-color: rgb(255, 255, 255);
 

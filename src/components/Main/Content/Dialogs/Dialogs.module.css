@@ -1,0 +1,50 @@
+.dialogs {
+    padding: 40px;
+
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    flex-grow: 1;
+}
+
+.dialogsTitle {
+    width: 100%;
+    margin-bottom: 40px;
+
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.dialogsContent {
+    flex-grow: 1;
+
+    display: flex;
+}
+
+.dialogsColumn {
+    position: relative;
+
+    width: 30%;
+}
+
+.dialogsColumn::before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: -2px;
+    width: 2px;
+
+    background-color: cornflowerblue;
+
+}
+
+.dialog {}
+
+
+
+.messages {
+    margin-left: 40px;
+}

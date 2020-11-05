@@ -1,6 +1,10 @@
 .navbar {
-    width: 300px;
-    margin-right: 20px;
+    position: fixed;
+
+    top: 100px;
+    bottom: 20px;
+
+    width: 250px;
 
     background-color: cornflowerblue;
     color: #ffffff;
@@ -24,12 +28,14 @@
 
     position: absolute;
     bottom: 0px;
-    left: 20px;
+    left: 28px;
     right: 35px;
 
     height: 1px;
 
     background-color: #e2e2e2;
+
+    opacity: 0.5;
 }
 
 .navbar li::before {
@@ -41,6 +47,8 @@
     height: 8px;
     background-color: #e2e2e2;
     border-radius: 50%;
+
+    opacity: 0.5;
 }
 
 .navbar a {
@@ -53,5 +61,9 @@
 }
 
 .navbar a:hover {
-    color: rgb(255, 221, 27);
+    color: rgb(255, 233, 107);
 }
+
+.navbar a.navbar__active{
+    color:  rgb(255, 217, 0);
+} 

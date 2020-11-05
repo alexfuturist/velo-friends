@@ -8,6 +8,9 @@ const Posts = () => {
       <ul className={s.posts}>
         <Post massage="Привіт, хто хоче покататись?"/>
         <Post massage="Починаю нову програму! Поїхали!"/>
+
+        <Post massage="Привіт, хто хоче покататись?"/>
+        <Post massage="Починаю нову програму! Поїхали!"/>
       </ul>
     );
   }

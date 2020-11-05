@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 import s from './Navbar.module.css';
 
 const Navbar = () => {
@@ -7,29 +9,29 @@ const Navbar = () => {
       <nav>
         <ul>
           <li>
-            <a href="">
+            <NavLink to="/profile" activeClassName={s.navbar__active}>
               Моя сторінка
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="">
+            <NavLink to="/dialogs" activeClassName={s.navbar__active}>
             Повідомлення
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="">
+            <NavLink to="/friends" activeClassName={s.navbar__active}>
             Друзі
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="">
+            <NavLink to="/photos" activeClassName={s.navbar__active}>
             Фото з подорожей
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="">
+            <NavLink to="/routes" activeClassName={s.navbar__active}>
             Маршрути
-            </a>
+            </NavLink>
           </li>
         </ul>
       </nav>
