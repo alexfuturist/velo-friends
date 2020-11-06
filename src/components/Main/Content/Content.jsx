@@ -12,11 +12,12 @@ import {
 } from "react-router-dom";
 
 
-const Content = () => {
+const Content = (props) => {
+
   return (
     <div className={s.content}>
-      <Route path="/profile" component={Profile} />
-      <Route path="/dialogs" component={Dialogs} />
+      <Route path="/profile" render={ () => <Profile postsData={props.postsData} /> } />
+      <Route path="/dialogs" render={ () => <Dialogs dialogsData={props.dialogsData} messagesData={props.messagesData} /> } />
       {/* <Route path="/friends" component={Friends} />
       <Route path="/photos" component={Photos} />
       <Route path="/routes" component={Routes} /> */}

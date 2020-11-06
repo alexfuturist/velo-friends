@@ -12,11 +12,11 @@ import {
   } from "react-router-dom";
 
 
-const Main = () => {
+const Main = (props) => {
     return (
         <div className={`${s.main} wrapper`}>
         <Navbar />
-        <Content />
+        <Content postsData={props.postsData} dialogsData={props.dialogsData} messagesData={props.messagesData} />
        </div>
     );
 }

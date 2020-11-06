@@ -3,20 +3,20 @@ import Post from './Post/Post';
 
 import s from './Posts.module.css';
 
-const Posts = () => {
+const Posts = (props) => {
 
-  let postsData = [
-    {
-      id: 1,
-      message:"Привіт, хто хоче покататись?"
-    },
-    {
-      id: 2,
-      message:"Починаю нову програму! Поїхали!"
-    }
-  ];
+  // let postsData = [
+  //   {
+  //     id: 1,
+  //     message:"Привіт, хто хоче покататись?"
+  //   },
+  //   {
+  //     id: 2,
+  //     message:"Починаю нову програму! Поїхали!"
+  //   }
+  // ];
 
-  let postsElements = postsData.map ( p => <Post massage={p.message} id={p.id} /> );
+  let postsElements = props.postsData.map ( p => <Post massage={p.message} id={p.id} /> );
 
 
 

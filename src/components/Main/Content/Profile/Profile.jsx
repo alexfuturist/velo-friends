@@ -2,7 +2,7 @@ import React from 'react';
 import Posts from './Posts/Posts';
 import s from './Profile.module.css';
 
-const Profile = () => {
+const Profile = (props) => {
   return (
     <section className={s.profile}>
 
@@ -26,7 +26,7 @@ const Profile = () => {
         <button className={`button ${s.newPosts__button}`}>Опубліковати</button>
       </div>
 
-      <Posts />
+      <Posts postsData={props.postsData} />
 
     </section>
   );

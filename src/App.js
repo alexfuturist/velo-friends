@@ -14,12 +14,13 @@ import {
   Link
 } from "react-router-dom";
 
-function App() {
+
+function App(props) {
   return (
     <BrowserRouter>
       <div className="app">
         <Header />
-        <Main />
+        <Main postsData={props.postsData} dialogsData={props.dialogsData} messagesData={props.messagesData}/>
       </div>
     </BrowserRouter>
   );
