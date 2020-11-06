@@ -11,24 +11,21 @@
     color: rgb(97, 97, 97);
 }
 
-.dialogItem::before {
+.NavLink::before {
     content: '';
     position: absolute;
     bottom: 2px;
     left: 0px;
     width: 10px;
     height: 10px;
-    background-color: cornflowerblue;
+    background-color: rgb(185, 185, 185);
     border-radius: 50%;
 }
 
 .dialogItemActive {
-    /* font-size: 22px; */
     color: black;
 }
 
-.dialogItem .dialogItemActive {
-    .dialogItem::before {
-        background-color: cornflowerblue;
-    }
+.dialogItemActive::before {
+    background-color: cornflowerblue;
 }

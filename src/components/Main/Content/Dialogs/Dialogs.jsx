@@ -6,7 +6,52 @@ import DialogItem from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
 import MessagesItem from './MessagesItem/MessagesItem';
 
+
+
 const Dialog = () => {
+
+  let dialogsData = [
+    {
+      id: 1,
+      name: 'Михайло'
+    },
+    {
+      id: 2,
+      name: 'Ізабела'
+    },
+    {
+      id: 3,
+      name: 'Софія'
+    }
+  ];
+
+  let messagesData = [
+    {
+      id: 1,
+      name: 'Ізабела',
+      messagesText: 'Привіт! Вже замінив колесо?'
+    },
+    {
+      id: 2,
+      name: 'Я',
+      messagesText: 'Привіт. Так вже відремонтував і встановив нові катафоти!'
+    },
+    {
+      id: 3,
+      name: 'Ізабела',
+      messagesText: 'Тоді завтра на 10:30 їдемо 20км по маршруту Б.'
+    },
+    {
+      id: 4,
+      name: 'Я',
+      messagesText: 'ОК'
+    }
+  ];
+
+
+  let dialogsElements = dialogsData.map ( d => <DialogItem name={d.name} id={d.id} /> );
+  let messagesElements = messagesData.map ( m => <MessagesItem name={m.name} messageText={m.messagesText} id={m.id}/> );
+
   return (
     <section className={s.dialogs}>
 
@@ -15,17 +60,12 @@ const Dialog = () => {
       <div className={s.dialogsContent}>
         <div className={s.dialogsColumn}>
           <div className={s.dialog}>
-            <DialogItem name="Михайло" id="1" />
-            <DialogItem name="Ізабела" id="2" />
-            <DialogItem name="Софія" id="3" />
+            { dialogsElements }
           </div>
         </div>
 
         <div className={s.messages}>
-          <MessagesItem name="Ізабела" messageText="Привіт! Вже замінив колесо?" />
-          <MessagesItem name="Я" messageText="Привіт. Так вже відремонтував і встановив нові катафоти!" />
-          <MessagesItem name="Ізабела" messageText="Тоді завтра на 10:30 їдемо 20км по маршруту Б." />
-          <MessagesItem name="Я" messageText="ОК" />
+          { messagesElements }
         </div>
       </div>
 
