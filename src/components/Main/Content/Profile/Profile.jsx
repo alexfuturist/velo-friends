@@ -26,7 +26,7 @@ const Profile = (props) => {
         <button className={`button ${s.newPosts__button}`}>Опубліковати</button>
       </div>
 
-      <Posts postsData={props.postsData} />
+      <Posts posts={props.state.posts} />
 
     </section>
   );

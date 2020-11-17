@@ -16,8 +16,8 @@ const Content = (props) => {
 
   return (
     <div className={s.content}>
-      <Route path="/profile" render={ () => <Profile postsData={props.postsData} /> } />
-      <Route path="/dialogs" render={ () => <Dialogs dialogsData={props.dialogsData} messagesData={props.messagesData} /> } />
+      <Route path="/profile" render={() => <Profile state={props.state.profilePage} />} />
+      <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage} />} />
       {/* <Route path="/friends" component={Friends} />
       <Route path="/photos" component={Photos} />
       <Route path="/routes" component={Routes} /> */}

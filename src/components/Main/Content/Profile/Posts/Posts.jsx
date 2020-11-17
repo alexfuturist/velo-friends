@@ -16,7 +16,7 @@ const Posts = (props) => {
   //   }
   // ];
 
-  let postsElements = props.postsData.map ( p => <Post massage={p.message} id={p.id} /> );
+  let postsElements = props.posts.map ( p => <Post massage={p.message} id={p.id} /> );
 
 
 

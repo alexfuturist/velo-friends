@@ -20,7 +20,7 @@ function App(props) {
     <BrowserRouter>
       <div className="app">
         <Header />
-        <Main postsData={props.postsData} dialogsData={props.dialogsData} messagesData={props.messagesData}/>
+        <Main state={props.state}/>
       </div>
     </BrowserRouter>
   );
