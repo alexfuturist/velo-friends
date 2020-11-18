@@ -2,6 +2,7 @@ import React from 'react';
 
 import './components/Common/_normalize.css'
 import './components/Common/_nullstyle.css'
+import './components/Common/__scrollbar.scss'
 // import './App.scss';
 import './App.scss';
 
@@ -20,7 +21,7 @@ function App(props) {
     <BrowserRouter>
       <div className="app">
         <Header />
-        <Main state={props.state}/>
+        <Main state={props.state} addPost={props.addPost} addMessage={props.addMessage}/>
       </div>
     </BrowserRouter>
   );

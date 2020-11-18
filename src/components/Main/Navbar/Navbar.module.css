@@ -12,6 +12,10 @@
     font-size: 16px;
 
     box-shadow: 5px 5px 10px rgb(194, 194, 194);
+
+    /* overflow-y: hidden; */
+    /* overflow: hidden scroll; */
+    overflow: auto;
 }
 
 .navbar__items {

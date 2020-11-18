@@ -3,6 +3,18 @@ import Posts from './Posts/Posts';
 import s from './Profile.module.css';
 
 const Profile = (props) => {
+
+  let newPostElement = React.createRef(); //создали ссылку на элемент
+
+  //колбэк функция 
+  let addPost = () => {
+    let text = newPostElement.current.value; //считали данные из элемента
+    props.addPost(text); //вызываем функцию добавления нового поста
+    newPostElement.current.value = '';
+  };
+
+
+
   return (
     <section className={s.profile}>
 
@@ -22,8 +34,8 @@ const Profile = (props) => {
 
       <div className={s.newPosts}>
         <p className={s.newPosts__title}>Новий пост</p>
-        <textarea className={s.newPosts__text} placeholder="моя новина.."></textarea>
-        <button className={`button ${s.newPosts__button}`}>Опубліковати</button>
+        <textarea ref={newPostElement} className={s.newPosts__text} placeholder="моя новина.."></textarea>
+        <button onClick={addPost} className={`button ${s.newPosts__button}`}>Опубліковати</button>
       </div>
 
       <Posts posts={props.state.posts} />

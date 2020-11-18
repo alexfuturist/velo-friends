@@ -1,7 +1,10 @@
+import {
+    renderEntireTree
+} from '../render'
+
 let state = {
     navbar: {
-        friends:[
-            {
+        friends: [{
                 id: 1,
                 name: 'Михайло'
             },
@@ -39,6 +42,70 @@ let state = {
                 {
                     id: 3,
                     name: 'Софія'
+                },
+                {
+                    id: 2,
+                    name: 'Ізабела'
+                },
+                {
+                    id: 3,
+                    name: 'Софія'
+                },
+                {
+                    id: 2,
+                    name: 'Ізабела'
+                },
+                {
+                    id: 3,
+                    name: 'Софія'
+                },
+                {
+                    id: 2,
+                    name: 'Ізабела'
+                },
+                {
+                    id: 3,
+                    name: 'Софія'
+                },
+                {
+                    id: 2,
+                    name: 'Ізабела'
+                },
+                {
+                    id: 3,
+                    name: 'Софія'
+                },
+                {
+                    id: 2,
+                    name: 'Ізабела'
+                },
+                {
+                    id: 3,
+                    name: 'Софія'
+                },
+                {
+                    id: 2,
+                    name: 'Ізабела'
+                },
+                {
+                    id: 3,
+                    name: 'Софія'
+                },
+                {
+                    id: 2,
+                    name: 'Ізабела'
+                },
+                {
+                    id: 3,
+                    name: 'Софія'
+                },
+                {
+                    id: 2,
+                    name: 'Ізабела'
+                },
+                {
+                    id: 3,
+                    name: 'Софія'
                 }
             ],
             messages: [{
@@ -66,5 +133,26 @@ let state = {
     }
 
 }
+
+export let addPost = (postMessage) => {
+    let newPost = {
+        id: 3,
+        message: postMessage
+    };
+
+    state.content.profilePage.posts.push(newPost);
+    renderEntireTree(state); // перерисовка UI
+};
+
+export let addMessage = (textMessage) => {
+    let newMessage = {
+        id: 5,
+        name: 'Я',
+        messagesText: textMessage
+    };
+
+    state.content.dialogsPage.messages.push(newMessage);
+    renderEntireTree(state); // перерисовка UI
+};
 
 export default state;

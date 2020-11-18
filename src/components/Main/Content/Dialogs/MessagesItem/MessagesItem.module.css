@@ -2,12 +2,15 @@
     display: flex;
 
     margin-bottom: 30px;
+    margin-right: 10px;
 }
 
 .messageAuthor {
     position: relative;
 
     width: 100px;
+
+    flex-shrink: 0;
 }
 
 .messageAuthorPhoto {

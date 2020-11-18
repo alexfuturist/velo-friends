@@ -5,20 +5,20 @@ import Content from './Content/Content';
 import s from './Main.module.css';
 
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 
 const Main = (props) => {
-    return (
-        <div className={`${s.main} wrapper`}>
-        <Navbar />
-        <Content state={props.state.content} />
-       </div>
-    );
+  return (
+    <div className={`${s.main} wrapper`}>
+      <Navbar />
+      <Content state={props.state.content} addPost={props.addPost} addMessage={props.addMessage}/>
+    </div>
+  );
 }
 
 export default Main;
