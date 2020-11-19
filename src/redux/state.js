@@ -1,6 +1,6 @@
-import {
-    renderEntireTree
-} from '../render'
+let renderEntireTree = () => {
+    console.log('state was changed');
+};
 
 let state = {
     navbar: {
@@ -129,12 +129,15 @@ let state = {
                     messagesText: 'ОК'
                 }
             ],
+            newMessageText: ''
         }
     }
 
 }
 
-export let addPost = (postMessage) => {
+window.state = state;
+
+export const addPost = (postMessage) => {
     let newPost = {
         id: 3,
         message: postMessage
@@ -144,15 +147,27 @@ export let addPost = (postMessage) => {
     renderEntireTree(state); // перерисовка UI
 };
 
-export let addMessage = (textMessage) => {
+export const addMessage = () => {
     let newMessage = {
         id: 5,
         name: 'Я',
-        messagesText: textMessage
+        messagesText: state.content.dialogsPage.newMessageText
     };
 
     state.content.dialogsPage.messages.push(newMessage);
+    state.content.dialogsPage.newMessageText = '';
     renderEntireTree(state); // перерисовка UI
+};
+
+//функция обновления текста сообщения
+export const updateMessage = (newMessageText) => {
+    state.content.dialogsPage.newMessageText = newMessageText;
+    renderEntireTree(state); // перерисовка UI
+};
+
+//функция колбэк
+export const subscribe = (observer) => {
+    renderEntireTree = observer; //паттерн
 };
 
 export default state;

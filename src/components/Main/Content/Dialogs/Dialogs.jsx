@@ -17,9 +17,14 @@ const Dialogs = (props) => {
 
   //колбэк функция 
   let addMessage = () => {
-    let text = newMessageElement.current.value; //считали данные из элемента
-    props.addMessage(text);
+    props.addMessage();
     newMessageElement.current.value = '';
+  };
+
+  //
+  let updateMessage = () => {
+    let text = newMessageElement.current.value; //считали данные из элемента
+    props.updateMessage(text);
   };
 
 
@@ -37,12 +42,12 @@ const Dialogs = (props) => {
 
         <div className={s.messagesColumn}>
           <div className={s.messagesItems}>
-          {messagesElements}
+            {messagesElements}
           </div>
-          
+
           <div className={s.newPosts}>
             <p className={s.newPosts__title}>Нове повідомлення</p>
-            <textarea ref={newMessageElement} className={s.newPosts__text} placeholder="моє повідомлення.."></textarea>
+            <textarea onChange={updateMessage} ref={newMessageElement} className={s.newPosts__text} value={props.state.newMessageText} placeholder="моє повідомлення.."></textarea>
             <button onClick={addMessage} className={`button ${s.newPosts__button}`}>Відправити</button>
           </div>
         </div>

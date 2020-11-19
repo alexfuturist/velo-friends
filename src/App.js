@@ -21,7 +21,7 @@ function App(props) {
     <BrowserRouter>
       <div className="app">
         <Header />
-        <Main state={props.state} addPost={props.addPost} addMessage={props.addMessage}/>
+        <Main state={props.state} addPost={props.addPost} addMessage={props.addMessage} updateMessage={props.updateMessage}/>
       </div>
     </BrowserRouter>
   );
