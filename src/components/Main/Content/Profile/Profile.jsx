@@ -13,6 +13,12 @@ const Profile = (props) => {
     newPostElement.current.value = '';
   };
 
+  //
+  let updatePost = () => {
+    let text = newPostElement.current.value; //считали данные из элемента
+    props.updatePost(text);
+  };
+
 
 
   return (
@@ -34,7 +40,7 @@ const Profile = (props) => {
 
       <div className={s.newPosts}>
         <p className={s.newPosts__title}>Новий пост</p>
-        <textarea ref={newPostElement} className={s.newPosts__text} placeholder="моя новина.."></textarea>
+        <textarea onChange={updatePost} ref={newPostElement} className={s.newPosts__text} placeholder="моя новина.."></textarea>
         <button onClick={addPost} className={`button ${s.newPosts__button}`}>Опубліковати</button>
       </div>
 

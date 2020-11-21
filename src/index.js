@@ -1,4 +1,4 @@
-import state, { subscribe } from './redux/state';
+import {store} from './redux/state';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -6,13 +6,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { addPost, addMessage, updateMessage } from './redux/state';
-
 //функция отрисовки (перерисовки) UI
 let renderEntireTree = (state)=> {
     ReactDOM.render(
         <React.StrictMode>
-          <App state={state} addPost={addPost} addMessage={addMessage} updateMessage={updateMessage}/>
+          <App state={state} addPost={store.addPost.bind(store)} updatePost={store.updatePost.bind(store)} addMessage={store.addMessage.bind(store)} updateMessage={store.updateMessage.bind(store)} />
         </React.StrictMode>,
         document.getElementById('root')
       );
@@ -24,7 +22,7 @@ let renderEntireTree = (state)=> {
 }
 
 //первичная отрисовка
-renderEntireTree(state);
+renderEntireTree(store.getState());
 
 //подписка на события изменения
-subscribe(renderEntireTree);
+store.subscribe(renderEntireTree);
