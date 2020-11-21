@@ -136,29 +136,22 @@ export let store = {
         console.log('state was changed');
     },
 
-    getState() {
-        return this._state;
-    },
-    //функция колбэк
-    subscribe(observer) {
-        this._renderEntireTree = observer; //паттерн
-    },
-
-    addPost() {
+    _addPost() {
         let newPost = {
             id: 3,
             message: this._state.content.profilePage.newPostText
         };
 
         this._state.content.profilePage.posts.push(newPost);
+        this._state.content.profilePage.newPostText = '';
         this._renderEntireTree(this._state); // перерисовка UI
     },
     //функция обновления текста поста
-    updatePost(newPostText) {
+    _updatePost(newPostText) {
         this._state.content.profilePage.newPostText = newPostText;
         this._renderEntireTree(this._state); // перерисовка UI
     },
-    addMessage() {
+    _addMessage() {
         let newMessage = {
             id: 5,
             name: 'Я',
@@ -170,17 +163,46 @@ export let store = {
         this._renderEntireTree(this._state); // перерисовка UI
     },
     //функция обновления текста сообщения
-    updateMessage(newMessageText) {
+    _updateMessage(newMessageText) {
         this._state.content.dialogsPage.newMessageText = newMessageText;
         this._renderEntireTree(this._state); // перерисовка UI
     },
 
     dispatch(action) {
-        if (action.type === "ADD-POST") {
-            this.addPost()
+        switch (action.type) {
+            case "ADD-POST":
+                this._addPost();
+                break;
+            case "UPDATE-POST":
+                this._updatePost(action.newPostText);
+                break;
+            case "ADD-MESSAGE":
+                this._addMessage();
+                break;
+            case "UPDATE-MESSAGE":
+                this._updateMessage(action.newMessageText);
+                break;
         }
-    }
-    
+        
+        // if (action.type === "ADD-POST") {
+        //     this._addPost()
+        // } else if (action.type === "UPDATE-POST") {
+        //     this._updatePost(action.newPostText)
+        // } else if (action.type === "ADD-MESSAGE") {
+        //     this._addMessage()
+        // } else if (action.type === "UPDATE-MESSAGE") {
+        //     this._updateMessage(action.newMessageText)
+        // }
+    },
+
+    getState() {
+        return this._state;
+    },
+    //функция колбэк
+    subscribe(observer) {
+        this._renderEntireTree = observer; //паттерн
+    },
+
 }
 
 // window.store = store;

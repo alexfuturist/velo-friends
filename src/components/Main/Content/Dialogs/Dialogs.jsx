@@ -17,14 +17,13 @@ const Dialogs = (props) => {
 
   //колбэк функция 
   let addMessage = () => {
-    props.addMessage();
-    newMessageElement.current.value = '';
+    props.dispatch({type:"ADD-MESSAGE"});
   };
 
   //
   let updateMessage = () => {
     let text = newMessageElement.current.value; //считали данные из элемента
-    props.updateMessage(text);
+    props.dispatch({type:"UPDATE-MESSAGE", newMessageText: text});
   };
 
 

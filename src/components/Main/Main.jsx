@@ -16,7 +16,7 @@ const Main = (props) => {
   return (
     <div className={`${s.main} wrapper`}>
       <Navbar />
-      <Content state={props.state} addPost={props.addPost} updatePost={props.updatePost} addMessage={props.addMessage} updateMessage={props.updateMessage} />
+      <Content state={props.state} dispatch={props.dispatch}/>
     </div>
   );
 }

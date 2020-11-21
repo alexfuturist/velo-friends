@@ -9,14 +9,13 @@ const Profile = (props) => {
   //колбэк функция 
   let addPost = () => {
     let text = newPostElement.current.value; //считали данные из элемента
-    props.addPost(text); //вызываем функцию добавления нового поста
-    newPostElement.current.value = '';
+    props.dispatch({type:"ADD-POST"}); //вызываем функцию добавления нового поста
   };
 
   //
   let updatePost = () => {
     let text = newPostElement.current.value; //считали данные из элемента
-    props.updatePost(text);
+    props.dispatch({type:"UPDATE-POST", newPostText: text});
   };
 
 
@@ -40,7 +39,7 @@ const Profile = (props) => {
 
       <div className={s.newPosts}>
         <p className={s.newPosts__title}>Новий пост</p>
-        <textarea onChange={updatePost} ref={newPostElement} className={s.newPosts__text} placeholder="моя новина.."></textarea>
+        <textarea onChange={updatePost} ref={newPostElement} className={s.newPosts__text} value={props.state.newPostText} placeholder="моя новина.."></textarea>
         <button onClick={addPost} className={`button ${s.newPosts__button}`}>Опубліковати</button>
       </div>
 
