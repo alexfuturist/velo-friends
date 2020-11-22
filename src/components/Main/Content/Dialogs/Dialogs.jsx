@@ -3,9 +3,10 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem';
 
+import { addMessageActionCreator, updateMessageActionCreator } from '../../../../redux/state';
+
 import s from './Dialogs.module.css';
 import MessagesItem from './MessagesItem/MessagesItem';
-
 
 
 const Dialogs = (props) => {
@@ -17,13 +18,13 @@ const Dialogs = (props) => {
 
   //колбэк функция 
   let addMessage = () => {
-    props.dispatch({type:"ADD-MESSAGE"});
+    props.dispatch(addMessageActionCreator());
   };
 
   //
   let updateMessage = () => {
     let text = newMessageElement.current.value; //считали данные из элемента
-    props.dispatch({type:"UPDATE-MESSAGE", newMessageText: text});
+    props.dispatch(updateMessageActionCreator(text));
   };
 
 

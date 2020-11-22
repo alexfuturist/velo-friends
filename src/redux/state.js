@@ -1,3 +1,9 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_POST = 'UPDATE-POST';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_MESSAGE = 'UPDATE-MESSAGE';
+
+
 export let store = {
     _state: {
         navbar: {
@@ -170,29 +176,19 @@ export let store = {
 
     dispatch(action) {
         switch (action.type) {
-            case "ADD-POST":
+            case ADD_POST:
                 this._addPost();
                 break;
-            case "UPDATE-POST":
+            case UPDATE_POST:
                 this._updatePost(action.newPostText);
                 break;
-            case "ADD-MESSAGE":
+            case ADD_MESSAGE:
                 this._addMessage();
                 break;
-            case "UPDATE-MESSAGE":
+            case UPDATE_MESSAGE:
                 this._updateMessage(action.newMessageText);
                 break;
         }
-        
-        // if (action.type === "ADD-POST") {
-        //     this._addPost()
-        // } else if (action.type === "UPDATE-POST") {
-        //     this._updatePost(action.newPostText)
-        // } else if (action.type === "ADD-MESSAGE") {
-        //     this._addMessage()
-        // } else if (action.type === "UPDATE-MESSAGE") {
-        //     this._updateMessage(action.newMessageText)
-        // }
     },
 
     getState() {
@@ -205,178 +201,22 @@ export let store = {
 
 }
 
-// window.store = store;
 
-// let renderEntireTree = () => {
-//     console.log('state was changed');
-// };
+export const addPostActionCreator = () => ({type: ADD_POST});
 
-// let state = {
-//     navbar: {
-//         friends: [{
-//                 id: 1,
-//                 name: 'Михайло'
-//             },
-//             {
-//                 id: 2,
-//                 name: 'Ізабела'
-//             },
-//             {
-//                 id: 3,
-//                 name: 'Софія'
-//             }
-//         ]
-//     },
-//     content: {
-//         profilePage: {
-//             posts: [{
-//                     id: 1,
-//                     message: "Привіт, хто хоче покататись?"
-//                 },
-//                 {
-//                     id: 2,
-//                     message: "Починаю нову програму! Поїхали!"
-//                 }
-//             ],
-//         },
-//         dialogsPage: {
-//             dialogs: [{
-//                     id: 1,
-//                     name: 'Михайло'
-//                 },
-//                 {
-//                     id: 2,
-//                     name: 'Ізабела'
-//                 },
-//                 {
-//                     id: 3,
-//                     name: 'Софія'
-//                 },
-//                 {
-//                     id: 2,
-//                     name: 'Ізабела'
-//                 },
-//                 {
-//                     id: 3,
-//                     name: 'Софія'
-//                 },
-//                 {
-//                     id: 2,
-//                     name: 'Ізабела'
-//                 },
-//                 {
-//                     id: 3,
-//                     name: 'Софія'
-//                 },
-//                 {
-//                     id: 2,
-//                     name: 'Ізабела'
-//                 },
-//                 {
-//                     id: 3,
-//                     name: 'Софія'
-//                 },
-//                 {
-//                     id: 2,
-//                     name: 'Ізабела'
-//                 },
-//                 {
-//                     id: 3,
-//                     name: 'Софія'
-//                 },
-//                 {
-//                     id: 2,
-//                     name: 'Ізабела'
-//                 },
-//                 {
-//                     id: 3,
-//                     name: 'Софія'
-//                 },
-//                 {
-//                     id: 2,
-//                     name: 'Ізабела'
-//                 },
-//                 {
-//                     id: 3,
-//                     name: 'Софія'
-//                 },
-//                 {
-//                     id: 2,
-//                     name: 'Ізабела'
-//                 },
-//                 {
-//                     id: 3,
-//                     name: 'Софія'
-//                 },
-//                 {
-//                     id: 2,
-//                     name: 'Ізабела'
-//                 },
-//                 {
-//                     id: 3,
-//                     name: 'Софія'
-//                 }
-//             ],
-//             messages: [{
-//                     id: 1,
-//                     name: 'Ізабела',
-//                     messagesText: 'Привіт! Вже замінив колесо?'
-//                 },
-//                 {
-//                     id: 2,
-//                     name: 'Я',
-//                     messagesText: 'Привіт. Так вже відремонтував і встановив нові катафоти!'
-//                 },
-//                 {
-//                     id: 3,
-//                     name: 'Ізабела',
-//                     messagesText: 'Тоді завтра на 10:30 їдемо 20км по маршруту Б.'
-//                 },
-//                 {
-//                     id: 4,
-//                     name: 'Я',
-//                     messagesText: 'ОК'
-//                 }
-//             ],
-//             newMessageText: ''
-//         }
-//     }
+export const updatePostActionCreator = (text) => {
+    return {
+        type: UPDATE_POST,
+        newPostText: text
+    }
+};
 
-// }
 
-// window.state = state;
+export const addMessageActionCreator = () => ({type: ADD_MESSAGE});
 
-// export const addPost = (postMessage) => {
-//     let newPost = {
-//         id: 3,
-//         message: postMessage
-//     };
-
-//     state.content.profilePage.posts.push(newPost);
-//     renderEntireTree(state); // перерисовка UI
-// };
-
-// export const addMessage = () => {
-//     let newMessage = {
-//         id: 5,
-//         name: 'Я',
-//         messagesText: state.content.dialogsPage.newMessageText
-//     };
-
-//     state.content.dialogsPage.messages.push(newMessage);
-//     state.content.dialogsPage.newMessageText = '';
-//     renderEntireTree(state); // перерисовка UI
-// };
-
-// //функция обновления текста сообщения
-// export const updateMessage = (newMessageText) => {
-//     state.content.dialogsPage.newMessageText = newMessageText;
-//     renderEntireTree(state); // перерисовка UI
-// };
-
-// //функция колбэк
-// export const subscribe = (observer) => {
-//     renderEntireTree = observer; //паттерн
-// };
-
-// export default state;
+export const updateMessageActionCreator = (text) => {
+    return {
+        type: UPDATE_MESSAGE,
+        newMessageText: text
+    }
+};

@@ -1,6 +1,8 @@
 import React from 'react';
+import { addPostActionCreator, updatePostActionCreator } from '../../../../redux/state';
 import Posts from './Posts/Posts';
 import s from './Profile.module.css';
+
 
 const Profile = (props) => {
 
@@ -8,14 +10,13 @@ const Profile = (props) => {
 
   //колбэк функция 
   let addPost = () => {
-    let text = newPostElement.current.value; //считали данные из элемента
-    props.dispatch({type:"ADD-POST"}); //вызываем функцию добавления нового поста
+    props.dispatch(addPostActionCreator()); //вызываем функцию добавления нового поста
   };
 
   //
   let updatePost = () => {
     let text = newPostElement.current.value; //считали данные из элемента
-    props.dispatch({type:"UPDATE-POST", newPostText: text});
+    props.dispatch(updatePostActionCreator(text));
   };
 
 
