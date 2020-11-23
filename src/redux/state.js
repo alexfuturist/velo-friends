@@ -1,8 +1,11 @@
+import dialogsReducer from "./dialogs-reducer";
+import profileReducer from "./profile-reducer";
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST = 'UPDATE-POST';
+
 const ADD_MESSAGE = 'ADD-MESSAGE';
 const UPDATE_MESSAGE = 'UPDATE-MESSAGE';
-
 
 export let store = {
     _state: {
@@ -142,66 +145,28 @@ export let store = {
         console.log('state was changed');
     },
 
-    _addPost() {
-        let newPost = {
-            id: 3,
-            message: this._state.content.profilePage.newPostText
-        };
-
-        this._state.content.profilePage.posts.push(newPost);
-        this._state.content.profilePage.newPostText = '';
-        this._renderEntireTree(this._state); // перерисовка UI
-    },
-    //функция обновления текста поста
-    _updatePost(newPostText) {
-        this._state.content.profilePage.newPostText = newPostText;
-        this._renderEntireTree(this._state); // перерисовка UI
-    },
-    _addMessage() {
-        let newMessage = {
-            id: 5,
-            name: 'Я',
-            messagesText: this._state.content.dialogsPage.newMessageText
-        };
-
-        this._state.content.dialogsPage.messages.push(newMessage);
-        this._state.content.dialogsPage.newMessageText = '';
-        this._renderEntireTree(this._state); // перерисовка UI
-    },
-    //функция обновления текста сообщения
-    _updateMessage(newMessageText) {
-        this._state.content.dialogsPage.newMessageText = newMessageText;
-        this._renderEntireTree(this._state); // перерисовка UI
-    },
 
     dispatch(action) {
-        switch (action.type) {
-            case ADD_POST:
-                this._addPost();
-                break;
-            case UPDATE_POST:
-                this._updatePost(action.newPostText);
-                break;
-            case ADD_MESSAGE:
-                this._addMessage();
-                break;
-            case UPDATE_MESSAGE:
-                this._updateMessage(action.newMessageText);
-                break;
-        }
+
+        this._state.content.profilePage = profileReducer(this._state.content.profilePage, action);
+        this._state.content.dialogsPage = dialogsReducer(this._state.content.dialogsPage, action);
+
+        this._renderEntireTree(this._state); // перерисовка UI (уведомление подписчика)
     },
 
     getState() {
         return this._state;
     },
-    //функция колбэк
+
+    //функция колбэк - переписывает метод _renderEntireTree() 
+    //с заглушки на функцию отрисовки из index.js
     subscribe(observer) {
         this._renderEntireTree = observer; //паттерн
     },
 
 }
 
-
+//создатели событий (объектов событий)
 export const addPostActionCreator = () => ({type: ADD_POST});
 
 export const updatePostActionCreator = (text) => {

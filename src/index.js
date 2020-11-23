@@ -25,4 +25,5 @@ let renderEntireTree = (state)=> {
 renderEntireTree(store.getState());
 
 //подписка на события изменения
+//переписывает метод _renderEntireTree() в state
 store.subscribe(renderEntireTree);
