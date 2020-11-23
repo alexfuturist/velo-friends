@@ -20,4 +20,14 @@ const profileReducer = (state, action) => {
     }
 }
 
+//создатели событий (объектов событий)
+export const addPostActionCreator = () => ({type: ADD_POST});
+
+export const updatePostActionCreator = (text) => {
+    return {
+        type: UPDATE_POST,
+        newPostText: text
+    }
+};
+
 export default profileReducer;

@@ -1,12 +1,6 @@
 import dialogsReducer from "./dialogs-reducer";
 import profileReducer from "./profile-reducer";
 
-const ADD_POST = 'ADD-POST';
-const UPDATE_POST = 'UPDATE-POST';
-
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_MESSAGE = 'UPDATE-MESSAGE';
-
 export let store = {
     _state: {
         navbar: {
@@ -165,23 +159,3 @@ export let store = {
     },
 
 }
-
-//создатели событий (объектов событий)
-export const addPostActionCreator = () => ({type: ADD_POST});
-
-export const updatePostActionCreator = (text) => {
-    return {
-        type: UPDATE_POST,
-        newPostText: text
-    }
-};
-
-
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE});
-
-export const updateMessageActionCreator = (text) => {
-    return {
-        type: UPDATE_MESSAGE,
-        newMessageText: text
-    }
-};
