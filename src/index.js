@@ -1,4 +1,4 @@
-import {store} from './redux/state';
+import {store} from './redux/redux-store';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -10,7 +10,7 @@ import reportWebVitals from './reportWebVitals';
 let renderEntireTree = (state)=> {
     ReactDOM.render(
         <React.StrictMode>
-          <App state={state} dispatch={store.dispatch.bind(store)}/>
+          <App state={state} store={store} />
         </React.StrictMode>,
         document.getElementById('root')
       );
@@ -26,4 +26,7 @@ renderEntireTree(store.getState());
 
 //подписка на события изменения
 //переписывает метод _renderEntireTree() в state
-store.subscribe(renderEntireTree);
+store.subscribe( () => {
+  let state = store.getState();
+  renderEntireTree(state);
+});

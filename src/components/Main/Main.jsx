@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar/Navbar';
 import Content from './Content/Content';
-
 import s from './Main.module.css';
 
 import {
@@ -16,7 +15,7 @@ const Main = (props) => {
   return (
     <div className={`${s.main} wrapper`}>
       <Navbar />
-      <Content state={props.state} dispatch={props.dispatch}/>
+      <Content store={props.store} />
     </div>
   );
 }

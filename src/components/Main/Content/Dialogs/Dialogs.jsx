@@ -1,27 +1,25 @@
 import React from 'react';
-import { addMessageActionCreator, updateMessageActionCreator } from '../../../../redux/dialogs-reducer';
 import DialogItem from './DialogItem/DialogItem';
-
-import s from './Dialogs.module.css';
 import MessagesItem from './MessagesItem/MessagesItem';
+import s from './Dialogs.module.css';
 
 
 const Dialogs = (props) => {
-
-  let dialogsElements = props.state.dialogs.map(d => <DialogItem name={d.name} id={d.id} />);
-  let messagesElements = props.state.messages.map(m => <MessagesItem name={m.name} messageText={m.messagesText} id={m.id} />);
+  
+  let dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} id={d.id} />);
+  let messagesElements = props.messages.map(m => <MessagesItem name={m.name} messageText={m.messagesText} id={m.id} />);
 
   let newMessageElement = React.createRef(); //создали ссылку на элемент
 
   //колбэк функция 
   let addMessage = () => {
-    props.dispatch(addMessageActionCreator());
+    props.addMessage();
   };
 
-  //
+  //колбэк функция 
   let updateMessage = () => {
     let text = newMessageElement.current.value; //считали данные из элемента
-    props.dispatch(updateMessageActionCreator(text));
+    props.updateMessage(text);
   };
 
 
@@ -44,7 +42,7 @@ const Dialogs = (props) => {
 
           <div className={s.newPosts}>
             <p className={s.newPosts__title}>Нове повідомлення</p>
-            <textarea onChange={updateMessage} ref={newMessageElement} className={s.newPosts__text} value={props.state.newMessageText} placeholder="моє повідомлення.."></textarea>
+            <textarea onChange={updateMessage} ref={newMessageElement} className={s.newPosts__text} value={props.newMessageText} placeholder="моє повідомлення.."></textarea>
             <button onClick={addMessage} className={`button ${s.newPosts__button}`}>Відправити</button>
           </div>
         </div>

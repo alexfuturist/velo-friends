@@ -1,5 +1,4 @@
 import React from 'react';
-import { addPostActionCreator, updatePostActionCreator } from '../../../../redux/profile-reducer';
 import Posts from './Posts/Posts';
 import s from './Profile.module.css';
 
@@ -10,15 +9,14 @@ const Profile = (props) => {
 
   //колбэк функция 
   let addPost = () => {
-    props.dispatch(addPostActionCreator()); //вызываем функцию добавления нового поста
+    props.addPost(); //вызываем функцию добавления нового поста
   };
 
-  //
+  //колбэк функция
   let updatePost = () => {
     let text = newPostElement.current.value; //считали данные из элемента
-    props.dispatch(updatePostActionCreator(text));
+    props.updatePost(text);
   };
-
 
 
   return (
@@ -40,11 +38,11 @@ const Profile = (props) => {
 
       <div className={s.newPosts}>
         <p className={s.newPosts__title}>Новий пост</p>
-        <textarea onChange={updatePost} ref={newPostElement} className={s.newPosts__text} value={props.state.newPostText} placeholder="моя новина.."></textarea>
+        <textarea onChange={updatePost} ref={newPostElement} className={s.newPosts__text} value={props.newPostText} placeholder="моя новина.."></textarea>
         <button onClick={addPost} className={`button ${s.newPosts__button}`}>Опубліковати</button>
       </div>
 
-      <Posts posts={props.state.posts} />
+      <Posts posts={props.posts} />
 
     </section>
   );

@@ -3,7 +3,6 @@ import React from 'react';
 import './components/Common/_normalize.css'
 import './components/Common/_nullstyle.css'
 import './components/Common/__scrollbar.scss'
-// import './App.scss';
 import './App.scss';
 
 import Header from './components/Header/Header';
@@ -21,7 +20,7 @@ function App(props) {
     <BrowserRouter>
       <div className="app">
         <Header />
-        <Main state={props.state} dispatch={props.dispatch}/>
+        <Main store={props.store} />
       </div>
     </BrowserRouter>
   );

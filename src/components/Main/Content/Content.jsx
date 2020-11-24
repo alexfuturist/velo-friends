@@ -1,9 +1,6 @@
 import React from 'react';
-
 import s from './Content.module.css';
 
-import Profile from './Profile/Profile';
-import Dialogs from './Dialogs/Dialogs';
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,13 +8,15 @@ import {
   Link
 } from "react-router-dom";
 
+import ProfileContainer from './Profile/ProfileContainer';
+import DialogsContainer from './Dialogs/DialogsContainer';
+
 
 const Content = (props) => {
-
   return (
     <div className={s.content}>
-      <Route path="/profile" render={() => <Profile state={props.state.content.profilePage} dispatch={props.dispatch} />} />
-      <Route path="/dialogs" render={() => <Dialogs state={props.state.content.dialogsPage} dispatch={props.dispatch} />} />
+      <Route path="/profile" render={() => <ProfileContainer store={props.store} />} />
+      <Route path="/dialogs" render={() => <DialogsContainer store={props.store} />} />
       {/* <Route path="/friends" component={Friends} />
       <Route path="/photos" component={Photos} />
       <Route path="/routes" component={Routes} /> */}
