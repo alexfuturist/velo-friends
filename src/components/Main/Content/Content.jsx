@@ -15,8 +15,8 @@ import DialogsContainer from './Dialogs/DialogsContainer';
 const Content = (props) => {
   return (
     <div className={s.content}>
-      <Route path="/profile" render={() => <ProfileContainer store={props.store} />} />
-      <Route path="/dialogs" render={() => <DialogsContainer store={props.store} />} />
+      <Route path="/profile" render={() => <ProfileContainer />} />
+      <Route path="/dialogs" render={() => <DialogsContainer />} />
       {/* <Route path="/friends" component={Friends} />
       <Route path="/photos" component={Photos} />
       <Route path="/routes" component={Routes} /> */}

@@ -17,12 +17,12 @@ import {
 
 function App(props) {
   return (
-    <BrowserRouter>
+    
       <div className="app">
         <Header />
-        <Main store={props.store} />
+        <Main />
       </div>
-    </BrowserRouter>
+    
   );
 }
 

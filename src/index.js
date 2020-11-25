@@ -1,16 +1,26 @@
-import {store} from './redux/redux-store';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {store} from './redux/redux-store';
+import {Provider} from 'react-redux';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 //функция отрисовки (перерисовки) UI
-let renderEntireTree = (state)=> {
+let renderEntireTree = ()=> {
     ReactDOM.render(
         <React.StrictMode>
-          <App state={state} store={store} />
+          <BrowserRouter>
+            <Provider store={store}>
+              <App />
+            </Provider>
+          </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')
       );
@@ -22,11 +32,10 @@ let renderEntireTree = (state)=> {
 }
 
 //первичная отрисовка
-renderEntireTree(store.getState());
+renderEntireTree();
 
 //подписка на события изменения
 //переписывает метод _renderEntireTree() в state
 store.subscribe( () => {
-  let state = store.getState();
-  renderEntireTree(state);
+  renderEntireTree();
 });

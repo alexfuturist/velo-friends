@@ -15,7 +15,7 @@ const Main = (props) => {
   return (
     <div className={`${s.main} wrapper`}>
       <Navbar />
-      <Content store={props.store} />
+      <Content />
     </div>
   );
 }
