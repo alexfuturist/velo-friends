@@ -105,29 +105,41 @@ let initialState = {
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_MESSAGE:
+        case ADD_MESSAGE: {
             let newMessage = {
                 id: 5,
                 name: 'Я',
                 messagesText: state.newMessageText
             };
 
-            state.messages.push(newMessage);
-            state.newMessageText = '';
+            let stateCopy = {
+                ...state
+            };
+            stateCopy.messages = [...state.messages]
 
-            return state;
-        case UPDATE_MESSAGE:
-            state.newMessageText = action.newMessageText;
+            stateCopy.messages.push(newMessage);
+            stateCopy.newMessageText = '';
 
-            return state;
+            return stateCopy;
+        }
+        case UPDATE_MESSAGE: {
+            let stateCopy = {
+                ...state
+            };
 
+            stateCopy.newMessageText = action.newMessageText;
+
+            return stateCopy;
+        }
         default:
             return state;
     }
 }
 
 //создатели событий (объектов событий)
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE});
+export const addMessageActionCreator = () => ({
+    type: ADD_MESSAGE
+});
 
 export const updateMessageActionCreator = (text) => {
     return {
