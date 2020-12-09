@@ -29,4 +29,10 @@ a {
   padding: 10px;
   color: white;
   background-color: cornflowerblue;
+
+  transition-duration: .6s;
+
+  &:hover {
+    transition-duration: .6s;
+  }
 }

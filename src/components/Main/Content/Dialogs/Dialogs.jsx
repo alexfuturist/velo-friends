@@ -5,9 +5,9 @@ import s from './Dialogs.module.css';
 
 
 const Dialogs = (props) => {
-  
-  let dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} id={d.id} />);
-  let messagesElements = props.messages.map(m => <MessagesItem name={m.name} messageText={m.messagesText} id={m.id} />);
+
+  let dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id} />);
+  let messagesElements = props.messages.map(m => <MessagesItem name={m.name} messageText={m.messagesText} key={m.id} id={m.id} />);
 
   let newMessageElement = React.createRef(); //создали ссылку на элемент
 

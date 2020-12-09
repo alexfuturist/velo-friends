@@ -7,15 +7,15 @@ const Profile = (props) => {
 
   let newPostElement = React.createRef(); //создали ссылку на элемент
 
-  //колбэк функция 
-  let addPost = () => {
-    props.addPost(); //вызываем функцию добавления нового поста
-  };
-
   //колбэк функция
   let updatePost = () => {
     let text = newPostElement.current.value; //считали данные из элемента
     props.updatePost(text);
+  };
+
+  //колбэк функция 
+  let addPost = () => {
+    props.addPost(); //вызываем функцию добавления нового поста
   };
 
 

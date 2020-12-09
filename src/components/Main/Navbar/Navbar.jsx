@@ -33,6 +33,11 @@ const Navbar = () => {
               Музика
             </NavLink>
           </li>
+          <li className={s.navbar__item}>
+            <NavLink to="/users" activeClassName={s.navbar__active}>
+              Мої підписки
+            </NavLink>
+          </li>
           <li className={` ${s.navbar__settings}`}>
             <NavLink to="/settings" activeClassName={s.navbar__active}>
               Налаштування

@@ -1,9 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {store} from './redux/redux-store';
-import {Provider} from 'react-redux';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {
   BrowserRouter,
@@ -11,6 +7,12 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import {store} from './redux/redux-store';
+import {Provider} from 'react-redux';
+import App from './App';
+
+import './index.css';
+
 
 //функция отрисовки (перерисовки) UI
 let renderEntireTree = ()=> {

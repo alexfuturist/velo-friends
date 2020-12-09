@@ -4,7 +4,7 @@ import s from './Posts.module.css';
 
 const Posts = (props) => {
 
-  let postsElements = props.posts.map(p => <Post massage={p.message} id={p.id} />);
+  let postsElements = props.posts.map(p => <Post massage={p.message} key={p.id} id={p.id} />);
 
   return (
     <ul className={s.posts}>

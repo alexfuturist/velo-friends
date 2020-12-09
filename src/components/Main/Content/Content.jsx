@@ -1,6 +1,4 @@
 import React from 'react';
-import s from './Content.module.css';
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,8 +6,11 @@ import {
   Link
 } from "react-router-dom";
 
+import s from './Content.module.css';
+
 import ProfileContainer from './Profile/ProfileContainer';
 import DialogsContainer from './Dialogs/DialogsContainer';
+import UsersContainer from './Users/UsersContainer';
 
 
 const Content = (props) => {
@@ -17,6 +18,7 @@ const Content = (props) => {
     <div className={s.content}>
       <Route path="/profile" render={() => <ProfileContainer />} />
       <Route path="/dialogs" render={() => <DialogsContainer />} />
+      <Route path="/users" render={() => <UsersContainer />} />
       {/* <Route path="/friends" component={Friends} />
       <Route path="/photos" component={Photos} />
       <Route path="/routes" component={Routes} /> */}
