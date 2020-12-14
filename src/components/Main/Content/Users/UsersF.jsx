@@ -4,64 +4,56 @@ import * as axios from 'axios';
 import userPhotoDefault from '../../../../assets/images/user_default.png'
 
 import s from './Users.module.scss'
-import { render } from '@testing-library/react';
 
 
-class Users extends React.Component {
+let Users = (props) => {
 
-  constructor(props) {
-    super(props);
-
-    //side-effect (нужно избавиться)
+  //side-effect (нужно избавиться)
+  if (props.users.length === 0) {
     axios
-      .get("https://social-network.samuraijs.com/api/1.0/users")
-      .then(response => {
-        console.log(response.data.items);
-        this.props.setUsers(response.data.items);
-      });
-
-
+    .get("https://social-network.samuraijs.com/api/1.0/users")
+    .then(response => {
+      console.log(response.data.items);
+      props.setUsers(response.data.items);
+    });
   }
 
-  render() {
-    return (
-      <section className={s.users}>
-        <div>
-          {
-            this.props.users.map(u => <div key={u.id} className={s.users__item}>
-              <div className={s.users__img}>
-                <img src={u.photos.small !== null ? u.photos.small : userPhotoDefault} alt="" />
-                <div>
-                  {u.followed
-                    ? <button onClick={() => { this.props.unfollow(u.id) }} className={`${s.users__button__unfollow} ${s.users__button} button`}>
-                      <span className={s.active}>Слідкую</span>
-                      <span className={s.hover}>Відписатись</span>
-                    </button>
-                    : <button onClick={() => { this.props.follow(u.id) }} className={`${s.users__button__follow} ${s.users__button} button`}>
-                      Підписатись
-                    </button>
-                  }
-                </div>
+  return (
+    <section className={s.users}>
+      <div>
+        {
+          props.users.map(u => <div key={u.id} className={s.users__item}>
+            <div className={s.users__img}>
+              <img src={u.photos.small !== null ? u.photos.small : userPhotoDefault} alt="" />
+              <div>
+                {u.followed
+                  ? <button onClick={() => { props.unfollow(u.id) }} className={`${s.users__button__unfollow} ${s.users__button} button`}>
+                    <span className={s.active}>Слідкую</span>
+                    <span className={s.hover}>Відписатись</span>
+                  </button>
+                  : <button onClick={() => { props.follow(u.id) }} className={`${s.users__button__follow} ${s.users__button} button`}>
+                    Підписатись
+                  </button>
+                }
               </div>
+            </div>
 
-              <div className={s.users__info}>
-                <div className={s.users__infoTop}>
-                  <p className={s.users__name}>{u.name}</p>
-                  <p className={s.users__city}>{"u.location.city"},</p>
+            <div className={s.users__info}>
+              <div className={s.users__infoTop}>
+                <p className={s.users__name}>{u.name}</p>
+                <p className={s.users__city}>{"u.location.city"},</p>
 
-                </div>
-                <div className={s.users__infoBottom}>
-                  <p className={s.users__status}>{u.status}</p>
-                  <p className={s.users__country}>{"u.location.country"}</p>
-                </div>
               </div>
-            </div >)
-          }
-        </div>
-      </section>
-    );
-  }
-
+              <div className={s.users__infoBottom}>
+                <p className={s.users__status}>{u.status}</p>
+                <p className={s.users__country}>{"u.location.country"}</p>
+              </div>
+            </div>
+          </div >)
+        }
+      </div>
+    </section>
+  );
 }
 
 export default Users;
