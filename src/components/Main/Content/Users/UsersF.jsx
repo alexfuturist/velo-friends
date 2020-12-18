@@ -6,7 +6,7 @@ import userPhotoDefault from '../../../../assets/images/user_default.png'
 import s from './Users.module.scss'
 
 
-let Users = (props) => {
+let UsersF = (props) => {
 
   //side-effect (нужно избавиться)
   if (props.users.length === 0) {
@@ -56,7 +56,7 @@ let Users = (props) => {
   );
 }
 
-export default Users;
+export default UsersF;
 
 
 
