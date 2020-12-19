@@ -1,96 +1,71 @@
 import React from 'react';
 import { setUsersAC } from '../../../../redux/users-reducer';
-import * as axios from 'axios';
 import userPhotoDefault from '../../../../assets/images/user_default.png'
 
 import s from './Users.module.scss'
 import { render } from '@testing-library/react';
 
 
-class Users extends React.Component {
+const Users = (props) => {
 
-  componentDidMount() {
-    //side-effect
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-      .then(response => {
-        this.props.setUsers(response.data.items);
-        this.props.setTotalUsersCount(response.data.totalCount);
-      });
+  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+
+  //массив страниц пагинации
+  let pages = [];
+
+  for (let i = 1; i <= pagesCount; i++) {
+    pages.push(i);
   }
 
-  onPageChanged = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber);
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-      .then(response => {
-        this.props.setUsers(response.data.items);
-      });
-  }
+  console.log(pagesCount);
+  console.log(`${props.currentPage}`);
 
+  return(
+    <section className = { s.users } >
 
-  render() {
+      <div className={s.pagination}>
+        {pages.map(p => {
+          return <span className={`${s.paginationPage} 
+          ${props.currentPage === p && s.paginationPageSelected}`}
+            onClick={(e) => { props.onPageChanged(p); }}> {p} </span>
+        })}
+      </div>
 
-    let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
-
-    //массив страниц пагинации
-    let pages = [];
-
-    for (let i = 1; i <= pagesCount; i++) {
-      pages.push(i);
-    }
-
-    console.log(pagesCount);
-    console.log(`${this.props.currentPage}`);
-
-    return (
-      <section className={s.users}>
-
-        <div className={s.pagination}>
-          {pages.map(p => {
-            return <span className={`${s.paginationPage} 
-            ${this.props.currentPage === p && s.paginationPageSelected}`}
-              onClick={(e) => { this.onPageChanged(p); }}> {p} </span>
-          })}
-        </div>
-
-        <div>
-          {
-            this.props.users.map(u => <div key={u.id} className={s.users__item}>
-              <div className={s.users__img}>
-                <img src={u.photos.small !== null ? u.photos.small : userPhotoDefault} alt="" />
-                <div>
-                  {u.followed
-                    ? <button onClick={() => { this.props.unfollow(u.id) }} className={`${s.users__button__unfollow} ${s.users__button} button`}>
-                      <span className={s.active}>Слідкую</span>
-                      <span className={s.hover}>Відписатись</span>
-                    </button>
-                    : <button onClick={() => { this.props.follow(u.id) }} className={`${s.users__button__follow} ${s.users__button} button`}>
-                      Підписатись
-                    </button>
-                  }
-                </div>
+      <div>
+        {
+          props.users.map(u => <div key={u.id} className={s.users__item}>
+            <div className={s.users__img}>
+              <img src={u.photos.small !== null ? u.photos.small : userPhotoDefault} alt="" />
+              <div>
+                {u.followed
+                  ? <button onClick={() => { props.unfollow(u.id) }} className={`${s.users__button__unfollow} ${s.users__button} button`}>
+                    <span className={s.active}>Слідкую</span>
+                    <span className={s.hover}>Відписатись</span>
+                  </button>
+                  : <button onClick={() => { props.follow(u.id) }} className={`${s.users__button__follow} ${s.users__button} button`}>
+          Підписатись
+                  </button>
+                }
               </div>
+            </div>
 
-              <div className={s.users__info}>
-                <div className={s.users__infoTop}>
-                  <p className={s.users__name}>{u.name}</p>
-                  <p className={s.users__city}>{"u.location.city"},</p>
+            <div className={s.users__info}>
+              <div className={s.users__infoTop}>
+                <p className={s.users__name}>{u.name}</p>
+                <p className={s.users__city}>{"u.location.city"},</p>
 
-                </div>
-                <div className={s.users__infoBottom}>
-                  <p className={s.users__status}>{u.status}</p>
-                  <p className={s.users__country}>{"u.location.country"}</p>
-                </div>
               </div>
-            </div >)
-          }
-        </div>
-      </section>
-    );
-  }
-
-}
+              <div className={s.users__infoBottom}>
+                <p className={s.users__status}>{u.status}</p>
+                <p className={s.users__country}>{"u.location.country"}</p>
+              </div>
+            </div>
+          </div >)
+        }
+      </div>
+    </section>
+  );
+};
 
 export default Users;
 
