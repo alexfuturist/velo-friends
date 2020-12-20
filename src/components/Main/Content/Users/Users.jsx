@@ -1,8 +1,8 @@
 import React from 'react';
 import { setUsersAC } from '../../../../redux/users-reducer';
-import userPhotoDefault from '../../../../assets/images/user_default.png'
+import userPhotoDefault from '../../../../assets/images/user_default.png';
 
-import s from './Users.module.scss'
+import s from './Users.module.scss';
 import { render } from '@testing-library/react';
 
 
