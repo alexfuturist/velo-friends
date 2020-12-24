@@ -63,7 +63,7 @@ class UsersContainer extends React.Component {
 
 
 //внешний контейнер
-let MapStateToProps = (state) => {
+let mapStateToProps = (state) => {
   return {
     users: state.usersPage.users,
     pageSize: state.usersPage.pageSize,
@@ -73,7 +73,7 @@ let MapStateToProps = (state) => {
   }
 };
 
-export default connect(MapStateToProps,
+export default connect(mapStateToProps,
   {
     follow,
     unfollow,

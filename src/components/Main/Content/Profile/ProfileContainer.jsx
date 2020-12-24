@@ -1,27 +1,52 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPostActionCreator, updatePostActionCreator } from '../../../../redux/profile-reducer';
+import { addPost, updatePost, setUserProfile } from '../../../../redux/profile-reducer';
 import Profile from './Profile';
 
+import * as axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
-let MapStateToProps = (state) => {
+
+//внутренний контейнер
+class ProfileContainer extends React.Component {
+
+  componentDidMount() {
+
+    let userId = this.props.match.params.userId;
+    if (!userId) {
+      userId = 2;
+    }
+
+    axios
+      .get('https://social-network.samuraijs.com/api/1.0/profile/' + userId)
+      .then( response => {
+        this.props.setUserProfile(response.data);
+      })
+  }
+
+  render() {
+    return (
+      <Profile {...this.props} />
+    )
+  }
+}
+
+
+//внешний контейнер
+let mapStateToProps = (state) => {
   return {
+    profileInfo: state.profilePage.profileInfo,
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText
   }
 };
 
-let MapDispatchToProps = (dispatch) => {
-  return {
-    addPost: () => {
-      dispatch(addPostActionCreator()); //вызываем функцию добавления нового поста
-    },
-    updatePost: (text) => {
-      dispatch(updatePostActionCreator(text)); //вызываем функцию обновления вводимого текста
-    }
+let WithUrlDataContainerComponent = withRouter(ProfileContainer);
+
+export default connect(mapStateToProps,
+  {
+    addPost,
+    updatePost,
+    setUserProfile
   }
-};
-
-const ProfileContainer = connect(MapStateToProps, MapDispatchToProps) (Profile);
-
-export default ProfileContainer;
+)(WithUrlDataContainerComponent);

@@ -13,10 +13,28 @@
 
 .wrapper {
     padding-left: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .header__img {
     height: 80px;
 
     filter: invert(100%);
+}
+
+.login {
+    margin-right: 20px;
+}
+
+.loginName {
+    color: white;
+    font-size: 16px;
+}
+
+.loginLink {
+    color: white;
+    font-size: 16px;
 }

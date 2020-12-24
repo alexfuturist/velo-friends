@@ -4,7 +4,7 @@ import { addMessageActionCreator, updateMessageActionCreator } from '../../../..
 import Dialogs from './Dialogs'
 
 
-let MapStateToProps = (state) => {
+let mapStateToProps = (state) => {
   return {
     dialogs: state.dialogsPage.dialogs,
     messages: state.dialogsPage.messages,
@@ -12,7 +12,7 @@ let MapStateToProps = (state) => {
   }
 };
 
-let MapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = (dispatch) => {
   return {
     addMessage: () => {
       dispatch(addMessageActionCreator());
@@ -23,6 +23,6 @@ let MapDispatchToProps = (dispatch) => {
   }
 }
 
-const DialogsContainer = connect(MapStateToProps, MapDispatchToProps)(Dialogs);
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 export default DialogsContainer;
 

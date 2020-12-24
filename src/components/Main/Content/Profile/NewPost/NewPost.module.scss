@@ -1,0 +1,27 @@
+.newPosts {
+    padding: 20px;
+    margin-right: 60px;
+}
+
+.newPosts__title {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.newPosts__text {
+    width: 100%;
+    margin-bottom: 15px;
+
+    padding: 20px;
+
+    background-color: rgb(236, 236, 236);
+}
+
+.newPosts__button {
+    display: block;
+    margin-left: auto;
+}
+
+.newPosts__button:hover {
+    color: rgb(255, 221, 27);
+}

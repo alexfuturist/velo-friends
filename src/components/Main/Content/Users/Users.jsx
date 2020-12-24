@@ -1,9 +1,8 @@
 import React from 'react';
-import { setUsersAC } from '../../../../redux/users-reducer';
+import { NavLink } from 'react-router-dom';
 import userPhotoDefault from '../../../../assets/images/user_default.png';
 
 import s from './Users.module.scss';
-import { render } from '@testing-library/react';
 
 
 const Users = (props) => {
@@ -20,8 +19,8 @@ const Users = (props) => {
   console.log(pagesCount);
   console.log(`${props.currentPage}`);
 
-  return(
-    <section className = { s.users } >
+  return (
+    <section className={s.users} >
 
       <div className={s.pagination}>
         {pages.map(p => {
@@ -35,7 +34,11 @@ const Users = (props) => {
         {
           props.users.map(u => <div key={u.id} className={s.users__item}>
             <div className={s.users__img}>
-              <img src={u.photos.small !== null ? u.photos.small : userPhotoDefault} alt="" />
+
+              <NavLink to={'/profile/' + u.id}>
+                <img src={u.photos.small !== null ? u.photos.small : userPhotoDefault} alt="" />
+              </NavLink>
+
               <div>
                 {u.followed
                   ? <button onClick={() => { props.unfollow(u.id) }} className={`${s.users__button__unfollow} ${s.users__button} button`}>
@@ -43,7 +46,7 @@ const Users = (props) => {
                     <span className={s.hover}>Відписатись</span>
                   </button>
                   : <button onClick={() => { props.follow(u.id) }} className={`${s.users__button__follow} ${s.users__button} button`}>
-          Підписатись
+                    Підписатись
                   </button>
                 }
               </div>
