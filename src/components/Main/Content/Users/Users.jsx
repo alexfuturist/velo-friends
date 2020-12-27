@@ -1,6 +1,8 @@
+import Axios from 'axios';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import userPhotoDefault from '../../../../assets/images/user_default.png';
+import * as axios from 'axios';
 
 import s from './Users.module.scss';
 
@@ -32,38 +34,75 @@ const Users = (props) => {
 
       <div>
         {
-          props.users.map(u => <div key={u.id} className={s.users__item}>
-            <div className={s.users__img}>
+          props.users.map(u =>
+            <div key={u.id} className={s.users__item}>
+              <div className={s.users__img}>
 
-              <NavLink to={'/profile/' + u.id}>
-                <img src={u.photos.small !== null ? u.photos.small : userPhotoDefault} alt="" />
-              </NavLink>
+                <NavLink to={'/profile/' + u.id}>
+                  <img src={u.photos.small !== null ? u.photos.small : userPhotoDefault} alt="" />
+                </NavLink>
 
-              <div>
-                {u.followed
-                  ? <button onClick={() => { props.unfollow(u.id) }} className={`${s.users__button__unfollow} ${s.users__button} button`}>
-                    <span className={s.active}>Слідкую</span>
-                    <span className={s.hover}>Відписатись</span>
-                  </button>
-                  : <button onClick={() => { props.follow(u.id) }} className={`${s.users__button__follow} ${s.users__button} button`}>
-                    Підписатись
-                  </button>
-                }
+                <div>
+                  {u.followed
+
+                    ?
+
+                    <button onClick={() => {
+                      //side-effect
+                      axios
+                        .delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
+                          {
+                            withCredentials: true,
+                            headers: {
+                              "API-KEY": "18021664-8191-4731-8d37-bfc58504d56d"
+                            }
+                          })
+                        .then(response => {
+                          if (response.data.resultCode == 0) {
+                            props.unfollow(u.id)
+                          }
+                        });
+                    }} className={`${s.users__button__unfollow} ${s.users__button} button`}>
+                      <span className={s.active}>Слідкую</span>
+                      <span className={s.hover}>Відписатись</span>
+                    </button>
+
+                    :
+
+                    <button onClick={() => {
+                      //side-effect
+                      axios
+                        .post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},
+                          {
+                            withCredentials: true,
+                            headers: {
+                              "API-KEY": "18021664-8191-4731-8d37-bfc58504d56d"
+                            }
+                          })
+                        .then(response => {
+                          if (response.data.resultCode == 0) {
+                            props.follow(u.id)
+                          }
+                        });
+                    }} className={`${s.users__button__follow} ${s.users__button} button`}>
+                      Підписатись
+                    </button>
+                  }
+                </div>
               </div>
-            </div>
 
-            <div className={s.users__info}>
-              <div className={s.users__infoTop}>
-                <p className={s.users__name}>{u.name}</p>
-                <p className={s.users__city}>{"u.location.city"},</p>
+              <div className={s.users__info}>
+                <div className={s.users__infoTop}>
+                  <p className={s.users__name}>{u.name}</p>
+                  <p className={s.users__city}>{"u.location.city"},</p>
 
+                </div>
+                <div className={s.users__infoBottom}>
+                  <p className={s.users__status}>{u.status}</p>
+                  <p className={s.users__country}>{"u.location.country"}</p>
+                </div>
               </div>
-              <div className={s.users__infoBottom}>
-                <p className={s.users__status}>{u.status}</p>
-                <p className={s.users__country}>{"u.location.country"}</p>
-              </div>
-            </div>
-          </div >)
+            </div >)
         }
       </div>
     </section>
