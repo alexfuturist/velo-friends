@@ -5,6 +5,7 @@ import userPhotoDefault from '../../../../assets/images/user_default.png';
 import * as axios from 'axios';
 
 import s from './Users.module.scss';
+import { usersAPI } from '../../../../api/api';
 
 
 const Users = (props) => {
@@ -49,14 +50,7 @@ const Users = (props) => {
 
                     <button onClick={() => {
                       //side-effect
-                      axios
-                        .delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-                          {
-                            withCredentials: true,
-                            headers: {
-                              "API-KEY": "18021664-8191-4731-8d37-bfc58504d56d"
-                            }
-                          })
+                      usersAPI.unfollow(u.id)
                         .then(response => {
                           if (response.data.resultCode == 0) {
                             props.unfollow(u.id)
@@ -71,14 +65,7 @@ const Users = (props) => {
 
                     <button onClick={() => {
                       //side-effect
-                      axios
-                        .post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},
-                          {
-                            withCredentials: true,
-                            headers: {
-                              "API-KEY": "18021664-8191-4731-8d37-bfc58504d56d"
-                            }
-                          })
+                      usersAPI.follow(u.id)
                         .then(response => {
                           if (response.data.resultCode == 0) {
                             props.follow(u.id)
