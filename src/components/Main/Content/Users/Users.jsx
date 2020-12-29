@@ -1,8 +1,7 @@
-import Axios from 'axios';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import userPhotoDefault from '../../../../assets/images/user_default.png';
-import * as axios from 'axios';
+
 
 import s from './Users.module.scss';
 import { usersAPI } from '../../../../api/api';
@@ -48,10 +47,14 @@ const Users = (props) => {
 
                     ?
 
-                    <button onClick={() => {
+                    <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                      props.toggleFollowingInProgress(true, u.id);
+                      console.log(props.followingInProgress);
                       //side-effect
                       usersAPI.unfollow(u.id)
                         .then(response => {
+                          props.toggleFollowingInProgress(false, u.id);
+                          console.log(props.followingInProgress);
                           if (response.data.resultCode == 0) {
                             props.unfollow(u.id)
                           }
@@ -63,10 +66,14 @@ const Users = (props) => {
 
                     :
 
-                    <button onClick={() => {
+                    <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                      props.toggleFollowingInProgress(true, u.id);
+                      console.log(props.followingInProgress);
                       //side-effect
                       usersAPI.follow(u.id)
                         .then(response => {
+                          props.toggleFollowingInProgress(false, u.id);
+                          console.log(props.followingInProgress);
                           if (response.data.resultCode == 0) {
                             props.follow(u.id)
                           }
