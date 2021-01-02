@@ -1,3 +1,5 @@
+import { profileAPI } from "../api/api";
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST = 'UPDATE-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -68,7 +70,7 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-//создатели событий (объектов событий)
+//AC
 export const updatePost = (text) => {
     return {
         type: UPDATE_POST,
@@ -86,5 +88,21 @@ export const setUserProfile = (profileInfo) => {
         profileInfo: profileInfo
     }
 };
+
+
+//TC
+export const getUserProfile = (userId) => {
+    return (dispatch) => {
+        if (!userId) {
+            userId = 2;
+        }
+
+        profileAPI.getProfile(userId)
+            .then(response => {
+                dispatch(setUserProfile(response.data));
+            })
+    }
+};
+
 
 export default profileReducer;

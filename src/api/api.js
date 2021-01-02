@@ -40,35 +40,10 @@ export const profileAPI = {
 };
 
 
-export const headerAPI = {
-    auth () {
+export const authAPI = {
+    me () {
         return (
             instance.get(`auth/me`)
         )
     }
 };
-
-
-
-
-// const getUsers = (currentPage=1, pageSize=10) => {
-//     return (
-//         instance.get(`users?page=${currentPage}&count=${pageSize}`)
-//         .then(response => {
-//             return response.data
-//         })
-//     )
-// };
-
-
-// export const getUsers = (currentPage=1, pageSize=10) => {
-//     return (
-//         axios
-//         .get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`, {
-//             withCredentials: true
-//         })
-//         .then(response => {
-//             return response.data
-//         })
-//     )
-// };

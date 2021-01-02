@@ -129,7 +129,7 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-//создатели событий (объектов событий)
+//AC
 export const updateMessageActionCreator = (text) => {
     return {
         type: UPDATE_MESSAGE,

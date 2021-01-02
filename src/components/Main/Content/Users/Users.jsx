@@ -4,7 +4,6 @@ import userPhotoDefault from '../../../../assets/images/user_default.png';
 
 
 import s from './Users.module.scss';
-import { usersAPI } from '../../../../api/api';
 
 
 const Users = (props) => {
@@ -17,9 +16,6 @@ const Users = (props) => {
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
-
-  console.log(pagesCount);
-  console.log(`${props.currentPage}`);
 
   return (
     <section className={s.users} >
@@ -48,17 +44,7 @@ const Users = (props) => {
                     ?
 
                     <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                      props.toggleFollowingInProgress(true, u.id);
-                      console.log(props.followingInProgress);
-                      //side-effect
-                      usersAPI.unfollow(u.id)
-                        .then(response => {
-                          props.toggleFollowingInProgress(false, u.id);
-                          console.log(props.followingInProgress);
-                          if (response.data.resultCode == 0) {
-                            props.unfollow(u.id)
-                          }
-                        });
+                      props.unfollow(u.id);
                     }} className={`${s.users__button__unfollow} ${s.users__button} button`}>
                       <span className={s.active}>Слідкую</span>
                       <span className={s.hover}>Відписатись</span>
@@ -67,17 +53,7 @@ const Users = (props) => {
                     :
 
                     <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                      props.toggleFollowingInProgress(true, u.id);
-                      console.log(props.followingInProgress);
-                      //side-effect
-                      usersAPI.follow(u.id)
-                        .then(response => {
-                          props.toggleFollowingInProgress(false, u.id);
-                          console.log(props.followingInProgress);
-                          if (response.data.resultCode == 0) {
-                            props.follow(u.id)
-                          }
-                        });
+                      props.follow(u.id);
                     }} className={`${s.users__button__follow} ${s.users__button} button`}>
                       Підписатись
                     </button>
