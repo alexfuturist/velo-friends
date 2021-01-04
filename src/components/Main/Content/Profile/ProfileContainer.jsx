@@ -4,7 +4,7 @@ import { addPost, updatePost, setUserProfile, getUserProfile } from '../../../..
 import Profile from './Profile';
 
 import { Redirect, withRouter } from 'react-router-dom';
-import { profileAPI } from '../../../../api/api';
+import { withAuthRedirect } from '../../../../hoc/AuthRedirect';
 
 
 //внутренний контейнер
@@ -20,8 +20,6 @@ class ProfileContainer extends React.Component {
   }
 
   render() {
-    if(!this.props.isAuth) return <Redirect to="login"/>
-
     return (
       <Profile {...this.props} />
     )
@@ -29,17 +27,18 @@ class ProfileContainer extends React.Component {
 }
 
 
-//внешний контейнер
+//наиболее внешний контейнер
 let mapStateToProps = (state) => {
   return {
     profileInfo: state.profilePage.profileInfo,
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText,
-    isAuth: state.auth.isAuth
   }
 };
 
-let WithUrlDataContainerComponent = withRouter(ProfileContainer);
+let withRedirect = withAuthRedirect(ProfileContainer);
+
+let WithUrlDataContainerComponent = withRouter(withRedirect);
 
 export default connect(mapStateToProps,
   {
