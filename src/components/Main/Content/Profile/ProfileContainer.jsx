@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { addPost, updatePost, setUserProfile, getUserProfile } from '../../../../redux/profile-reducer';
 import Profile from './Profile';
 
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { withAuthRedirect } from '../../../../hoc/AuthRedirect';
+import { compose } from 'redux';
 
 
 //внутренний контейнер
@@ -36,15 +37,16 @@ let mapStateToProps = (state) => {
   }
 };
 
-let withRedirect = withAuthRedirect(ProfileContainer);
 
-let WithUrlDataContainerComponent = withRouter(withRedirect);
-
-export default connect(mapStateToProps,
-  {
-    addPost,
-    updatePost,
-    setUserProfile,
-    getUserProfile
-  }
-)(WithUrlDataContainerComponent);
+export default compose (
+  connect(mapStateToProps,
+    {
+      addPost,
+      updatePost,
+      setUserProfile,
+      getUserProfile
+    }
+  ),
+  withRouter,
+  withAuthRedirect
+) (ProfileContainer);

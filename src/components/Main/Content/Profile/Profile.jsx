@@ -7,7 +7,6 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 
 const Profile = (props) => {
-
   return (
     <section className={s.profile}>
       <ProfileInfo profileInfo={props.profileInfo}/>

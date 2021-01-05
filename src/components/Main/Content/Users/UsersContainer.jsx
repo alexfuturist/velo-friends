@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { withAuthRedirect } from '../../../../hoc/AuthRedirect';
 import {
   followSucces,
@@ -62,16 +63,17 @@ let mapStateToProps = (state) => {
 };
 
 
-let withRedirect = withAuthRedirect (UsersContainer)
-
-export default connect(mapStateToProps,
-  {
-    followSucces,
-    unfollowSucces,
-    toggleFollowingInProgress,
-    getUsers,
-    updateUsers,
-    unfollow,
-    follow
-  }
-)(withRedirect);
+export default compose (
+  connect(mapStateToProps,
+    {
+      followSucces,
+      unfollowSucces,
+      toggleFollowingInProgress,
+      getUsers,
+      updateUsers,
+      unfollow,
+      follow
+    }
+  ),
+  withAuthRedirect
+) (UsersContainer);

@@ -24,7 +24,8 @@ let initialState = {
         "photos": {
             "small": "https://tengrinews.kz/userdata/images/u38/resized/35fcc7bea1f32a6437650758096b9f89.jpeg",
             "large": "https://tengrinews.kz/userdata/images/u38/resized/35fcc7bea1f32a6437650758096b9f89.jpeg"
-        }
+        },
+        "status": "Status must be here",
     },
     posts: [{
             id: 1,
