@@ -20,7 +20,8 @@ const ProfileInfo = (props) => {
                     <p className={s.profileInfo__Parametr}>Місто: Жмеринка</p>
                     <p className={s.profileInfo__Parametr}>Про мене: {props.profileInfo.aboutMe}</p>
                 </div>
-                <div className={s.profileInfo__Status}><ProfileStatus status={"Status must be here"} /></div>
+                <div className={s.profileInfo__Status}><ProfileStatus status={props.profileInfo.status}
+                    getUserStatus={props.getUserStatus} updateUserStatus={props.updateUserStatus} /></div>
             </div>
         </div>
     );

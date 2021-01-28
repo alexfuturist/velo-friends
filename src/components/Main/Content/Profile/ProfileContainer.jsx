@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPost, updatePost, setUserProfile, getUserProfile } from '../../../../redux/profile-reducer';
+import { addPost, updatePost, setUserProfile, getUserProfile, getUserStatus, updateUserStatus } from '../../../../redux/profile-reducer';
 import Profile from './Profile';
 
 import { withRouter } from 'react-router-dom';
@@ -13,11 +13,14 @@ class ProfileContainer extends React.Component {
 
   componentDidMount() {
     let userId = this.props.match.params.userId;
+    console.log(userId);
     if (!userId) {
-      userId = 2;
+      userId = 13211;
     }
+    console.log(userId);
 
     this.props.getUserProfile(userId);
+    this.props.getUserStatus(userId);
   }
 
   render() {
@@ -44,7 +47,9 @@ export default compose (
       addPost,
       updatePost,
       setUserProfile,
-      getUserProfile
+      getUserProfile,
+      getUserStatus,
+      updateUserStatus
     }
   ),
   withRouter,

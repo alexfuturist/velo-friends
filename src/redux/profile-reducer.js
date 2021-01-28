@@ -1,8 +1,11 @@
-import { profileAPI } from "../api/api";
+import {
+    profileAPI
+} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST = 'UPDATE-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_USER_STATUS = 'GET_USER_STATUS';
 
 let initialState = {
     profileInfo: {
@@ -66,6 +69,13 @@ const profileReducer = (state = initialState, action) => {
             }
         }
 
+        case SET_USER_STATUS: {
+            return {
+                ...state,
+                profileInfo: {...state.profileInfo, status: action.status}
+            }
+        }
+
         default:
             return state;
     }
@@ -90,6 +100,13 @@ export const setUserProfile = (profileInfo) => {
     }
 };
 
+export const setUserStatus = (status) => {
+    return {
+        type: SET_USER_STATUS,
+        status: status
+    }
+};
+
 
 //TC
 export const getUserProfile = (userId) => {
@@ -102,6 +119,26 @@ export const getUserProfile = (userId) => {
             .then(response => {
                 dispatch(setUserProfile(response.data));
             })
+    }
+};
+
+export const getUserStatus = (userId) => {
+    return (dispatch) => {
+        profileAPI.getStatus(userId)
+        .then (response => {
+            dispatch(setUserStatus(response.data))
+        })
+    }
+};
+
+export const updateUserStatus = (status) => {
+    return (dispatch) => {
+        profileAPI.updateStatus(status)
+        .then (response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setUserStatus(status))
+            }
+        })
     }
 };
 

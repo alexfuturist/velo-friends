@@ -9,7 +9,7 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 const Profile = (props) => {
   return (
     <section className={s.profile}>
-      <ProfileInfo profileInfo={props.profileInfo}/>
+      <ProfileInfo profileInfo={props.profileInfo} getUserStatus={props.getUserStatus} updateUserStatus={props.updateUserStatus}/>
       <NewPost updatePost={props.updatePost} addPost={props.addPost} newPostText={props.newPostText} />
       <Posts posts={props.posts} />
     </section>

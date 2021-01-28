@@ -52,4 +52,11 @@ export const getAuthUserData = () => {
     }
 };
 
+export const postLoginData = (formData) => {
+    return (dispatch) => {
+        authAPI.loginIn(formData)
+        .then()
+    }
+}
+
 export default authReducer;
