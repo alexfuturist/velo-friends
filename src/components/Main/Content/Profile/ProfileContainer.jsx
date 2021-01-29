@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPost, updatePost, setUserProfile, getUserProfile, getUserStatus, updateUserStatus } from '../../../../redux/profile-reducer';
+import { addPost, setUserProfile, getUserProfile, getUserStatus, updateUserStatus } from '../../../../redux/profile-reducer';
 import Profile from './Profile';
 
 import { withRouter } from 'react-router-dom';
@@ -45,7 +45,6 @@ export default compose (
   connect(mapStateToProps,
     {
       addPost,
-      updatePost,
       setUserProfile,
       getUserProfile,
       getUserStatus,

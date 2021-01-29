@@ -2,26 +2,48 @@ import React from 'react';
 import DialogItem from './DialogItem/DialogItem';
 import MessagesItem from './MessagesItem/MessagesItem';
 import s from './Dialogs.module.css';
+import { Field, reduxForm } from 'redux-form';
+
+
+
+const AddNewMessageForm = (props) => {
+  return (
+    <form className={s.newPosts} onSubmit={props.handleSubmit}>
+      <label htmlFor="newMessage"></label>
+      <Field className={s.newPosts__text} component="textarea" name="newMessage" placeholder="моє повідомлення.."></Field>
+      <button className={`button ${s.newPosts__button}`}>Відправити</button>
+    </form>
+  )
+}
+
+
+const AddNewMessageFormRedux = reduxForm({
+  form: 'DialogsAddNewMessage'
+})(AddNewMessageForm);
+
+
+const AddNewMessage = (props) => {
+   //колбэк функция 
+   let addMessage = (formData) => {
+    props.addMessage(formData.newMessage);
+    console.log(formData.newMessage);
+  };
+
+  return (
+    <div>
+      <p className={s.newPosts__title}>Нове повідомлення</p>
+      <AddNewMessageFormRedux onSubmit={addMessage}/>
+    </div>
+  )
+};
+
 
 
 const Dialogs = (props) => {
   let dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id} />);
   let messagesElements = props.messages.map(m => <MessagesItem name={m.name} messageText={m.messagesText} key={m.id} id={m.id} />);
 
-  let newMessageElement = React.createRef(); //создали ссылку на элемент
-
-  //колбэк функция 
-  let addMessage = () => {
-    props.addMessage();
-  };
-
-  //колбэк функция 
-  let updateMessage = () => {
-    let text = newMessageElement.current.value; //считали данные из элемента
-    props.updateMessage(text);
-  };
-
-
+ 
   return (
     <section className={s.dialogs}>
 
@@ -39,11 +61,7 @@ const Dialogs = (props) => {
             {messagesElements}
           </div>
 
-          <div className={s.newPosts}>
-            <p className={s.newPosts__title}>Нове повідомлення</p>
-            <textarea onChange={updateMessage} ref={newMessageElement} className={s.newPosts__text} value={props.newMessageText} placeholder="моє повідомлення.."></textarea>
-            <button onClick={addMessage} className={`button ${s.newPosts__button}`}>Відправити</button>
-          </div>
+          <AddNewMessage addMessage={props.addMessage}/>
         </div>
       </div>
 
