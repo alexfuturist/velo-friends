@@ -1,14 +1,20 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { maxLengthCreator, required } from '../../../../../utils/validators/validators';
+import { Element } from '../../../../Common/FormControls/FormControls';
 import s from './NewPost.module.scss'
 
+
+const maxLength20 = maxLengthCreator(20);
+const Textarea = Element("textarea");
 
 const AddNewPostForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
                 <label htmlFor="newPost"></label>
-                <Field className={s.newPosts__text} component="textarea" name="newPost" placeholder="моя новина.."/>
+                <Field className={s.newPosts__text} component={Textarea} name="newPost"
+                    placeholder="моя новина.." validate={[required, maxLength20]} />
             </div>
             <button className={`button ${s.newPosts__button}`}>Опубліковати</button>
         </form>
