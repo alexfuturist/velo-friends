@@ -9,17 +9,21 @@ const instance = axios.create({
 });
 
 export const authAPI = {
-    me () {
+    me() {
         return (
             instance.get(`auth/me`)
         )
     },
-    loginIn (formData) {
+    login(email, password, rememberMe) {
         return (
-            instance.post(`auth/login`)
+            instance.post(`auth/login`, {
+                email,
+                password,
+                rememberMe
+            })
         )
     },
-    loginOut () {
+    logout() {
         return (
             instance.delete(`auth/login`)
         )
@@ -27,19 +31,21 @@ export const authAPI = {
 };
 
 export const profileAPI = {
-    getProfile (userId) {
+    getProfile(userId) {
         return (
             instance.get(`profile/${userId}`)
         )
     },
-    getStatus (userId) {
+    getStatus(userId) {
         return (
             instance.get(`profile/status/${userId}`)
         )
     },
-    updateStatus (status) {
+    updateStatus(status) {
         return (
-            instance.put(`profile/status`, {status:status})
+            instance.put(`profile/status`, {
+                status: status
+            })
         )
     }
 };

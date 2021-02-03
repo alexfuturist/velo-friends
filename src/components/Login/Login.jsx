@@ -1,25 +1,28 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Field, reduxForm } from 'redux-form';
 import { maxLengthCreator, minLengthCreator, required } from "../../utils/validators/validators";
 import { Element } from "../Common/FormControls/FormControls";
+import { login } from "../../redux/auth-reducer";
 import s from './Login.module.scss';
+import { Redirect } from "react-router-dom";
 
 const Input = Element("input");
-const maxLength10 = maxLengthCreator(10);
+const maxLength15 = maxLengthCreator(15);
 const minLength5 = minLengthCreator(5);
 
 const LoginForm = (props) => {
     return (
         <form className={s.loginForm} onSubmit={props.handleSubmit}>
             <div>
-                <label htmlFor="login"></label>
-                <Field className={s.loginField} name="login" component={Input} type="text"
-                    placeholder={"login"} validate={[required, maxLength10]} />
+                <label htmlFor="email"></label>
+                <Field className={s.loginField} name="email" component={Input} type="text"
+                    placeholder={"login"} validate={[required]} />
             </div>
             <div>
                 <label htmlFor="password"></label>
-                <Field className={s.loginField} name="password" component={Input} type="text" 
-                placeholder={"password"} validate={[required, minLength5, maxLength10]} />
+                <Field className={s.loginField} name="password" component={Input} type="password"
+                placeholder={"password"} validate={[required, minLength5, maxLength15]} />
             </div>
             <div>
                 <Field className={s.loginField} name="rememberMe" component={Input} type="checkbox" />
@@ -36,7 +39,12 @@ const LoginReduxForm = reduxForm({
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        console.log(formData);
+        props.login(formData.email, formData.password, formData.rememberMe);
+        console.log(formData.email, formData.password, formData.rememberMe);
+    }
+
+    if (props.isAuth) {
+        return <Redirect to={"/profile"} />
     }
 
     return (
@@ -47,4 +55,8 @@ const Login = (props) => {
     )
 };
 
-export default Login;
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth
+});
+
+export default connect(mapStateToProps, {login}) (Login);
