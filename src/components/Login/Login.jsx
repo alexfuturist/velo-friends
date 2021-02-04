@@ -24,9 +24,13 @@ const LoginForm = (props) => {
                 <Field className={s.loginField} name="password" component={Input} type="password"
                 placeholder={"password"} validate={[required, minLength5, maxLength15]} />
             </div>
+            <div className={s.RememberMe}>
+                <Field className={s.RememberMeInput} name="rememberMe" component={Input} type="checkbox" />
+                <label className={s.RememberMeLabel} htmlFor="rememberMe">rememberMe</label>
+            </div>
             <div>
-                <Field className={s.loginField} name="rememberMe" component={Input} type="checkbox" />
-                <label className={s.loginCheckboxLabel} htmlFor="rememberMe">rememberMe</label>
+                {props.error && 
+                <div className={s.formCommonError}>{props.error}</div>}
             </div>
             <button className={s.loginButton} type="submit">Login</button>
         </form>

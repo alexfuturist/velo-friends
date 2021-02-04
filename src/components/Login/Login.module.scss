@@ -15,12 +15,26 @@
 .loginField {
     margin: 5px 0;
     padding: 5px;
+    width: 100%;
     background-color: rgb(230, 240, 255);
     text-align: center;
 }
 
-.loginCheckboxLabel {
+.RememberMe {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.RememberMeLabel {
     margin-left: 10px;
+}
+
+.formCommonError {
+    margin-top: 5px;
+    padding: 5px;
+    border: solid red 1px;
+    color:red;
 }
 
 .loginButton {
