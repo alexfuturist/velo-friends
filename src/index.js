@@ -11,7 +11,7 @@ import {store} from './redux/redux-store';
 import {Provider} from 'react-redux';
 import App from './App';
 
-import './index.css';
+import './index.scss';
 
 
 //функция отрисовки (перерисовки) UI
@@ -20,7 +20,7 @@ let renderEntireTree = ()=> {
         <React.StrictMode>
           <BrowserRouter>
             <Provider store={store}>
-              <App />
+              <App/>
             </Provider>
           </BrowserRouter>
         </React.StrictMode>,
