@@ -1,0 +1,126 @@
+//карточка пользователя
+.users__item {
+    display: flex;
+
+    margin-bottom: 50px;
+}
+
+.users__img {
+    width: 150px;
+
+    text-align: center;
+
+    img {
+        width: 130px;
+        height: 130px;
+
+        margin-bottom: 10px;
+
+        border-radius: 50%;
+        object-fit: cover;
+
+    }
+}
+
+.users__button {
+    width: 130px;
+}
+
+
+.users__info {
+    width: 100%;
+
+    padding: 40px;
+
+    margin-bottom: 36px;
+    margin-left: 40px;
+
+    border: 2px solid cornflowerblue;
+    border-radius: 20px;
+
+
+}
+
+.users__infoTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.users__name {
+    margin-bottom: 20px;
+
+    font-size: 28px;
+}
+
+.users__status {
+    font-size: 18px;
+}
+
+.users__infoBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.users__city {
+    margin-bottom: 20px;
+
+    font-size: 20px;
+}
+
+.users__country {
+    font-size: 18px;
+}
+
+.users__button__follow:hover {
+    background-color: green;
+
+    transition-duration: .6s;
+}
+
+.users__button__unfollow {
+    position: relative;
+
+    background-color: green;
+
+    transition-duration: .6s;
+
+    .active::before {
+        content: '';
+        position: absolute;
+        left: 19px;
+        top: 7px;
+
+        width: 8px;
+        height: 16px;
+        border: solid #ffffff;
+        border-width: 0 2px 2px 0;
+
+        transform: rotate(45deg);
+
+        transition-duration: .6s;
+    }
+
+    .hover {
+        display: none;
+
+        transition-duration: .6s;
+    }
+}
+
+.users__button__unfollow:hover {
+    background-color: rgb(128, 0, 21);
+
+    transition-duration: .6s;
+
+    .active {
+        display: none;
+
+        transition-duration: .6s;
+    }
+
+    .hover {
+        display: inline;
+    }
+}

@@ -1,77 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import userPhotoDefault from '../../../../assets/images/user_default.png';
+import Paginator from '../../../Common/Paginator/Paginator';
+import User from './User/User';
 import s from './Users.module.scss';
 
 
-const Users = (props) => {
-
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-  //массив страниц пагинации
-  let pages = [];
-
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
-  }
-
+const Users = ({ totalUsersCount, pageSize, currentPage, onPageChanged, users, ...props }) => {
   return (
     <section className={s.users} >
-
-      <div className={s.pagination}>
-        {pages.map(p => {
-          return <span className={`${s.paginationPage} 
-          ${props.currentPage === p && s.paginationPageSelected}`}
-            onClick={(e) => { props.onPageChanged(p); }}> {p} </span>
-        })}
-      </div>
-
+      <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage} onPageChanged={onPageChanged} />
       <div>
-        {
-          props.users.map(u =>
-            <div key={u.id} className={s.users__item}>
-              <div className={s.users__img}>
-
-                <NavLink to={'/profile/' + u.id}>
-                  <img src={u.photos.small !== null ? u.photos.small : userPhotoDefault} alt="" />
-                </NavLink>
-
-                <div>
-                  {u.followed
-
-                    ?
-
-                    <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                      props.unfollow(u.id);
-                    }} className={`${s.users__button__unfollow} ${s.users__button} button`}>
-                      <span className={s.active}>Слідкую</span>
-                      <span className={s.hover}>Відписатись</span>
-                    </button>
-
-                    :
-
-                    <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                      props.follow(u.id);
-                    }} className={`${s.users__button__follow} ${s.users__button} button`}>
-                      Підписатись
-                    </button>
-                  }
-                </div>
-              </div>
-
-              <div className={s.users__info}>
-                <div className={s.users__infoTop}>
-                  <p className={s.users__name}>{u.name}</p>
-                  <p className={s.users__city}>{"u.location.city"},</p>
-
-                </div>
-                <div className={s.users__infoBottom}>
-                  <p className={s.users__status}>{u.status}</p>
-                  <p className={s.users__country}>{"u.location.country"}</p>
-                </div>
-              </div>
-            </div >)
-        }
+        {users.map(u => <User {...props} u={u} />)}
       </div>
     </section>
   );

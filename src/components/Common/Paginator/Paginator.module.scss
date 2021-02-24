@@ -1,0 +1,38 @@
+// pagination
+.pagination {
+    width: 100%;
+   
+    margin-bottom: 40px;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    overflow: hidden;
+}
+
+.paginationPage {
+    padding: 10px;
+    margin-right: 10px;
+
+    font-size: 18px;
+    background-color: #f7f7f7;
+
+    transition-duration: .2s;
+
+    &:hover {
+        color: white;
+        
+        background-color: cornflowerblue;
+
+        cursor: pointer;
+        transition-duration: .2s;
+    }
+}
+
+.paginationPageSelected {
+    // font-weight: 700;
+    color: white;
+
+    background-color: cornflowerblue;
+}

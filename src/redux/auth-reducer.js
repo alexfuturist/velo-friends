@@ -40,50 +40,47 @@ export const setAuthUserData = (userId, email, login, isAuth = true) => ({
 
 //TC
 export const getAuthUserData = () => {
-    return (dispatch) => {
-        return authAPI.me()
-            .then(response => {
-                console.log(response);
+    return async (dispatch) => {
+        let response = await authAPI.me();
+        // console.log(response);
 
-                if (response.data.resultCode === 0) {
-                    let {
-                        id,
-                        email,
-                        login
-                    } = response.data.data;
-                    dispatch(setAuthUserData(id, email, login));
-                }
-            });
+        if (response.data.resultCode === 0) {
+            let {
+                id,
+                email,
+                login
+            } = response.data.data;
+            dispatch(setAuthUserData(id, email, login));
+        }
+
     }
 };
 
 export const login = (email, password, rememberMe) => {
-    return (dispatch) => {
-        authAPI.login(email, password, rememberMe)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(getAuthUserData())
-                } else {
-                    let message = response.data.messages.length > 0 ?
-                        response.data.messages[0] :
-                        "some error";
+    return async (dispatch) => {
+        let response = await authAPI.login(email, password, rememberMe);
 
-                    dispatch(stopSubmit("login", {
-                        _error: message
-                    }));
-                }
-            })
+        if (response.data.resultCode === 0) {
+            dispatch(getAuthUserData())
+        } else {
+            let message = response.data.messages.length > 0 ?
+                response.data.messages[0] :
+                "some error";
+
+            dispatch(stopSubmit("login", {
+                _error: message
+            }));
+        }
     }
 };
 
 export const logout = () => {
-    return (dispatch) => {
-        authAPI.logout()
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(setAuthUserData(null, null, null, false))
-                }
-            })
+    return async (dispatch) => {
+        let response = await authAPI.logout();
+
+        if (response.data.resultCode === 0) {
+            dispatch(setAuthUserData(null, null, null, false))
+        }
     }
 };
 
