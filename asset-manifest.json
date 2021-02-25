@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/velo-friends/static/css/main.470f541b.chunk.css",
-    "main.js": "/velo-friends/static/js/main.47966a39.chunk.js",
-    "main.js.map": "/velo-friends/static/js/main.47966a39.chunk.js.map",
+    "main.js": "/velo-friends/static/js/main.ad5887c2.chunk.js",
+    "main.js.map": "/velo-friends/static/js/main.ad5887c2.chunk.js.map",
     "runtime-main.js": "/velo-friends/static/js/runtime-main.2a4f49ae.js",
     "runtime-main.js.map": "/velo-friends/static/js/runtime-main.2a4f49ae.js.map",
     "static/js/2.c54a8a6e.chunk.js": "/velo-friends/static/js/2.c54a8a6e.chunk.js",
@@ -30,6 +30,6 @@
     "static/js/runtime-main.2a4f49ae.js",
     "static/js/2.c54a8a6e.chunk.js",
     "static/css/main.470f541b.chunk.css",
-    "static/js/main.47966a39.chunk.js"
+    "static/js/main.ad5887c2.chunk.js"
   ]
 }
