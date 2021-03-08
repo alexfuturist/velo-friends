@@ -20,9 +20,10 @@ const Login = React.lazy(() => import('../../Login/Login'));
 const Content = (props) => {
   return (
     <div className={s.content}>
-      <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+      
       <Suspense fallback={<div>Завантаження...</div>}>
         <Route path="/login" render={() => <Login />} />
+        <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
         <Route path="/dialogs" render={() => <DialogsContainer />} />
         <Route path="/users" render={() => <UsersContainer />} />
         {/* <Route path="/friends" component={Friends} />

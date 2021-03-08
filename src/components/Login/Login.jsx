@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Field, reduxForm } from 'redux-form';
 import { maxLengthCreator, minLengthCreator, required } from "../../utils/validators/validators";
 import { Element } from "../Common/FormControls/FormControls";
-import { login } from "../../redux/auth-reducer";
+import { login, getCaptchaUrl } from "../../redux/auth-reducer";
 import s from './Login.module.scss';
 import { Redirect } from "react-router-dom";
 
@@ -22,17 +22,34 @@ const LoginForm = (props) => {
             <div>
                 <label htmlFor="password"></label>
                 <Field className={s.loginField} name="password" component={Input} type="password"
-                placeholder={"password"} validate={[required, minLength5, maxLength15]} />
+                    placeholder={"password"} validate={[required, minLength5, maxLength15]} />
             </div>
             <div className={s.RememberMe}>
-                <Field className={s.RememberMeInput} name="rememberMe" component={Input} type="checkbox" />
-                <label className={s.RememberMeLabel} htmlFor="rememberMe">rememberMe</label>
+                <Field className={s.RememberMeInput} name="rememberMe" id="rememberMe" component="input" type="checkbox" />
+                <label className={s.RememberMeLabel} for="rememberMe">запам'ятати мене</label>
             </div>
             <div>
-                {props.error && 
-                <div className={s.formCommonError}>{props.error}</div>}
+                {props.error &&
+                    <div className={s.formCommonError}>{props.error}</div>}
             </div>
-            <button className={s.loginButton} type="submit">Login</button>
+
+
+            {props.captchaUrl &&
+                <div className={s.CaptchaImageContainer} >
+                    <div>
+                        <div>
+                            <img className={s.CaptchaImage} src={props.captchaUrl} />
+                            <div class={s.reloadDouble} onClick={props.getCaptchaUrl} ></div>
+                        </div>
+                    </div>
+                    <div>
+                        <Field className={s.loginField} name="captcha" autocomplete="off"
+                            placeholder="введіть символи" component={Input} validate={[required]} />
+                    </div>
+                </div>
+            }
+
+            <button className={s.loginButton} type="submit">УВІЙТИ</button>
         </form>
     )
 };
@@ -43,8 +60,8 @@ const LoginReduxForm = reduxForm({
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberMe);
-        console.log(formData.email, formData.password, formData.rememberMe);
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha);
+        console.log(formData.email, formData.password, formData.rememberMe, formData.captcha);
     }
 
     if (props.isAuth) {
@@ -53,14 +70,15 @@ const Login = (props) => {
 
     return (
         <div className={s.login}>
-            <h1 className={s.loginTitle}>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit} />
+            <h1 className={s.loginTitle}>Авторизація</h1>
+            <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} getCaptchaUrl={props.getCaptchaUrl} />
         </div>
     )
 };
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    captchaUrl: state.auth.captchaUrl
 });
 
-export default connect(mapStateToProps, {login}) (Login);
+export default connect(mapStateToProps, { login, getCaptchaUrl })(Login);

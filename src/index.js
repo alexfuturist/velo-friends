@@ -5,7 +5,8 @@ import {
   BrowserRouter,
   Switch,
   Route,
-  Link
+  Link,
+  HashRouter
 } from "react-router-dom";
 import {store} from './redux/redux-store';
 import {Provider} from 'react-redux';
@@ -18,11 +19,11 @@ import './index.scss';
 let renderEntireTree = ()=> {
     ReactDOM.render(
         <React.StrictMode>
-          <BrowserRouter>
+          <HashRouter>
             <Provider store={store}>
               <App/>
             </Provider>
-          </BrowserRouter>
+          </HashRouter>
         </React.StrictMode>,
         document.getElementById('root')
       );

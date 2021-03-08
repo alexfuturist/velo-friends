@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from "react";
 import s from './ProfileStatus.module.scss';
 
-const ProfileStatusWithHooks = (props) => {
+const ProfileStatusWithHooks = React.memo((props) => {
 
-    let[editMode,setEditMode] = useState(false);
-    let[status,setStatus] = useState(props.status);
+    let [editMode, setEditMode] = useState(false);
+    let [status, setStatus] = useState(props.status);
 
-    useEffect( ()=> {
-        setStatus(props.status)
-    }, [props.status])
+    console.log(`cтатус локальный:` + status);
+
+    useEffect(() => {
+        console.log('effect satus profile');
+        // setStatus(props.status);
+        if (props.status !== undefined) {
+            setStatus(props.status)
+        }
+    }, [props.status]);
+    
 
     const activateEditMode = () => {
-        setEditMode(true);
+        if (props.isOwner) {
+            setEditMode(true);
+        }
     }
 
     const deactivateEditMode = () => {
@@ -23,22 +32,19 @@ const ProfileStatusWithHooks = (props) => {
         setStatus(e.currentTarget.value);
     }
 
+    console.log(`cтатус из пропс:` + props.status);
     return (
         <div className={s.profileStatus}>
             { !editMode &&
-                <div>
-                    <span onClick={activateEditMode}>{props.status}</span>
-                </div>
+                <p className={s.profileStatus__Description} onClick={activateEditMode}>{props.status}</p>
             }
             { editMode &&
-                <div>
-                    <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode}
-                        className={s.profileStatus__input} value={status} />
-                </div>
+                <input onChange={onStatusChange} maxLength="25" autoFocus={true} onBlur={deactivateEditMode}
+                    className={s.profileStatus__input} value={status} />
             }
         </div>
     )
 
-}
+})
 
 export default ProfileStatusWithHooks;

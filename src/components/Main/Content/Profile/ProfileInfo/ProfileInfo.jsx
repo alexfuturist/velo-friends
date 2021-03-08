@@ -1,9 +1,32 @@
-import React from 'react';
-import ProfileStatus from './ProfileStatus/ProfileStatus';
+import React, { useState } from 'react';
 import s from './ProfileInfo.module.scss';
-import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
+import userPhotoDefault from '../../../../../assets/images/user_default.png';
+import ProfileData from './ProfileData/ProfileData';
+import ProfileDataForm from './ProfileDataForm/ProfileDataForm';
+import ProfileDataFormRedux from './ProfileDataForm/ProfileDataForm';
 
-const ProfileInfo = (props) => {
+const ProfileInfo = React.memo((props) => {
+
+    let [editMode, setEditMode] = useState(false);
+
+    const onMainPhotoSelected = (e) => {
+        if (e.target.files.length) {
+            props.updatePhoto(e.target.files[0]);
+        }
+    }
+
+    const onSubmit = (formData) => {
+        props.saveProfile(formData).then(
+            () => {
+                setEditMode(false);
+                console.log('форма сохранена');
+            }
+        )
+        console.log(formData);
+    }
+
+    console.log('профайл инфо');
+    console.log(props.profileInfo);
 
     return (
         <div>
@@ -12,53 +35,45 @@ const ProfileInfo = (props) => {
                     src="https://s1.1zoom.me/b5050/382/388402-svetik_1920x1080.jpg" />
             </div>
             <div className={s.profileInfo}>
-                <img className={s.profileInfo__Avatar}
-                    src={props.profileInfo.photos.large} />
-                <div className={s.profileInfo__Text} >
-                    <p className={s.profileInfo__Name}> {props.profileInfo.fullName} </p>
-                    <p className={s.profileInfo__Parametr}>Вік: 36</p>
-                    <p className={s.profileInfo__Parametr}>Освіта: КНУ</p>
-                    <p className={s.profileInfo__Parametr}>Місто: Жмеринка</p>
-                    <p className={s.profileInfo__Parametr}>Про мене: {props.profileInfo.aboutMe}</p>
+                <div className={s.profileInfo__PhotoWrapper}>
+                    <img className={s.profileInfo__PhotoImage}
+                        src={props.profileInfo.photos.large || userPhotoDefault} />
+                    <div>
+                        {props.isOwner
+                            &&
+                            <div className={s.input__wrapper}>
+                                <input className={s.input__file} onChange={onMainPhotoSelected} type="file" name="file" id="input__file" />
+                                <label className={s.input__fileButton} for="input__file">
+                                    <span className={s.input__fileIcon}></span>
+                                    <span className={s.input__fileButtonText}>Оновити фото</span>
+                                </label>
+                            </div>
+                        }
+                    </div>
                 </div>
-                <div className={s.profileInfo__Status}><ProfileStatusWithHooks status={props.profileInfo.status}
-                    getUserStatus={props.getUserStatus} updateUserStatus={props.updateUserStatus} /></div>
+
+                {editMode
+                    ?
+                    <ProfileDataFormRedux
+                        {...props}
+                        getUserStatus={props.getUserStatus}
+                        updateUserStatus={props.updateUserStatus}
+                        onSubmit={onSubmit}
+                        initialValues={props.profileInfo}
+                    />
+                    :
+                    <ProfileData
+                        {...props}
+                        getUserStatus={props.getUserStatus}
+                        updateUserStatus={props.updateUserStatus}
+                        goToEditMode={() => { setEditMode(true) }}
+                    />
+                }
+
+
             </div>
         </div>
     );
-}
+})
 
 export default ProfileInfo;
-
-
-
-
-
-
-
-
-
-
-// const ProfileInfo = (props) => {
-
-//     return (
-//         <div>
-//             <div className={s.profileCover}>
-//                 <img className={s.profileCover__img}
-//                  src="https://s1.1zoom.me/b5050/382/388402-svetik_1920x1080.jpg" />
-//             </div>
-//             <div className={s.profileInfo}>
-//                 <img className={s.profileInfo__Avatar}
-//                  src="https://tengrinews.kz/userdata/images/u38/resized/35fcc7bea1f32a6437650758096b9f89.jpeg" />
-//                 <div className={s.profileInfo__Text} >
-//                     <p className={s.profileInfo__Name}> Володимир Погребняк</p>
-//                     <p className={s.profileInfo__Parametr}>Вік: 36</p>
-//                     <p className={s.profileInfo__Parametr}>Освіта: КНУ</p>
-//                     <p className={s.profileInfo__Parametr}>Місто: Жмеринка</p>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// }
-
-// export default ProfileInfo;
