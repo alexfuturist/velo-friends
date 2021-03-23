@@ -1,0 +1,70 @@
+.dialogItem {
+    position: relative;
+}
+
+.NavLink {
+    display: block;
+
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    font-size: 18px;
+    color: rgb(97, 97, 97);
+
+    padding-left: 35px;
+
+    border-radius: 30px  0px 0px 30px;
+
+    transition-duration: 0.2s;
+
+    &:hover {
+        color: black;
+        transition-duration: 0.2s;
+
+        cursor: pointer;
+
+        &::before {
+            background-color: cornflowerblue;
+            transition-duration: 0.2s;
+        }
+    }
+}
+
+.NavLink::before {
+    content: '';
+    position: absolute;
+    bottom: 22px;
+    left: 15px;
+    width: 10px;
+    height: 10px;
+    
+    background-color: rgb(185, 185, 185);
+    border-radius: 50%;
+    
+    transition-duration: 0.3s;
+}
+
+.dialogItemActive {
+    color: rgb(255, 255, 255);
+
+    background-color: cornflowerblue;
+
+    border-radius: 30px  0px 0px 30px;
+
+
+    &:hover {
+        color:rgb(255, 255, 255);
+        transition-duration: 0.2s;
+    }
+}
+
+.NavLink.dialogItemActive {
+    &:hover {
+        color:rgb(255, 255, 255);
+        transition-duration: 0.2s;
+    }
+
+    &::before {
+        background-color: rgb(233, 241, 255);
+    }
+}

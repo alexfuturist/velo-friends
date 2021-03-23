@@ -1,4 +1,5 @@
 import {
+    reset,
     stopSubmit
 } from "redux-form";
 import {
@@ -9,6 +10,9 @@ const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'GET_USER_STATUS';
 const UPDATE_PHOTO_SUCCESS = 'UPDATE_PHOTO_SUCCESS';
+const DELETE_POST = 'DELETE_POST';
+const UPDATE_POST = 'UPDATE_POST';
+const UPDATE_POST_MODE = 'UPDATE_POST_MODE';
 
 let initialState = {
     profileInfo: {
@@ -34,14 +38,25 @@ let initialState = {
         "status": "Status must be here",
     },
     posts: [{
+            id: 0,
+            message: "А настройки профиля отправляются на сервер после изменения, поэтому можно редактировать и перезагружать, всё должно сохраниться и обновиться.)"
+        }, {
             id: 1,
-            message: "Привіт, хто хоче покататись?"
+            message: "Все эти посты работают со стейтом Redux, но пока не написали API для их хранения на сервере и поэтому после полной перезагрузки странички они возвращаются по дефолту.."
+        }, {
+            id: 2,
+            message: "Дууууже довгий пост. Він показує що, слова переносяться автоматичооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо, навіть якщо клавіша залипла:)"
         },
         {
-            id: 2,
-            message: "Починаю нову програму! Поїхали!"
+            id: 3,
+            message: "✅Привіт, хто хоче покататись?"
+        },
+        {
+            id: 4,
+            message: "🕝Сьогодні починаю нову програму! Поїхали!"
         }
-    ]
+    ],
+    isUpdatePostMode: false
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -49,15 +64,18 @@ const profileReducer = (state = initialState, action) => {
 
         case ADD_POST: {
             let newPost = {
-                id: 3,
+                id: +`${Math.max(...state.posts.map( (p)=> p.id ))+1}`,
                 message: action.newPostText
             };
+
+            console.log (newPost)
 
             return {
                 ...state,
                 posts: [...state.posts, newPost]
             };
         }
+
         case SET_USER_PROFILE: {
             return {
                 ...state,
@@ -82,6 +100,39 @@ const profileReducer = (state = initialState, action) => {
                     ...state.profileInfo,
                     photos: action.photos
                 }
+            }
+        }
+
+        case DELETE_POST: {
+            return {
+                ...state,
+                posts: [...state.posts.filter((item, index) => index !== action.index)]
+            }
+        }
+
+        case UPDATE_POST: {
+            let updatePost = {
+                id: +`${state.posts[action.index].id}`,
+                message: action.message
+            };
+
+            return {
+                ...state,
+                posts: [...state.posts.map((post, index) => {
+                    if (index === action.index) {
+                        return updatePost;
+                    }
+
+                    return post;
+                })],
+            };
+
+        }
+
+        case UPDATE_POST_MODE: {
+            return {
+                ...state,
+                isUpdatePostMode: action.flag
             }
         }
 
@@ -119,13 +170,38 @@ export const updatePhotoSuccess = (photos) => {
     }
 };
 
+export const deletePostSuccess = (postIndex) => {
+    return {
+        type: DELETE_POST,
+        index: postIndex
+    }
+};
+
+export const updatePostSuccess = (postIndex, message) => {
+    return {
+        type: UPDATE_POST,
+        index: postIndex,
+        message: message
+    }
+};
+
+export const updatePostMode = (flag) => {
+    console.log(flag);
+
+    return {
+        type: UPDATE_POST_MODE,
+        flag: flag
+    }
+};
+
 
 //TC
-export const getUserProfile = (userId) => async (dispatch) => {
-    // if (!userId) {
-    //     userId = 2;
-    // }
+export const addNewPost = (newPostText) => (dispatch) => {
+    dispatch(addPost(newPostText));
+    dispatch(reset('ProfileAddNewPost'));
+};
 
+export const getUserProfile = (userId) => async (dispatch) => {
     const response = await profileAPI.getProfile(userId);
 
     dispatch(setUserProfile(response.data));
@@ -153,7 +229,6 @@ export const updatePhoto = (file) => async (dispatch) => {
     }
 };
 
-debugger;
 export const saveProfile = (profile) => async (dispatch, getState) => {
     const response = await profileAPI.saveProfile(profile);
     const userId = getState().auth.userId;
@@ -163,11 +238,26 @@ export const saveProfile = (profile) => async (dispatch, getState) => {
     if (response.data.resultCode === 0) {
         dispatch(getUserProfile(userId));
     } else {
-        dispatch(stopSubmit("edit-profile", {_error:response.data.messages[0]}));
+        dispatch(stopSubmit("edit-profile", {
+            _error: response.data.messages[0]
+        }));
         return Promise.reject(response.data.messages[0]);
     }
-}
+};
 
+export const deletePost = (id) => (dispatch, getState) => {
+    const posts = getState().profilePage.posts;
+    let postIndex = posts.findIndex(element => element.id === id);
 
+    dispatch(deletePostSuccess(postIndex));
+    // console.log(posts);
+};
+
+export const updatePost = (id, message) => (dispatch, getState) => {
+    const posts = getState().profilePage.posts;
+    let postIndex = posts.findIndex(element => element.id === id);
+
+    dispatch(updatePostSuccess(postIndex, message));
+};
 
 export default profileReducer;

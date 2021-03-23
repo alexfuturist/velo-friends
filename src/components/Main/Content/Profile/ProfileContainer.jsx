@@ -1,6 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPost, setUserProfile, getUserProfile, getUserStatus, updateUserStatus, updatePhoto, saveProfile } from '../../../../redux/profile-reducer';
+import {
+  addNewPost,
+  setUserProfile,
+  getUserProfile,
+  getUserStatus,
+  updateUserStatus,
+  updatePhoto,
+  saveProfile,
+  deletePost,
+  updatePost,
+  updatePostMode
+} from '../../../../redux/profile-reducer';
 import Profile from './Profile';
 
 import { withRouter } from 'react-router-dom';
@@ -27,6 +38,7 @@ class ProfileContainer extends React.Component {
     this.refreshProfile();
   }
 
+
   componentDidUpdate(prevProps) {
     if (this.props.match.params.userId != prevProps.match.params.userId) {
       this.refreshProfile();
@@ -35,36 +47,39 @@ class ProfileContainer extends React.Component {
 
   render() {
     return (
-      <Profile {...this.props} isOwner={!this.props.match.params.userId}/>
+      <Profile {...this.props} isOwner={!this.props.match.params.userId} />
     )
   }
 }
 
 
-//наиболее внешний контейнер
+//
 let mapStateToProps = (state) => {
   return {
     profileInfo: state.profilePage.profileInfo,
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText,
     authorizedUserId: state.auth.userId,
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    isUpdatePostMode: state.profilePage.isUpdatePostMode
   }
 };
 
-
-export default compose (
+export default compose(
   connect(mapStateToProps,
     {
-      addPost,
+      addNewPost,
       setUserProfile,
       getUserProfile,
       getUserStatus,
       updateUserStatus,
       updatePhoto,
-      saveProfile
+      saveProfile,
+      deletePost,
+      updatePost,
+      updatePostMode
     }
   ),
   withRouter,
   withAuthRedirect
-) (ProfileContainer);
+)(ProfileContainer);

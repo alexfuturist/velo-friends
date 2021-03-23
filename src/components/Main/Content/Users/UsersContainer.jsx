@@ -27,7 +27,6 @@ class UsersContainer extends React.Component {
     this.props.updateUsers(pageNumber, this.props.pageSize);
   }
 
-
   render() {
     return (
       <div>

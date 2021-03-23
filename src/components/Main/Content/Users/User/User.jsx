@@ -38,12 +38,12 @@ let User = ({ u, ...props }) => {
             <div className={s.users__info}>
                 <div className={s.users__infoTop}>
                     <p className={s.users__name}>{u.name}</p>
-                    <p className={s.users__city}>{"u.location.city"},</p>
+                    <p className={s.users__city}>{"city"},</p>
 
                 </div>
                 <div className={s.users__infoBottom}>
                     <p className={s.users__status}>{u.status}</p>
-                    <p className={s.users__country}>{"u.location.country"}</p>
+                    <p className={s.users__country}>{"country"}</p>
                 </div>
             </div>
         </div >

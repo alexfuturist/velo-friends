@@ -2,13 +2,12 @@
 
     position: absolute;
     left: 50%;
-    top: 50vh;
+    top: calc(50vh - 80px);
     transform: translate(-50%, -50%);
     
-    display: inline-block;
-    position: relative;
+    // display: inline-block;
+    // position: relative;
     width: 80px;
-    height: 80px;
 }
 
 .preloader div {

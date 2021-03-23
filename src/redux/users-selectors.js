@@ -21,3 +21,16 @@ export const getIsFetching = (state) => {
 export const getFollowingInProgress = (state) => {
     return state.usersPage.followingInProgress
 };
+
+//
+export const getStars = (state) => {
+    return state.starUsersPage.users
+};
+
+export const getIsFetchingStars = (state) => {
+    return state.starUsersPage.isFetching
+};
+
+export const getFollowingInProgressStars = (state) => {
+    return state.starUsersPage.followingInProgress
+};
