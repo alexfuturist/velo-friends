@@ -13,17 +13,12 @@ const Post = (props) => {
     setMessage(props.massage);
   }, [props.massage]);
 
-  // useEffect(() => {
-  //   setMessage(props.massage);
-  // }, [props.massage]);
-
+  
   const activateEditMode = () => {
-
     if (!props.isUpdatePostMode) {
       setEditMode(true);
       props.updatePostMode(true)
     }
-
   }
 
   const deactivateEditMode = () => {

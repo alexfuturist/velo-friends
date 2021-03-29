@@ -251,6 +251,7 @@ export const deletePost = (id) => (dispatch, getState) => {
     let postIndex = posts.findIndex(element => element.id === id);
 
     dispatch(deletePostSuccess(postIndex));
+    dispatch(updatePostMode(false));
     // console.log(posts);
 };
 
