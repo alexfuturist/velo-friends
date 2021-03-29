@@ -19,6 +19,8 @@
 
     &:hover {
         color: black;
+        background-color: rgb(240, 246, 255);
+
         transition-duration: 0.2s;
 
         cursor: pointer;
@@ -53,6 +55,7 @@
 
 
     &:hover {
+        background-color: cornflowerblue;
         color:rgb(255, 255, 255);
         transition-duration: 0.2s;
     }

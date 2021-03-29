@@ -4,6 +4,18 @@ import MessagesItem from './MessagesItem/MessagesItem';
 
 class MessagesItems extends React.Component {
 
+    scrollToBottom = () => {
+        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    }
+
+    // componentDidMount() {
+    //     this.scrollToBottom();
+    // }
+
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
+
     getDialogId() {
         if (this.props.dialogId) {
             return this.props.dialogId;
@@ -19,15 +31,24 @@ class MessagesItems extends React.Component {
 
         if (messagesArray.length > 0) {
             let messagesItems = messagesArray[0].messages
-                .map(m => <MessagesItem name={m.name} messageText={m.messagesText} key={m.id} id={m.id} />);
+                .map(m =>
+                    <MessagesItem
+                        name={m.name}
+                        messageText={m.messagesText}
+                        key={m.id} id={m.id}
+                        photos={this.props.photos}
+                    />);
             return messagesItems;
         }
     }
 
     render() {
         return (
-            <div>
+            <div id="toBottom">
                 {this.getMessagesItems()}
+                <div style={{ float: "left", clear: "both" }}
+                    ref={(el) => { this.messagesEnd = el; }}>
+                </div>
             </div>
         )
     }

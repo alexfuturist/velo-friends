@@ -5,6 +5,7 @@ import {
 import {
     profileAPI
 } from "../api/api";
+import userPhotoDefault from '../assets/images/user_default.png';
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -16,26 +17,26 @@ const UPDATE_POST_MODE = 'UPDATE_POST_MODE';
 
 let initialState = {
     profileInfo: {
-        "aboutMe": "я круто чувак 1001%",
+        "aboutMe": "про мене",
         "contacts": {
-            "facebook": "facebook.com",
+            "facebook": null,
             "website": null,
             "vk": null,
             "twitter": null,
-            "instagram": "instagra.com/v",
+            "instagram": null,
             "youtube": null,
-            "github": "github.com",
+            "github": null,
             "mainLink": null
         },
         "lookingForAJob": true,
-        "lookingForAJobDescription": "работаю, а катаюсь по выходным",
-        "fullName": "Володимир Погребняк",
+        "lookingForAJobDescription": "js",
+        "fullName": "Им'я",
         "userId": "myProfile",
         "photos": {
-            "small": "https://tengrinews.kz/userdata/images/u38/resized/35fcc7bea1f32a6437650758096b9f89.jpeg",
-            "large": "https://tengrinews.kz/userdata/images/u38/resized/35fcc7bea1f32a6437650758096b9f89.jpeg"
+            "small": userPhotoDefault,
+            "large": userPhotoDefault
         },
-        "status": "Status must be here",
+        "status": "Статус має бути тут",
     },
     posts: [{
             id: 0,

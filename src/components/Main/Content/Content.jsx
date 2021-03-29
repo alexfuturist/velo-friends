@@ -6,6 +6,7 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
+import AboutProject from './AboutProject/AboutProject';
 
 import s from './Content.module.css';
 
@@ -39,6 +40,7 @@ const Content = (props) => {
           <Route path="/starusers" render={() => <StarUsersContainer />} />
           <Route path="/photos" render={() => <Photos />} />
           <Route path="/routes" render={() => <Routes />} />
+          <Route path="/aboutproject" render={() => <AboutProject />} />
           <Route path="/music" render={() => <Music />} />
           <Route path="/settings" render={() => <Settings />} />
           <Route path="/friends" render={() => <Friends />} />;

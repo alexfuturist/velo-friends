@@ -38,6 +38,11 @@ const Navbar = (props) => {
               Веломаршрути
             </NavLink>
           </li>
+          <li className={s.navbar__item}>
+            <NavLink to="/aboutproject" activeClassName={s.navbar__active}>
+              Про цей проект
+            </NavLink>
+          </li>
           {/* <li className={s.navbar__item}>
             <NavLink to="/music" activeClassName={s.navbar__active}>
               Музика

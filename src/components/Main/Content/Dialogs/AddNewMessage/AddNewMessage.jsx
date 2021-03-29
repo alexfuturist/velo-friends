@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import s from './AddNewMessage.module.scss';
 import { Field, reduxForm } from 'redux-form';
 
@@ -13,23 +13,41 @@ const AddNewMessageForm = (props) => {
 }
 
 const AddNewMessageFormRedux = reduxForm({
-  form: 'DialogsAddNewMessage'
+  form: 'DialogsAddNewMessage',
+  enableReinitialize: true,
+  destroyOnUnmount: false
 })(AddNewMessageForm);
 
 const AddNewMessage = (props) => {
+
+  useEffect(() => { props.resetNewMessageField() }, [props.dialogId]);
+
+  let newMessageText = () => {
+    if (props.dialogsMessages.filter(item => item.id == (+props.dialogId))[0] != undefined) {
+      return props.dialogsMessages.filter(item => item.id == (+props.dialogId))[0].newMessageText;
+    } else {
+      return ""
+    }
+  };
+
+  let setCurrentTextOfMessage = (formData) => {
+    props.setCurrentTextOfMessage(formData.newMessage, props.dialogId);
+  };
+
   //колбэк функция 
   let addMessage = (formData) => {
-    props.addMessage(formData.newMessage);
+    props.addNewMessage(formData.newMessage, props.dialogId);
     console.log(formData.newMessage);
   };
+
 
   return (
     <div>
       <p className={s.newPosts__title}>Нове повідомлення</p>
-      <AddNewMessageFormRedux onSubmit={addMessage} />
+      <AddNewMessageFormRedux onSubmit={addMessage} onChange={setCurrentTextOfMessage}
+        initialValues={{ newMessage: newMessageText() }} />
     </div>
   )
 };
-
 
 export default AddNewMessage;

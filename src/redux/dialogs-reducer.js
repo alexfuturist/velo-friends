@@ -1,4 +1,10 @@
+import {
+    reset
+} from "redux-form";
+
 const ADD_MESSAGE = 'ADD-MESSAGE';
+const REFRESH_CURRENT_TEXT_OF_MESSAGE = 'REFRESH_CURRENT_TEXT_OF_MESSAGE';
+const SET_CURRENT_TEXT_OF_MESSAGE = 'SET_CURRENT_TEXT_OF_MESSAGE';
 
 let initialState = {
     dialogs: [{
@@ -81,11 +87,10 @@ let initialState = {
     dialogsMessages: [{
             id: 0,
             messages: [{
-                    id: 1,
-                    name: 'вело-радник',
-                    messagesText: 'Виберіть діалог зі списку контактів щоби почати спілкування.'
-                }
-            ]
+                id: 1,
+                name: 'вело-радник',
+                messagesText: 'Виберіть діалог зі списку контактів щоби почати спілкування.'
+            }]
         },
         {
             id: 1,
@@ -97,19 +102,30 @@ let initialState = {
                 {
                     id: 2,
                     name: 'Я',
-                    messagesText: 'Привіт. Так вже відремонтував і встановив нові катафоти!'
+                    messagesText: 'Привіт.'
                 },
                 {
                     id: 3,
+                    name: 'Я',
+                    messagesText: 'Так вже відремонтував і встановив нові катафоти!'
+                },
+                {
+                    id: 4,
                     name: 'Михайло',
                     messagesText: 'Тоді завтра на 10:30 їдемо 20км по маршруту Б.'
                 },
                 {
-                    id: 4,
+                    id: 5,
                     name: 'Я',
                     messagesText: 'ОК'
+                },
+                {
+                    id: 6,
+                    name: 'Михайло',
+                    messagesText: 'До зустрічі.'
                 }
-            ]
+            ],
+            newMessageText: ""
         },
         {
             id: 2,
@@ -127,13 +143,38 @@ let initialState = {
                     id: 3,
                     name: 'Віка',
                     messagesText: 'Добре, після дощу їдемо 10км по парку.'
+                }
+            ],
+            newMessageText: ""
+        },
+        {
+            id: 3,
+            messages: [{
+                    id: 1,
+                    name: 'Софія',
+                    messagesText: 'Привіт. А коли змагання на велотреку?'
                 },
                 {
-                    id: 4,
+                    id: 2,
                     name: 'Я',
-                    messagesText: 'Домовились)'
+                    messagesText: 'Здається в суботу.'
+                },
+                {
+                    id: 3,
+                    name: 'Я',
+                    messagesText: 'але треба перевірити..'
                 }
-            ]
+            ],
+            newMessageText: ""
+        },
+        {
+            id: 4,
+            messages: [{
+                id: 1,
+                name: 'Іван',
+                messagesText: 'Друже, в тебе десь був запасний підшипник?'
+            }],
+            newMessageText: ""
         }
     ]
 
@@ -143,26 +184,169 @@ const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case ADD_MESSAGE: {
+
+            let dialogsMessagesItemAvaileble = [...state.dialogsMessages.filter(dm => dm.id == action.dialogId)];
+            let id = +`${dialogsMessagesItemAvaileble[0].messages.length + 1}`;
+            // let id = +`${Math.max(dialogsMessagesItemAvaileble[0].messages.map( (p)=> p.id ))}`;
+
             let newMessage = {
-                id: 5,
+                id: +id,
                 name: 'Я',
                 messagesText: action.newMessageText
             };
 
+            let dialogsMessagesMockup = {
+                id: action.dialogId,
+                messages: [newMessage],
+                newMessageText: ""
+            };
+
+            if (dialogsMessagesItemAvaileble.length > 0) {
+                return {
+                    ...state,
+                    dialogsMessages: [...state.dialogsMessages.map((dm) => {
+                        return (
+                            dm.id == action.dialogId ? {
+                                ...dm,
+                                messages: [...dm.messages, newMessage],
+                            } :
+                            dm
+                        )
+                    })]
+                }
+            } else {
+                return {
+                    ...state,
+                    dialogsMessages: [
+                        ...state.dialogsMessages,
+                        dialogsMessagesMockup
+                    ]
+                };
+            }
+
+        }
+
+        case REFRESH_CURRENT_TEXT_OF_MESSAGE: {
             return {
                 ...state,
-                messages: [...state.messages, newMessage]
-            };
+                dialogsMessages: [...state.dialogsMessages.map((dm) => {
+                    return (
+                        dm.id == action.dialogId ? {
+                            ...dm,
+                            newMessageText: "",
+                        } :
+                        dm
+                    )
+                })]
+            }
         }
+
+        case SET_CURRENT_TEXT_OF_MESSAGE: {
+
+            let dialogsMessagesItemAvaileble = [...state.dialogsMessages.filter(dm => dm.id == action.dialogId)];
+
+            let dialogsMessagesMockup = {
+                id: action.dialogId,
+                messages: [],
+                newMessageText: action.currentTextOfMessage
+            };
+
+            if (dialogsMessagesItemAvaileble.length > 0) {
+                return {
+                    ...state,
+                    dialogsMessages: [...state.dialogsMessages.map((dm) => {
+                        return (
+                            dm.id == action.dialogId ? {
+                                ...dm,
+                                newMessageText: action.currentTextOfMessage,
+                            } :
+                            dm
+                        )
+                    })]
+                }
+            } else {
+                return {
+                    ...state,
+                    dialogsMessages: [
+                        ...state.dialogsMessages,
+                        dialogsMessagesMockup
+                    ]
+                };
+            }
+
+
+
+        }
+
         default:
             return state;
     }
 }
 
 //AC
-export const addMessage = (newMessageText) => ({
+export const addMessage = (newMessageText, dialogId) => ({
     type: ADD_MESSAGE,
-    newMessageText: newMessageText
+    newMessageText: newMessageText,
+    dialogId: dialogId
 });
 
+export const refreshCurrentTextOfMessage = (dialogId) => ({
+    type: REFRESH_CURRENT_TEXT_OF_MESSAGE,
+    dialogId: dialogId
+})
+
+export const setCurrentTextOfMessage = (currentTextOfMessage, dialogId) => ({
+    type: SET_CURRENT_TEXT_OF_MESSAGE,
+    currentTextOfMessage: currentTextOfMessage,
+    dialogId: dialogId
+})
+
+//TC
+export const addNewMessage = (newMessageText, dialogId) => (dispatch) => {
+    dispatch(addMessage(newMessageText, dialogId));
+    dispatch(refreshCurrentTextOfMessage(dialogId));
+    dispatch(reset('DialogsAddNewMessage'));
+};
+
+export const resetNewMessageField = () => (dispatch) => {
+    dispatch(reset('DialogsAddNewMessage'));
+}
+
 export default dialogsReducer;
+
+
+
+// //найти объект переписки из массива переписок
+// let dialogMessages = {
+//     ...state.dialogsMessages.filter(dm => dm.id === action.dialogId)
+// };
+
+// let id = +`${Math.max(...state.dialogsMessages
+//         .filter( messagesItems => messagesItems.id === action.dialogId)
+//         .map( (p)=> p.id ))+1}`;
+
+
+// const newProjects = projects.map(p =>
+//     p.value === 'jquery-ui' ?
+//     {
+//         ...p,
+//         desc: 'new description'
+//     } :
+//     p
+// );
+
+
+
+
+// return {
+//     ...state,
+//     dialogsMessages: [...state.dialogsMessages.map((dm) => {
+//         return (
+//             dm.id == action.dialogId ? {
+//                 ...dm,
+//                 messages: [...dm.messages, newMessage],
+//             } :
+//             dm
+//         )
+//     })]
+// };

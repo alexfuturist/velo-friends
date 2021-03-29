@@ -22,11 +22,9 @@ const AddNewPostForm = (props) => {
     )
 };
 
-
 const AddNewPostFormRedux = reduxForm({
     form: 'ProfileAddNewPost'
 })(AddNewPostForm);
-
 
 const AddNewPost = (props) => {
     //колбэк функция 

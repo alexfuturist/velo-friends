@@ -21,10 +21,16 @@ class Dialogs extends React.Component {
 
           <div className={s.messagesColumn}>
             <div className={s.messagesItems}>
-              <MessagesItems {...this.props} dialogId={this.props.dialogId}/>
+              <MessagesItems {...this.props} dialogId={this.props.dialogId} />
             </div>
 
-            <AddNewMessage addMessage={this.props.addMessage} />
+            <AddNewMessage
+              addNewMessage={this.props.addNewMessage}
+              dialogId={this.props.dialogId}
+              resetNewMessageField={this.props.resetNewMessageField}
+              setCurrentTextOfMessage={this.props.setCurrentTextOfMessage}
+              {...this.props}
+            />
           </div>
         </div>
 
