@@ -1,0 +1,115 @@
+.aboutProject {
+    padding: 40px;
+    margin-top: 10px;
+}
+
+.aboutProject__title {
+    display: inline;
+    padding: 15px;
+
+    text-align: center;
+    font-size: 20px;
+    background-color: rgb(255, 217, 0);
+}
+
+.stack {
+    margin-top: 40px;
+    margin-bottom: 80px;
+}
+
+
+.stack__item {
+    margin-left: 20px;
+    margin-bottom: 40px;
+}
+
+.stack__title {
+    margin-bottom: 20px;
+    padding: 10px;
+
+    width: 100px;
+    background-color: cornflowerblue;
+    color: white;
+    text-align: center;
+
+    font-size: 20px;
+}
+
+.stack__list {}
+
+.list__item {
+    position: relative;
+
+    margin-bottom: 15px;
+
+    font-size: 16px;
+
+    span {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: -20px;
+        top: -1px;
+        transform: translateY(-25%);
+        width: 8px;
+        height: 16px;
+        border: solid cornflowerblue;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        transition-duration: 0.4s;
+    }
+}
+
+.stack__listBottom {
+    margin-top: 40px;
+    margin-bottom: 80px;
+    margin-left: 20px;
+
+    .list__item {
+        span {}
+
+        p {
+            margin-top: 10px;
+        }
+
+        .list__itemBlue {
+            font-weight: 400;
+            font-size: 16px;
+            color: cornflowerblue;
+        }
+
+        .list__itemPink {
+            font-weight: 400;
+            font-size: 16px;
+            color: rgb(237, 100, 134);
+        }
+    }
+}
+
+.aboutProject__linkTitle {
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    background-color: cornflowerblue;
+    color: white;
+}
+
+.aboutProject__link {
+    padding: 5px;
+
+    color: rgb(39, 108, 235);
+    font-size: 18px;
+
+    transition-duration: 0.3s;
+
+    &:hover {
+        color: rgb(39, 108, 235);
+        background-color: rgb(255, 217, 0);
+
+        transition-duration: 0.3s;
+    }
+}
