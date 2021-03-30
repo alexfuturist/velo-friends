@@ -35,9 +35,9 @@ let initialState = {
         "photos": {
             "small": userPhotoDefault,
             "large": userPhotoDefault
-        },
-        "status": "Статус має бути тут",
+        }
     },
+    status: "Статус має бути тут",
     posts: [{
             id: 0,
             message: "А настройки профиля отправляются на сервер после изменения, поэтому можно редактировать и перезагружать, всё должно сохраниться и обновиться.)"
@@ -69,7 +69,7 @@ const profileReducer = (state = initialState, action) => {
                 message: action.newPostText
             };
 
-            console.log (newPost)
+            console.log(newPost)
 
             return {
                 ...state,
@@ -87,10 +87,7 @@ const profileReducer = (state = initialState, action) => {
         case SET_USER_STATUS: {
             return {
                 ...state,
-                profileInfo: {
-                    ...state.profileInfo,
-                    status: action.status
-                }
+                status: action.status
             }
         }
 
@@ -187,8 +184,7 @@ export const updatePostSuccess = (postIndex, message) => {
 };
 
 export const updatePostMode = (flag) => {
-    console.log(flag);
-
+    // console.log(flag);
     return {
         type: UPDATE_POST_MODE,
         flag: flag
@@ -209,6 +205,7 @@ export const getUserProfile = (userId) => async (dispatch) => {
 };
 
 export const getUserStatus = (userId) => async (dispatch) => {
+    // debugger
     const response = await profileAPI.getStatus(userId);
 
     dispatch(setUserStatus(response.data));
@@ -233,8 +230,8 @@ export const updatePhoto = (file) => async (dispatch) => {
 export const saveProfile = (profile) => async (dispatch, getState) => {
     const response = await profileAPI.saveProfile(profile);
     const userId = getState().auth.userId;
-    console.log(response);
-    console.log(response.data.messages[0]);
+    // console.log(response);
+    // console.log(response.data.messages[0]);
 
     if (response.data.resultCode === 0) {
         dispatch(getUserProfile(userId));

@@ -4,36 +4,36 @@ import ProfileStatusWithHooks from '../ProfileStatus/ProfileStatusWithHooks';
 import s from './ProfileDataForm.module.scss';
 
 
-const ProfileDataForm = ({ handleSubmit, profileInfo, error, isOwner, getUserStatus, updateUserStatus }) => {
+const ProfileDataForm = ({ handleSubmit, profileInfo, status, error, isOwner, getUserStatus, updateUserStatus }) => {
    
     return (
         <form className={s.profileInfo__Form} onSubmit={handleSubmit}>
             <div className={s.profileInfo__FormLeft}>
-                <p>
+                <div>
                     <Field className={s.profileInfo__Name} name="fullName" placeholder="Моє ім'я" component="input" />
-                </p>
+                </div>
 
-                <ProfileStatusWithHooks className={s.profileInfo__Parametr} status={profileInfo.status}
+                <ProfileStatusWithHooks className={s.profileInfo__Parametr} status={status}
                     getUserStatus={getUserStatus} updateUserStatus={updateUserStatus} isOwner={isOwner} />
 
-                <p className={s.profileInfo__Checkbox}>
+                <div className={s.profileInfo__Checkbox}>
                     <span className={s.bold}>Шукаю роботу:&#160;</span>
                     <Field className={s.profileInfo__CheckboxInput}
                         name="lookingForAJob" component="input" type="checkbox" id="lookingForAJob" />
-                    <label className={s.profileInfo__CheckboxLabel} for="lookingForAJob"></label>
-                </p>
+                    <label className={s.profileInfo__CheckboxLabel} htmlFor="lookingForAJob"></label>
+                </div>
 
-                <p className={s.profileInfo__Parametr}>
-                    <p className={s.bold}>Мої навички:</p>
+                <div className={s.profileInfo__Parametr}>
+                    <div className={s.bold}>Мої навички:</div>
                     <Field className={s.profileInfo__ParametrInput}
                         name="lookingForAJobDescription" component="input" />
-                </p>
+                </div>
 
-                <p className={s.profileInfo__Parametr}>
-                    <p className={s.bold}>Про мене:</p>
+                <div className={s.profileInfo__Parametr}>
+                    <div className={s.bold}>Про мене:</div>
                     <Field className={s.profileInfo__ParametrInput}
                         name="aboutMe" component="input" />
-                </p>
+                </div>
 
                 <div>
                     <button type="submit" className={`${s.profileInfo__button} ${s.profileInfo__buttonSave}`}>
@@ -48,8 +48,8 @@ const ProfileDataForm = ({ handleSubmit, profileInfo, error, isOwner, getUserSta
 
             </div>
 
-            <p className={s.profileInfo__FormContacts}>
-                <p className={s.profileInfo__ContactsTitle}>Контакти:</p>
+            <div className={s.profileInfo__FormContacts}>
+                <div className={s.profileInfo__ContactsTitle}>Контакти:</div>
                 {Object.keys(profileInfo.contacts)
                     .map(key => {
                         return (
@@ -61,7 +61,7 @@ const ProfileDataForm = ({ handleSubmit, profileInfo, error, isOwner, getUserSta
                         )
                     })
                 }
-            </p>
+            </div>
         </form>
     );
 }

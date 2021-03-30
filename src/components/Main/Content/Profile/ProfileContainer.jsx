@@ -23,12 +23,13 @@ import { compose } from 'redux';
 class ProfileContainer extends React.Component {
 
   refreshProfile() {
+    // debugger
+
     let userId = this.props.match.params.userId;
-    console.log(userId);
+
     if (!userId) {
       userId = this.props.authorizedUserId;
     }
-    console.log(userId);
 
     this.props.getUserProfile(userId);
     this.props.getUserStatus(userId);
@@ -57,6 +58,7 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state) => {
   return {
     profileInfo: state.profilePage.profileInfo,
+    status: state.profilePage.status,
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText,
     authorizedUserId: state.auth.userId,

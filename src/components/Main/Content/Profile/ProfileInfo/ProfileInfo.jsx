@@ -19,14 +19,14 @@ const ProfileInfo = React.memo((props) => {
         props.saveProfile(formData).then(
             () => {
                 setEditMode(false);
-                console.log('форма сохранена');
+                // console.log('форма сохранена');
             }
         )
-        console.log(formData);
+        // console.log(formData);
     }
 
-    console.log('профайл инфо');
-    console.log(props.profileInfo);
+    // console.log('профайл инфо');
+    // console.log(props.profileInfo);
 
     return (
         <div>
@@ -43,7 +43,7 @@ const ProfileInfo = React.memo((props) => {
                             &&
                             <div className={s.input__wrapper}>
                                 <input className={s.input__file} onChange={onMainPhotoSelected} type="file" name="file" id="input__file" />
-                                <label className={s.input__fileButton} for="input__file">
+                                <label className={s.input__fileButton} htmlFor="input__file">
                                     <span className={s.input__fileIcon}></span>
                                     <span className={s.input__fileButtonText}>Оновити фото</span>
                                 </label>

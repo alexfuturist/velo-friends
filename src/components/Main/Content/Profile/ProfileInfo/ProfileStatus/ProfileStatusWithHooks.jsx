@@ -6,16 +6,11 @@ const ProfileStatusWithHooks = React.memo((props) => {
     let [editMode, setEditMode] = useState(false);
     let [status, setStatus] = useState(props.status);
 
-    console.log(`cтатус локальный:` + status);
-
     useEffect(() => {
-        console.log('effect satus profile');
-        // setStatus(props.status);
         if (props.status !== undefined) {
             setStatus(props.status)
         }
     }, [props.status]);
-    
 
     const activateEditMode = () => {
         if (props.isOwner) {
@@ -31,8 +26,7 @@ const ProfileStatusWithHooks = React.memo((props) => {
     const onStatusChange = (e) => {
         setStatus(e.currentTarget.value);
     }
-
-    console.log(`cтатус из пропс:` + props.status);
+    
     return (
         <div className={s.profileStatus}>
             { !editMode &&

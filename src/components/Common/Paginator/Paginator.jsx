@@ -36,7 +36,7 @@ let Paginator = ({ totalUsersCount, pageSize, currentPage, onPageChanged, portio
         .map(p => {
           return (
             <span className={`${s.paginationPage} ${currentPage === p && s.paginationPageSelected}`}
-              onClick={(e) => { onPageChanged(p) }}>
+              onClick={(e) => { onPageChanged(p) }} key={p}>
               {p}
             </span>
           )

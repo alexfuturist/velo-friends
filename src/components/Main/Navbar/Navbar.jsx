@@ -55,9 +55,9 @@ const Navbar = (props) => {
           </li> */}
         </ul>
 
-        <p className={s.navbar__friends}>
+        <div className={s.navbar__friends}>
           {props.isAuth && <NavbarFriends />}
-        </p>
+        </div>
       </nav>
     </aside>
   );

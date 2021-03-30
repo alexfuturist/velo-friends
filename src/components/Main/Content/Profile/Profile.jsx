@@ -13,6 +13,7 @@ const Profile = (props) => {
     <section className={s.profile}>
       <ProfileInfo
         profileInfo={props.profileInfo}
+        status={props.status}
         getUserStatus={props.getUserStatus}
         updateUserStatus={props.updateUserStatus}
         isOwner={props.isOwner}

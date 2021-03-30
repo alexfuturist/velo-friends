@@ -3,30 +3,30 @@ import ProfileStatusWithHooks from '../ProfileStatus/ProfileStatusWithHooks';
 import s from './ProfileData.module.scss';
 
 
-const ProfileData = ({ profileInfo, isOwner, goToEditMode, getUserStatus, updateUserStatus }) => {
-
+const ProfileData = ({ profileInfo, status, isOwner, goToEditMode, getUserStatus, updateUserStatus }) => {
+    // debugger
     return (
         <div className={s.profileInfo__Text} >
             <div className={s.profileInfo__TextLeft}>
-                <p className={s.profileInfo__Name}> {profileInfo.fullName} </p>
-                
-                <ProfileStatusWithHooks className={s.profileInfo__Parametr} status={profileInfo.status}
+                <div className={s.profileInfo__Name}> {profileInfo.fullName} </div>
+
+                <ProfileStatusWithHooks className={s.profileInfo__Parametr} status={status}
                     getUserStatus={getUserStatus} updateUserStatus={updateUserStatus} isOwner={isOwner} />
-                
-                <p className={s.profileInfo__Parametr}>
+
+                <div className={s.profileInfo__Parametr}>
                     <span className={s.bold}>Шукаю роботу:&#160;</span>
                     {profileInfo.lookingForAJob ? "так" : "ні"}
-                </p>
-               
-                <p className={s.profileInfo__Parametr}>
+                </div>
+
+                <div className={s.profileInfo__Parametr}>
                     <p className={s.bold}>Мої навички:</p>
                     {profileInfo.lookingForAJobDescription}
-                </p>
-                
-                <p className={s.profileInfo__Parametr}>
+                </div>
+
+                <div className={s.profileInfo__Parametr}>
                     <p className={s.bold}>Про мене:</p>
                     {profileInfo.aboutMe}
-                </p>
+                </div>
 
                 {isOwner
                     &&
@@ -38,8 +38,8 @@ const ProfileData = ({ profileInfo, isOwner, goToEditMode, getUserStatus, update
                 }
             </div>
 
-            <p className={s.profileInfo__Contacts}>
-                <p className={s.profileInfo__ContactsTitle}>Контакти:</p>
+            <div className={s.profileInfo__Contacts}>
+                <div className={s.profileInfo__ContactsTitle}>Контакти:</div>
                 {Object.keys(profileInfo.contacts)
                     .map(key => {
                         return (
@@ -50,7 +50,7 @@ const ProfileData = ({ profileInfo, isOwner, goToEditMode, getUserStatus, update
                         )
                     })
                 }
-            </p>
+            </div>
         </div>
     );
 }
