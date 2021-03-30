@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/velo-friends/static/css/main.f4ddca4c.chunk.css",
-    "main.js": "/velo-friends/static/js/main.5d19543d.chunk.js",
-    "main.js.map": "/velo-friends/static/js/main.5d19543d.chunk.js.map",
-    "runtime-main.js": "/velo-friends/static/js/runtime-main.89797e88.js",
-    "runtime-main.js.map": "/velo-friends/static/js/runtime-main.89797e88.js.map",
+    "main.js": "/velo-friends/static/js/main.b9a6e627.chunk.js",
+    "main.js.map": "/velo-friends/static/js/main.b9a6e627.chunk.js.map",
+    "runtime-main.js": "/velo-friends/static/js/runtime-main.a81ff067.js",
+    "runtime-main.js.map": "/velo-friends/static/js/runtime-main.a81ff067.js.map",
     "static/js/2.4db611eb.chunk.js": "/velo-friends/static/js/2.4db611eb.chunk.js",
     "static/js/2.4db611eb.chunk.js.map": "/velo-friends/static/js/2.4db611eb.chunk.js.map",
     "static/js/3.7c075d53.chunk.js": "/velo-friends/static/js/3.7c075d53.chunk.js",
@@ -13,8 +13,8 @@
     "static/js/4.578b82db.chunk.js": "/velo-friends/static/js/4.578b82db.chunk.js",
     "static/js/4.578b82db.chunk.js.map": "/velo-friends/static/js/4.578b82db.chunk.js.map",
     "static/css/5.91520bf6.chunk.css": "/velo-friends/static/css/5.91520bf6.chunk.css",
-    "static/js/5.305d6226.chunk.js": "/velo-friends/static/js/5.305d6226.chunk.js",
-    "static/js/5.305d6226.chunk.js.map": "/velo-friends/static/js/5.305d6226.chunk.js.map",
+    "static/js/5.afd5503e.chunk.js": "/velo-friends/static/js/5.afd5503e.chunk.js",
+    "static/js/5.afd5503e.chunk.js.map": "/velo-friends/static/js/5.afd5503e.chunk.js.map",
     "static/css/6.0c4bb156.chunk.css": "/velo-friends/static/css/6.0c4bb156.chunk.css",
     "static/js/6.cfd2a697.chunk.js": "/velo-friends/static/js/6.cfd2a697.chunk.js",
     "static/js/6.cfd2a697.chunk.js.map": "/velo-friends/static/js/6.cfd2a697.chunk.js.map",
@@ -30,9 +30,9 @@
     "static/media/user_default.png": "/velo-friends/static/media/user_default.883504fe.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.89797e88.js",
+    "static/js/runtime-main.a81ff067.js",
     "static/js/3.7c075d53.chunk.js",
     "static/css/main.f4ddca4c.chunk.css",
-    "static/js/main.5d19543d.chunk.js"
+    "static/js/main.b9a6e627.chunk.js"
   ]
 }
