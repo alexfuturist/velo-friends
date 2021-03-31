@@ -9,7 +9,7 @@ import { Redirect } from "react-router-dom";
 
 const Input = Element("input");
 const maxLength15 = maxLengthCreator(15);
-const minLength5 = minLengthCreator(5);
+const minLength4 = minLengthCreator(4);
 
 const LoginForm = (props) => {
     return (
@@ -22,7 +22,7 @@ const LoginForm = (props) => {
             <div>
                 <label htmlFor="password"></label>
                 <Field className={s.loginField} name="password" component={Input} type="password"
-                    placeholder={"password"} validate={[required, minLength5, maxLength15]} />
+                    placeholder={"password"} validate={[required, minLength4, maxLength15]} />
             </div>
             <div className={s.RememberMe}>
                 <Field className={s.RememberMeInput} name="rememberMe" id="rememberMe" component="input" type="checkbox" />

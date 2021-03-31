@@ -45,6 +45,9 @@ const AboutProject = () => {
                             <span>Redux</span>, react-redux, connect.
                         </li>
                         <li className={s.list__item}>
+                            FLUX-архітектура.
+                        </li>
+                        <li className={s.list__item}>
                             Selectors, Reselect.
                         </li>
                         <li className={s.list__item}>
