@@ -303,9 +303,11 @@ export const setCurrentTextOfMessage = (currentTextOfMessage, dialogId) => ({
 
 //TC
 export const addNewMessage = (newMessageText, dialogId) => (dispatch) => {
-    dispatch(addMessage(newMessageText, dialogId));
-    dispatch(refreshCurrentTextOfMessage(dialogId));
-    dispatch(reset('DialogsAddNewMessage'));
+    if (newMessageText.length > 0) {
+        dispatch(addMessage(newMessageText, dialogId));
+        dispatch(refreshCurrentTextOfMessage(dialogId));
+        dispatch(reset('DialogsAddNewMessage'));
+    }
 };
 
 export const resetNewMessageField = () => (dispatch) => {

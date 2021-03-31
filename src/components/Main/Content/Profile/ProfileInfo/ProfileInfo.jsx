@@ -19,14 +19,9 @@ const ProfileInfo = React.memo((props) => {
         props.saveProfile(formData).then(
             () => {
                 setEditMode(false);
-                // console.log('форма сохранена');
             }
         )
-        // console.log(formData);
     }
-
-    // console.log('профайл инфо');
-    // console.log(props.profileInfo);
 
     return (
         <div>

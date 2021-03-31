@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import s from './AddNewMessage.module.scss';
 import { Field, reduxForm } from 'redux-form';
+import { required } from '../../../../../utils/validators/validators';
 
 const AddNewMessageForm = (props) => {
   return (
     <form className={s.newPosts} onSubmit={props.handleSubmit}>
       <label htmlFor="newMessage"></label>
-      <Field className={s.newPosts__text} component="textarea" name="newMessage" placeholder="моє повідомлення.."></Field>
+      <Field className={s.newPosts__text} component="textarea" name="newMessage" validate={[required]} placeholder="моє повідомлення.."></Field>
       <button className={`button ${s.newPosts__button}`}>Відправити</button>
     </form>
   )
