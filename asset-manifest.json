@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/velo-friends/static/css/main.f4ddca4c.chunk.css",
-    "main.js": "/velo-friends/static/js/main.6fb05cc7.chunk.js",
-    "main.js.map": "/velo-friends/static/js/main.6fb05cc7.chunk.js.map",
-    "runtime-main.js": "/velo-friends/static/js/runtime-main.186af752.js",
-    "runtime-main.js.map": "/velo-friends/static/js/runtime-main.186af752.js.map",
+    "main.js": "/velo-friends/static/js/main.ca736d85.chunk.js",
+    "main.js.map": "/velo-friends/static/js/main.ca736d85.chunk.js.map",
+    "runtime-main.js": "/velo-friends/static/js/runtime-main.4ef1d07a.js",
+    "runtime-main.js.map": "/velo-friends/static/js/runtime-main.4ef1d07a.js.map",
     "static/js/2.4db611eb.chunk.js": "/velo-friends/static/js/2.4db611eb.chunk.js",
     "static/js/2.4db611eb.chunk.js.map": "/velo-friends/static/js/2.4db611eb.chunk.js.map",
     "static/js/3.5777d98c.chunk.js": "/velo-friends/static/js/3.5777d98c.chunk.js",
@@ -16,8 +16,8 @@
     "static/js/5.f316c98d.chunk.js": "/velo-friends/static/js/5.f316c98d.chunk.js",
     "static/js/5.f316c98d.chunk.js.map": "/velo-friends/static/js/5.f316c98d.chunk.js.map",
     "static/css/6.0c4bb156.chunk.css": "/velo-friends/static/css/6.0c4bb156.chunk.css",
-    "static/js/6.e4978fd4.chunk.js": "/velo-friends/static/js/6.e4978fd4.chunk.js",
-    "static/js/6.e4978fd4.chunk.js.map": "/velo-friends/static/js/6.e4978fd4.chunk.js.map",
+    "static/js/6.4edaaff0.chunk.js": "/velo-friends/static/js/6.4edaaff0.chunk.js",
+    "static/js/6.4edaaff0.chunk.js.map": "/velo-friends/static/js/6.4edaaff0.chunk.js.map",
     "static/js/7.edad5b2b.chunk.js": "/velo-friends/static/js/7.edad5b2b.chunk.js",
     "static/js/7.edad5b2b.chunk.js.map": "/velo-friends/static/js/7.edad5b2b.chunk.js.map",
     "index.html": "/velo-friends/index.html",
@@ -30,9 +30,9 @@
     "static/media/user_default.png": "/velo-friends/static/media/user_default.883504fe.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.186af752.js",
+    "static/js/runtime-main.4ef1d07a.js",
     "static/js/3.5777d98c.chunk.js",
     "static/css/main.f4ddca4c.chunk.css",
-    "static/js/main.6fb05cc7.chunk.js"
+    "static/js/main.ca736d85.chunk.js"
   ]
 }
