@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/velo-friends/static/css/main.f4ddca4c.chunk.css",
+    "main.css": "/velo-friends/static/css/main.8c2d2d78.chunk.css",
     "main.js": "/velo-friends/static/js/main.6f7b0386.chunk.js",
     "main.js.map": "/velo-friends/static/js/main.6f7b0386.chunk.js.map",
-    "runtime-main.js": "/velo-friends/static/js/runtime-main.6ea3953a.js",
-    "runtime-main.js.map": "/velo-friends/static/js/runtime-main.6ea3953a.js.map",
+    "runtime-main.js": "/velo-friends/static/js/runtime-main.2b6649c5.js",
+    "runtime-main.js.map": "/velo-friends/static/js/runtime-main.2b6649c5.js.map",
     "static/js/2.4db611eb.chunk.js": "/velo-friends/static/js/2.4db611eb.chunk.js",
     "static/js/2.4db611eb.chunk.js.map": "/velo-friends/static/js/2.4db611eb.chunk.js.map",
     "static/js/3.358a2d83.chunk.js": "/velo-friends/static/js/3.358a2d83.chunk.js",
     "static/js/3.358a2d83.chunk.js.map": "/velo-friends/static/js/3.358a2d83.chunk.js.map",
     "static/css/4.21f786c4.chunk.css": "/velo-friends/static/css/4.21f786c4.chunk.css",
-    "static/js/4.1d039f20.chunk.js": "/velo-friends/static/js/4.1d039f20.chunk.js",
-    "static/js/4.1d039f20.chunk.js.map": "/velo-friends/static/js/4.1d039f20.chunk.js.map",
+    "static/js/4.673832ac.chunk.js": "/velo-friends/static/js/4.673832ac.chunk.js",
+    "static/js/4.673832ac.chunk.js.map": "/velo-friends/static/js/4.673832ac.chunk.js.map",
     "static/css/5.91520bf6.chunk.css": "/velo-friends/static/css/5.91520bf6.chunk.css",
     "static/js/5.ae0faa1f.chunk.js": "/velo-friends/static/js/5.ae0faa1f.chunk.js",
     "static/js/5.ae0faa1f.chunk.js.map": "/velo-friends/static/js/5.ae0faa1f.chunk.js.map",
@@ -24,15 +24,15 @@
     "static/css/4.21f786c4.chunk.css.map": "/velo-friends/static/css/4.21f786c4.chunk.css.map",
     "static/css/5.91520bf6.chunk.css.map": "/velo-friends/static/css/5.91520bf6.chunk.css.map",
     "static/css/6.0c4bb156.chunk.css.map": "/velo-friends/static/css/6.0c4bb156.chunk.css.map",
-    "static/css/main.f4ddca4c.chunk.css.map": "/velo-friends/static/css/main.f4ddca4c.chunk.css.map",
+    "static/css/main.8c2d2d78.chunk.css.map": "/velo-friends/static/css/main.8c2d2d78.chunk.css.map",
     "static/js/2.4db611eb.chunk.js.LICENSE.txt": "/velo-friends/static/js/2.4db611eb.chunk.js.LICENSE.txt",
     "static/js/3.358a2d83.chunk.js.LICENSE.txt": "/velo-friends/static/js/3.358a2d83.chunk.js.LICENSE.txt",
     "static/media/user_default.png": "/velo-friends/static/media/user_default.883504fe.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.6ea3953a.js",
+    "static/js/runtime-main.2b6649c5.js",
     "static/js/3.358a2d83.chunk.js",
-    "static/css/main.f4ddca4c.chunk.css",
+    "static/css/main.8c2d2d78.chunk.css",
     "static/js/main.6f7b0386.chunk.js"
   ]
 }
