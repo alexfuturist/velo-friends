@@ -20,7 +20,7 @@ import { compose } from 'redux';
 
 
 //внутренний контейнер
-class ProfileContainer extends React.Component {
+class ProfileContainer extends React.Component <any, any> {
 
   refreshProfile() {
     // debugger
