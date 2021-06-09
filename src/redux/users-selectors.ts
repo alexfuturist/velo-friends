@@ -1,36 +1,38 @@
-export const getUsers = (state) => {
+import { AppStateType } from "./redux-store";
+
+export const getUsers = (state: AppStateType) => {
     return state.usersPage.users
 };
 
-export const getPageSize = (state) => {
+export const getPageSize = (state: AppStateType) => {
     return state.usersPage.pageSize
 };
 
-export const getTotalUsersCount = (state) => {
+export const getTotalUsersCount = (state: AppStateType) => {
     return state.usersPage.totalUsersCount
 };
 
-export const getCurrentPage = (state) => {
+export const getCurrentPage = (state: AppStateType) => {
     return state.usersPage.currentPage
 };
 
-export const getIsFetching = (state) => {
+export const getIsFetching = (state: AppStateType) => {
     return state.usersPage.isFetching
 };
 
-export const getFollowingInProgress = (state) => {
+export const getFollowingInProgress = (state: AppStateType) => {
     return state.usersPage.followingInProgress
 };
 
 //
-export const getStars = (state) => {
+export const getStars = (state: AppStateType) => {
     return state.starUsersPage.users
 };
 
-export const getIsFetchingStars = (state) => {
+export const getIsFetchingStars = (state: AppStateType) => {
     return state.starUsersPage.isFetching
 };
 
-export const getFollowingInProgressStars = (state) => {
+export const getFollowingInProgressStars = (state: AppStateType) => {
     return state.starUsersPage.followingInProgress
 };

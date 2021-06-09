@@ -1,42 +1,60 @@
-import React from 'react';
-import s from './Dialogs.module.scss';
-import DialogsItems from './DialogsItems/DialogsItems';
-import MessagesItems from './MessagesItems/MessagesItems';
-import { render } from '@testing-library/react';
-import AddNewMessage from './AddNewMessage/AddNewMessage';
+import React from 'react'
+import s from './Dialogs.module.scss'
+import DialogsItems from './DialogsItems/DialogsItems'
+import MessagesItems from './MessagesItems/MessagesItems'
+import { render } from '@testing-library/react'
+import AddNewMessage from './AddNewMessage/AddNewMessage'
+import { DialogMessagesType, DialogType } from '../../../../types/types'
+import { SetCurrentTextOfMessageActionType } from '../../../../redux/dialogs-reducer'
 
-class Dialogs extends React.Component {
-  render() {
+// type PropsType = {
+//     dialogs: DialogType[]
+//     dialogsMessages: DialogMessagesType[]
+//     isAuth: boolean
+//     photos: string
+//     dialogId: number
+
+//     addNewMessage: (newMessageText: string, dialogId: number) => void
+//     resetNewMessageField: () => (dispatch: any) => void
+//     setCurrentTextOfMessage: (
+//         currentTextOfMessage: string,
+//         dialogId: number
+//     ) => SetCurrentTextOfMessageActionType
+// }
+
+const Dialogs = (props: any) => {
     return (
-      <section className={s.dialogs}>
+        <section className={s.dialogs}>
+            <p className={s.dialogsTitle}>Повідомлення</p>
 
-        <p className={s.dialogsTitle}>Повідомлення</p>
+            <div className={s.dialogsContent}>
+                <div className={s.dialogsColumn}>
+                    <div className={s.dialog}>
+                        <DialogsItems {...props} />
+                    </div>
+                </div>
 
-        <div className={s.dialogsContent}>
-          <div className={s.dialogsColumn}>
-            <div className={s.dialog}>
-              <DialogsItems {...this.props} />
+                <div className={s.messagesColumn}>
+                    <div className={s.messagesItems}>
+                        <MessagesItems
+                            {...props}
+                            dialogId={props.dialogId}
+                        />
+                    </div>
+
+                    <AddNewMessage
+                        addNewMessage={props.addNewMessage}
+                        dialogId={props.dialogId}
+                        resetNewMessageField={props.resetNewMessageField}
+                        setCurrentTextOfMessage={
+                            props.setCurrentTextOfMessage
+                        }
+                        {...props}
+                    />
+                </div>
             </div>
-          </div>
-
-          <div className={s.messagesColumn}>
-            <div className={s.messagesItems}>
-              <MessagesItems {...this.props} dialogId={this.props.dialogId} />
-            </div>
-
-            <AddNewMessage
-              addNewMessage={this.props.addNewMessage}
-              dialogId={this.props.dialogId}
-              resetNewMessageField={this.props.resetNewMessageField}
-              setCurrentTextOfMessage={this.props.setCurrentTextOfMessage}
-              {...this.props}
-            />
-          </div>
-        </div>
-
-      </section>
+        </section>
     )
-  }
 }
 
-export default Dialogs;
+export default Dialogs

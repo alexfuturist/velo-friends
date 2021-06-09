@@ -7,7 +7,7 @@ import s from './NewPost.module.scss';
 const maxLength600 = maxLengthCreator(600);
 const minLength1 = minLengthCreator(1);
 
-const AddNewPostForm = (props) => {
+const AddNewPostForm: React.FC = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -26,9 +26,9 @@ const AddNewPostFormRedux = reduxForm({
     form: 'ProfileAddNewPost'
 })(AddNewPostForm);
 
-const AddNewPost = (props) => {
+const AddNewPost = (props: any) => {
     //колбэк функция 
-    const onSubmit = (formData) => {
+    const onSubmit = (formData: any) => {
         !props.isUpdatePostMode &&
             props.addNewPost(formData.newPost); //вызываем функцию добавления нового поста
     };

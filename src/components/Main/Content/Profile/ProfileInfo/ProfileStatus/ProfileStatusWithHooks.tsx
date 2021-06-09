@@ -1,7 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import s from './ProfileStatus.module.scss';
 
-const ProfileStatusWithHooks = React.memo((props) => {
+type PropsType = {
+    status: string | null
+    isOwner: boolean
+
+    getUserStatus: (userId: number) => void
+    updateUserStatus: (status: string) => void
+}
+
+const ProfileStatusWithHooks: React.FC<PropsType> = React.memo((props) => {
 
     let [editMode, setEditMode] = useState(false);
     let [status, setStatus] = useState(props.status);
@@ -20,10 +28,11 @@ const ProfileStatusWithHooks = React.memo((props) => {
 
     const deactivateEditMode = () => {
         setEditMode(false);
+        //@ts-ignore
         props.updateUserStatus(status)
     }
 
-    const onStatusChange = (e) => {
+    const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value);
     }
     
@@ -33,7 +42,8 @@ const ProfileStatusWithHooks = React.memo((props) => {
                 <p className={s.profileStatus__Description} onClick={activateEditMode}>{props.status}</p>
             }
             { editMode &&
-                <input onChange={onStatusChange} maxLength="25" autoFocus={true} onBlur={deactivateEditMode}
+                <input onChange={onStatusChange} maxLength={25} autoFocus={true} onBlur={deactivateEditMode}
+                //@ts-ignore
                     className={s.profileStatus__input} value={status} />
             }
         </div>

@@ -1,5 +1,7 @@
 import { DialogType, DialogMessagesType } from './../types/types'
 import { reset } from 'redux-form'
+import { ThunkAction } from 'redux-thunk'
+import { AppStateType } from './redux-store'
 
 const ADD_MESSAGE = 'ADD-MESSAGE'
 const REFRESH_CURRENT_TEXT_OF_MESSAGE = 'REFRESH_CURRENT_TEXT_OF_MESSAGE'
@@ -196,7 +198,7 @@ type InitialStateType = typeof initialState
 
 const dialogsReducer = (
     state = initialState,
-    action: any
+    action: ActionsTypes
 ): InitialStateType => {
     switch (action.type) {
         case ADD_MESSAGE: {
@@ -305,6 +307,12 @@ const dialogsReducer = (
     }
 }
 
+//AC Types
+type ActionsTypes =
+    | AddMessageActionType
+    | RefreshCurrentTextOfMessageActionType
+    | SetCurrentTextOfMessageActionType
+
 //AC
 type AddMessageActionType = {
     type: typeof ADD_MESSAGE
@@ -335,7 +343,7 @@ export const refreshCurrentTextOfMessage = (
 })
 
 //AC
-type SetCurrentTextOfMessageActionType = {
+export type SetCurrentTextOfMessageActionType = {
     type: typeof SET_CURRENT_TEXT_OF_MESSAGE
     currentTextOfMessage: string
     dialogId: number
@@ -350,17 +358,23 @@ export const setCurrentTextOfMessage = (
     dialogId: dialogId,
 })
 
+//TC Type
+type ThunkType = ThunkAction<void, AppStateType, unknown, ActionsTypes>
+
 //TC
 export const addNewMessage =
-    (newMessageText: string, dialogId: number) => (dispatch: any) => {
+    (newMessageText: string, dialogId: number): ThunkType =>
+    (dispatch) => {
         if (newMessageText.length > 0) {
             dispatch(addMessage(newMessageText, dialogId))
             dispatch(refreshCurrentTextOfMessage(dialogId))
+            //@ts-ignore
             dispatch(reset('DialogsAddNewMessage'))
         }
     }
 
-export const resetNewMessageField = () => (dispatch: any) => {
+export const resetNewMessageField = (): ThunkType => (dispatch) => {
+    //@ts-ignore
     dispatch(reset('DialogsAddNewMessage'))
 }
 

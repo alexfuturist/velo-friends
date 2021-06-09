@@ -1,7 +1,10 @@
-import { ProfileInfoType, PostType, PhotosType } from './../types/types';
+import { ResultCodes } from './../api/api';
+import { ProfileInfoType, PostType, PhotosType } from './../types/types'
 import { reset, stopSubmit } from 'redux-form'
 import { profileAPI } from '../api/api'
 import userPhotoDefault from '../assets/images/user_default.png'
+import { ThunkAction } from 'redux-thunk'
+import { AppStateType } from './redux-store'
 
 const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
@@ -66,7 +69,7 @@ type InitialStateType = typeof initialState
 
 const profileReducer = (
     state = initialState,
-    action: any
+    action: ActionTypes
 ): InitialStateType => {
     switch (action.type) {
         case ADD_POST: {
@@ -149,6 +152,16 @@ const profileReducer = (
             return state
     }
 }
+
+//AC Types
+type ActionTypes =
+    | AddPostActionType
+    | SetUserProfileActionType
+    | SetUserStatusActionType
+    | UpdatePhotoSuccessActionType
+    | DeletePostSuccessActionType
+    | UpdatePostSuccessActionType
+    | UpdatePostModeActionType
 
 //AC
 type AddPostActionType = {
@@ -252,73 +265,81 @@ export const updatePostMode = (flag: boolean): UpdatePostModeActionType => {
     }
 }
 
+//TC Type
+type ThunkType = ThunkAction<void, AppStateType, unknown, ActionTypes>
+
 //TC
-export const addNewPost = (newPostText: string) => (dispatch: any) => {
+export const addNewPost = (newPostText: string): ThunkType => (dispatch) => {
     dispatch(addPost(newPostText))
+    //@ts-ignore
     dispatch(reset('ProfileAddNewPost'))
 }
 
-export const getUserProfile = (userId: number) => async (dispatch: any) => {
-    const response = await profileAPI.getProfile(userId)
+export const getUserProfile = (userId: number): ThunkType => async (dispatch) => {
+    const response = await profileAPI.getUserProfile(userId)
 
-    dispatch(setUserProfile(response.data))
+    dispatch(setUserProfile(response))
 }
 
-export const getUserStatus = (userId: number) => async (dispatch: any) => {
-    // debugger
+export const getUserStatus = (userId: number): ThunkType => async (dispatch) => {
     const response = await profileAPI.getStatus(userId)
 
-    dispatch(setUserStatus(response.data))
+    dispatch(setUserStatus(response))
 }
 
-export const updateUserStatus = (status: string) => async (dispatch: any) => {
+export const updateUserStatus = (status: string): ThunkType => async (dispatch) => {
     const response = await profileAPI.updateStatus(status)
 
-    if (response.data.resultCode === 0) {
+    if (response.resultCode === ResultCodes.Success) {
         dispatch(setUserStatus(status))
     }
 }
 
-export const updatePhoto = (file: any) => async (dispatch: any) => {
+export const updatePhoto = (file: any): ThunkType => async (dispatch) => {
     const response = await profileAPI.updatePhoto(file)
 
-    if (response.data.resultCode === 0) {
-        dispatch(updatePhotoSuccess(response.data.data.photos))
+    if (response.resultCode === ResultCodes.Success) {
+        console.log(response)
+        dispatch(updatePhotoSuccess(response.data.photos))
     }
 }
 
-export const saveProfile = (profile: ProfileInfoType) => async (dispatch: any, getState: any) => {
-    const response = await profileAPI.saveProfile(profile)
-    const userId = getState().auth.userId
-    // console.log(response);
-    // console.log(response.data.messages[0]);
-
-    if (response.data.resultCode === 0) {
-        dispatch(getUserProfile(userId))
-    } else {
-        dispatch(
-            stopSubmit('edit-profile', {
-                _error: response.data.messages[0],
-            })
-        )
-        return Promise.reject(response.data.messages[0])
+export const saveProfile =
+    (profile: ProfileInfoType): ThunkType => async (dispatch, getState) => {
+        const response = await profileAPI.saveProfile(profile)
+        const userId = getState().auth.userId
+    
+        if (response.resultCode === ResultCodes.Success) {
+            //@ts-ignore
+            dispatch(getUserProfile(userId))
+        } else {
+            dispatch(
+                //@ts-ignore
+                stopSubmit('edit-profile', {
+                    _error: response.messages[0],
+                })
+            )
+            return Promise.reject(response.messages[0])
+        }
     }
-}
 
-export const deletePost = (id: number) => (dispatch: any, getState: any) => {
+export const deletePost = (id: number): ThunkType => (dispatch, getState) => {
     const posts = getState().profilePage.posts
-    let postIndex = posts.findIndex((element) => element.id === id)
+    let postIndex = posts.findIndex((element: PostType) => element.id === id)
 
     dispatch(deletePostSuccess(postIndex))
     dispatch(updatePostMode(false))
     // console.log(posts);
 }
 
-export const updatePost = (id: number, message: string) => (dispatch: any, getState: any) => {
-    const posts = getState().profilePage.posts
-    let postIndex = posts.findIndex((element) => element.id === id)
+export const updatePost =
+    (id: number, message: string): ThunkType => (dispatch, getState) => {
+        const posts = getState().profilePage.posts
+        let postIndex = posts.findIndex(
+            (element: PostType) => element.id === id
+        )
 
-    dispatch(updatePostSuccess(postIndex, message))
-}
+        dispatch(updatePostSuccess(postIndex, message))
+    }
 
 export default profileReducer

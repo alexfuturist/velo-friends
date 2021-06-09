@@ -1,85 +1,126 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import ProfileStatusWithHooks from '../ProfileStatus/ProfileStatusWithHooks';
-import s from './ProfileDataForm.module.scss';
+import React from 'react'
+import { Field, reduxForm } from 'redux-form'
+import { ProfileInfoType } from '../../../../../../types/types'
+import ProfileStatusWithHooks from '../ProfileStatus/ProfileStatusWithHooks'
+import s from './ProfileDataForm.module.scss'
 
+type PropsType = {
+    profileInfo: ProfileInfoType
+    status: string | null
+    isOwner: boolean
+    error: boolean
 
-const ProfileDataForm = ({ handleSubmit, profileInfo, status, error, isOwner, getUserStatus, updateUserStatus }) => {
-   
+    handleSubmit: () => void
+    getUserStatus: (userId: number) => void
+    updateUserStatus: (status: string) => void
+}
+
+const ProfileDataForm: React.FC<PropsType> = ({
+    handleSubmit,
+    profileInfo,
+    status,
+    error,
+    isOwner,
+    getUserStatus,
+    updateUserStatus,
+}) => {
     return (
         <form className={s.profileInfo__Form} onSubmit={handleSubmit}>
             <div className={s.profileInfo__FormLeft}>
                 <div>
-                    <Field className={s.profileInfo__Name} name="fullName" placeholder="Моє ім'я" component="input" />
+                    <Field
+                        className={s.profileInfo__Name}
+                        name="fullName"
+                        placeholder="Моє ім'я"
+                        component="input"
+                    />
                 </div>
 
-                <ProfileStatusWithHooks className={s.profileInfo__Parametr} status={status}
-                    getUserStatus={getUserStatus} updateUserStatus={updateUserStatus} isOwner={isOwner} />
+                <div className={s.profileInfo__Parametr}>
+                    <ProfileStatusWithHooks
+                        status={status}
+                        getUserStatus={getUserStatus}
+                        updateUserStatus={updateUserStatus}
+                        isOwner={isOwner}
+                    />
+                </div>
 
                 <div className={s.profileInfo__Checkbox}>
                     <span className={s.bold}>Шукаю роботу:&#160;</span>
-                    <Field className={s.profileInfo__CheckboxInput}
-                        name="lookingForAJob" component="input" type="checkbox" id="lookingForAJob" />
-                    <label className={s.profileInfo__CheckboxLabel} htmlFor="lookingForAJob"></label>
+                    <Field
+                        className={s.profileInfo__CheckboxInput}
+                        name="lookingForAJob"
+                        component="input"
+                        type="checkbox"
+                        id="lookingForAJob"
+                    />
+                    <label
+                        className={s.profileInfo__CheckboxLabel}
+                        htmlFor="lookingForAJob"
+                    ></label>
                 </div>
 
                 <div className={s.profileInfo__Parametr}>
                     <div className={s.bold}>Мої навички:</div>
-                    <Field className={s.profileInfo__ParametrInput}
-                        name="lookingForAJobDescription" component="input" />
+                    <Field
+                        className={s.profileInfo__ParametrInput}
+                        name="lookingForAJobDescription"
+                        component="input"
+                    />
                 </div>
 
                 <div className={s.profileInfo__Parametr}>
                     <div className={s.bold}>Про мене:</div>
-                    <Field className={s.profileInfo__ParametrInput}
-                        name="aboutMe" component="input" />
+                    <Field
+                        className={s.profileInfo__ParametrInput}
+                        name="aboutMe"
+                        component="input"
+                    />
                 </div>
 
                 <div>
-                    <button type="submit" className={`${s.profileInfo__button} ${s.profileInfo__buttonSave}`}>
+                    <button
+                        type="submit"
+                        className={`${s.profileInfo__button} ${s.profileInfo__buttonSave}`}
+                    >
                         Зберегти зміни
                     </button>
                 </div>
 
                 <div>
-                    {error &&
-                        <div className={s.formCommonError}>{error}</div>}
+                    {error && <div className={s.formCommonError}>{error}</div>}
                 </div>
-
             </div>
 
             <div className={s.profileInfo__FormContacts}>
                 <div className={s.profileInfo__ContactsTitle}>Контакти:</div>
-                {Object.keys(profileInfo.contacts)
-                    .map(key => {
-                        return (
-                            <div className={s.profileInfo__Contact}>
-                                <span className={s.profileInfo__ContactTitle}>{key}:&#160;</span>
-                                <Field className={s.profileInfo__ContactValue} name={`contacts.` + key}
-                                    placeholder={key} component="input" key={key} />
-                            </div>
-                        )
-                    })
-                }
+                {Object.keys(profileInfo.contacts).map((key) => {
+                    return (
+                        <div className={s.profileInfo__Contact}>
+                            <span className={s.profileInfo__ContactTitle}>
+                                {key}:&#160;
+                            </span>
+                            <Field
+                                className={s.profileInfo__ContactValue}
+                                name={`contacts.` + key}
+                                placeholder={key}
+                                component="input"
+                                key={key}
+                            />
+                        </div>
+                    )
+                })}
             </div>
         </form>
-    );
+    )
 }
 
-const ProfileDataFormRedux = reduxForm({ form: `edit-profile` })(ProfileDataForm);
+const ProfileDataFormRedux = reduxForm({ form: `edit-profile` })(
+    //@ts-ignore
+    ProfileDataForm
+)
 
-
-export default ProfileDataFormRedux;
-
-
-
-
-
-
-
-
-
-
+export default ProfileDataFormRedux
 
 // const ProfileInfo = (props) => {
 

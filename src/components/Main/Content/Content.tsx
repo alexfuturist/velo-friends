@@ -13,19 +13,19 @@ import s from './Content.module.css'
 import Friends from './Friends/Friends'
 import Music from './Music/Music'
 import Photos from './Photos/Photos'
-import { ProfileContainer } from './Profile'
+import ProfileContainer from './Profile/ProfileContainer'
 import Routes from './Routes/Routes'
 import Settings from './Settings/Settings'
 import StarUsersContainer from './StarUsers/StarUsersContainer'
 
-import DialogsContainer from './Dialogs/DialogsContainer'
-import UsersContainer from './Users/UsersContainer'
-import Login from '../../Login/Login'
-// const DialogsContainer = React.lazy(() => import('./Dialogs/DialogsContainer'));
-// const UsersContainer = React.lazy(() => import('./Users/UsersContainer'));
-// const Login = React.lazy(() => import('../../Login/Login'));
+// import DialogsContainer from './Dialogs/DialogsContainer'
+// import UsersContainer from './Users/UsersContainer'
+// import Login from '../../Login/Login'
+const DialogsContainer = React.lazy(() => import('./Dialogs/DialogsContainer'));
+const UsersContainer = React.lazy(() => import('./Users/UsersContainer'));
+const Login = React.lazy(() => import('../../Login/Login'));
 
-const Content = (props: any) => {
+const Content = () => {
     return (
         <div className={s.content}>
             <Suspense fallback={<div>Завантаження...</div>}>

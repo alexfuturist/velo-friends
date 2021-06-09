@@ -13,8 +13,19 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom'
 import { Preloader } from './components/Common/Preloader'
+import { AppStateType } from './redux/redux-store'
 
-class App extends Component<{ initialized: boolean; initializeApp: any }> {
+type MapStatePropsType = {
+    initialized: boolean
+}
+
+type MapDispatchPropsType = {
+    initializeApp: () => void
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType
+
+class App extends Component<PropsType> {
     componentDidMount() {
         this.props.initializeApp()
     }
@@ -33,11 +44,18 @@ class App extends Component<{ initialized: boolean; initializeApp: any }> {
     }
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     initialized: state.app.initialized,
 })
 
+// <MapStatePropsType, MapDispatchPropsType, undefined, AppStateType>
+
 export default compose(
     withRouter,
-    connect(mapStateToProps, { initializeApp })
-)(App)
+    connect(
+        mapStateToProps,
+        {
+            initializeApp,
+        }
+    )
+)(App) as React.ComponentType

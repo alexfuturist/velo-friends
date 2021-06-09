@@ -1,44 +1,50 @@
-import React from 'react';
-import MessagesItem from './MessagesItem/MessagesItem';
+import React from 'react'
+import { DialogMessagesType } from '../../../../../types/types'
+import MessagesItem from './MessagesItem/MessagesItem'
 
+type PropsType = {
+    dialogsMessages: DialogMessagesType[]
+    photos: string
+    dialogId: number
+    messagesEnd: HTMLDivElement
+}
 
-class MessagesItems extends React.Component {
-
+class MessagesItems extends React.Component<PropsType> {
     scrollToBottom = () => {
-        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+        //@ts-ignore
+        this.messagesEnd.scrollIntoView({ behavior: 'smooth' })
     }
 
-    // componentDidMount() {
-    //     this.scrollToBottom();
-    // }
-
     componentDidUpdate() {
-        this.scrollToBottom();
+        this.scrollToBottom()
     }
 
     getDialogId() {
         if (this.props.dialogId) {
-            return this.props.dialogId;
+            return this.props.dialogId
         } else {
-            return 0;
+            return 0
         }
     }
 
     getMessagesItems() {
-        // debugger
-
-        let messagesArray = [...this.props.dialogsMessages.filter(item => item.id == (+this.getDialogId()))];
+        let messagesArray = [
+            ...this.props.dialogsMessages.filter(
+                (item) => item.id == +this.getDialogId()
+            ),
+        ]
 
         if (messagesArray.length > 0) {
-            let messagesItems = messagesArray[0].messages
-                .map(m =>
-                    <MessagesItem
-                        name={m.name}
-                        messageText={m.messagesText}
-                        key={m.id} id={m.id}
-                        photos={this.props.photos}
-                    />);
-            return messagesItems;
+            let messagesItems = messagesArray[0].messages.map((m) => (
+                <MessagesItem
+                    name={m.name}
+                    messageText={m.messagesText}
+                    key={m.id}
+                    id={m.id}
+                    photos={this.props.photos}
+                />
+            ))
+            return messagesItems
         }
     }
 
@@ -46,12 +52,16 @@ class MessagesItems extends React.Component {
         return (
             <div id="toBottom">
                 {this.getMessagesItems()}
-                <div style={{ float: "left", clear: "both" }}
-                    ref={(el) => { this.messagesEnd = el; }}>
-                </div>
+                <div
+                    style={{ float: 'left', clear: 'both' }}
+                    ref={(el) => {
+                        //@ts-ignore
+                        this.messagesEnd = el
+                    }}
+                ></div>
             </div>
         )
     }
 }
 
-export default MessagesItems;
+export default MessagesItems

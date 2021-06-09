@@ -3,7 +3,7 @@ import s from './AddNewMessage.module.scss';
 import { Field, reduxForm } from 'redux-form';
 import { required } from '../../../../../utils/validators/validators';
 
-const AddNewMessageForm = (props) => {
+const AddNewMessageForm = (props: any) => {
   return (
     <form className={s.newPosts} onSubmit={props.handleSubmit}>
       <label htmlFor="newMessage"></label>
@@ -19,24 +19,24 @@ const AddNewMessageFormRedux = reduxForm({
   destroyOnUnmount: false
 })(AddNewMessageForm);
 
-const AddNewMessage = (props) => {
+const AddNewMessage = (props: any) => {
 
   useEffect(() => { props.resetNewMessageField() }, [props.dialogId]);
 
   let newMessageText = () => {
-    if (props.dialogsMessages.filter(item => item.id == (+props.dialogId))[0] != undefined) {
-      return props.dialogsMessages.filter(item => item.id == (+props.dialogId))[0].newMessageText;
+    if (props.dialogsMessages.filter((item: any) => item.id == (+props.dialogId))[0] != undefined) {
+      return props.dialogsMessages.filter((item: any) => item.id == (+props.dialogId))[0].newMessageText;
     } else {
       return ""
     }
   };
 
-  let setCurrentTextOfMessage = (formData) => {
+  let setCurrentTextOfMessage = (formData: any) => {
     props.setCurrentTextOfMessage(formData.newMessage, props.dialogId);
   };
 
   //колбэк функция 
-  let addMessage = (formData) => {
+  let addMessage = (formData: any) => {
     props.addNewMessage(formData.newMessage, props.dialogId);
     console.log(formData.newMessage);
   };

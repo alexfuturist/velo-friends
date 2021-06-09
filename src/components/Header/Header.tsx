@@ -2,20 +2,26 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import s from './Header.module.scss';
 
-const Header = (props: any) => {
+type PropsType = {
+    isAuth: boolean
+    login: string | null
+    logout: () => void
+}
+
+const Header: React.FC <PropsType> = ({isAuth, login, logout}) => {
     return (
         <header className={s.header}>
             <div className={`wrapper ${s.wrapper}`}>
                 <img className={s.header__img} src="https://i.pinimg.com/originals/b5/d2/f4/b5d2f4b06c0390c4dadb66da03ade490.png" />
 
                 <div className={s.login}>
-                    {props.isAuth
+                    {isAuth
                         ?
                         <div>
                             <p className={s.loginName}>
-                                {props.login}
+                                {login}
                             </p>
-                            <button className={s.logoutButton} onClick={props.logout}>
+                            <button className={s.logoutButton} onClick={logout}>
                                 Вийти
                             </button>
                         </div>
