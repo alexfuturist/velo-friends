@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import { UserType } from '../../../../types/types'
 import Paginator from '../../../Common/Paginator/Paginator'
 import User from './User/User'
@@ -10,17 +9,8 @@ type PropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
-    // isFetching: boolean
     followingInProgress: number[]
 
-    followSucces: (userId: number) => void
-    unfollowSucces: (userId: number) => void
-    // toggleFollowingInProgress: (
-    //     followingInProgress: number[],
-    //     userId: number
-    // ) => void
-    // // requestUsers: (currentPage: number, pageSize: number) => void
-    // updateUsers: (pageNumber: number, pageSize: number) => void
     unfollow: (userId: number) => void
     follow: (userId: number) => void
     onPageChanged: (pageNumber: number) => void
@@ -34,7 +24,6 @@ const Users: React.FC<PropsType> = ({
     users,
     ...props
 }) => {
-    // debugger
     return (
         <section className={s.users}>
             <Paginator

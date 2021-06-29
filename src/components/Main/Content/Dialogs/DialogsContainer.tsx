@@ -6,8 +6,7 @@ import { withAuthRedirect } from '../../../../hoc/AuthRedirect'
 import {
     addNewMessage,
     resetNewMessageField,
-    setCurrentTextOfMessage,
-    SetCurrentTextOfMessageActionType,
+    actions,
 } from '../../../../redux/dialogs-reducer'
 import Dialogs from './Dialogs'
 import { getUserProfile } from '../../../../redux/profile-reducer'
@@ -21,6 +20,12 @@ type MapStatePropsType = {
     authorizedUserId: number | null
     photos: string
     match?: any
+}
+
+export type SetCurrentTextOfMessageActionType = {
+    type: string
+    currentTextOfMessage: string
+    dialogId: number
 }
 
 type MapDispatchPropsType = {
@@ -60,15 +65,12 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 }
 
 export default compose(
-    connect(
-        mapStateToProps,
-        {
-            addNewMessage,
-            getUserProfile,
-            resetNewMessageField,
-            setCurrentTextOfMessage,
-        }
-    ),
+    connect(mapStateToProps, {
+        addNewMessage,
+        getUserProfile,
+        resetNewMessageField,
+        setCurrentTextOfMessage: actions.setCurrentTextOfMessage,
+    }),
     withRouter,
     withAuthRedirect
 )(DialogsContainer) as React.ComponentType

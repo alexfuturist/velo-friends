@@ -1,13 +1,8 @@
-import { ThunkAction } from 'redux-thunk'
-import { usersAPI } from '../api/api'
 import { UserType } from '../types/types'
-import { AppStateType } from './redux-store'
+import { BaseThunkType, InferActionsTypes } from './redux-store'
 
-const FOLLOW = 'FOLLOW'
-const UNFOLLOW = 'UNFOLLOW'
-const SET_USERS_STARS = 'SET_USERS_STARS'
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
-const TOGGLE_FOLLOWING_IN_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
+//State
+type InitialStateType = typeof initialState
 
 let initialState = {
     users: [] as UserType[],
@@ -18,14 +13,13 @@ let initialState = {
     followingInProgress: [] as number[],
 }
 
-type InitialStateType = typeof initialState
-
+//Reducer
 const starUsersReducer = (
     state = initialState,
     action: ActionsTypes
 ): InitialStateType => {
     switch (action.type) {
-        case FOLLOW: {
+        case 'VF/STAR-USERS/FOLLOW': {
             //возвращаем объект (новый state)
             return {
                 //cкопировали state
@@ -49,7 +43,7 @@ const starUsersReducer = (
             }
         }
 
-        case UNFOLLOW: {
+        case 'VF/STAR-USERS/UNFOLLOW': {
             return {
                 ...state,
                 users: state.users.map((u) => {
@@ -65,7 +59,7 @@ const starUsersReducer = (
             }
         }
 
-        case SET_USERS_STARS: {
+        case 'VF/STAR-USERS/SET_USERS_STARS': {
             return {
                 ...state,
                 //добавляем новых юзеров из экшена (склеиваем два массива)
@@ -73,14 +67,14 @@ const starUsersReducer = (
             }
         }
 
-        case TOGGLE_IS_FETCHING: {
+        case 'VF/STAR-USERS/TOGGLE_IS_FETCHING': {
             return {
                 ...state,
                 isFetching: action.isFetching,
             }
         }
 
-        case TOGGLE_FOLLOWING_IN_PROGRESS: {
+        case 'VF/STAR-USERS/TOGGLE_FOLLOWING_IN_PROGRESS': {
             return {
                 ...state,
                 followingInProgress: action.followingInProgress
@@ -97,104 +91,63 @@ const starUsersReducer = (
 }
 
 //AC Types
-type ActionsTypes =
-    | FollowSuccesActionType
-    | UnfollowSuccesActionType
-    | SetUsersStarsActionType
-    | ToggleIsFetchingActionType
-    | ToggleFollowingInProgressActionType
+type ActionsTypes = InferActionsTypes<typeof actions>
 
-//AC
-type FollowSuccesActionType = {
-    type: typeof FOLLOW
-    userId: number
+export const actions = {
+    followSucces: (userId: number) =>
+        ({
+            type: 'VF/STAR-USERS/FOLLOW',
+            userId,
+        } as const),
+    unfollowSucces: (userId: number) =>
+        ({
+            type: 'VF/STAR-USERS/UNFOLLOW',
+            userId,
+        } as const),
+    setUsersStars: (users: Array<UserType>) =>
+        ({
+            type: 'VF/STAR-USERS/SET_USERS_STARS',
+            users,
+        } as const),
+    toggleIsFetching: (isFetching: boolean) =>
+        ({
+            type: 'VF/STAR-USERS/TOGGLE_IS_FETCHING',
+            isFetching,
+        } as const),
+    toggleFollowingInProgress: (followingInProgress: boolean, userId: number) =>
+        ({
+            type: 'VF/STAR-USERS/TOGGLE_FOLLOWING_IN_PROGRESS',
+            followingInProgress,
+            userId,
+        } as const),
 }
-
-export const followSucces = (userId: number): FollowSuccesActionType => ({
-    type: FOLLOW,
-    userId,
-})
-
-//AC
-type UnfollowSuccesActionType = {
-    type: typeof UNFOLLOW
-    userId: number
-}
-
-export const unfollowSucces = (userId: number): UnfollowSuccesActionType => ({
-    type: UNFOLLOW,
-    userId,
-})
-
-//AC
-type SetUsersStarsActionType = {
-    type: typeof SET_USERS_STARS
-    users: Array<UserType>
-}
-
-export const setUsersStars = (
-    users: Array<UserType>
-): SetUsersStarsActionType => ({
-    type: SET_USERS_STARS,
-    users,
-})
-
-//AC
-type ToggleIsFetchingActionType = {
-    type: typeof TOGGLE_IS_FETCHING
-    isFetching: boolean
-}
-
-export const toggleIsFetching = (
-    isFetching: boolean
-): ToggleIsFetchingActionType => ({
-    type: TOGGLE_IS_FETCHING,
-    isFetching,
-})
-
-//AC
-type ToggleFollowingInProgressActionType = {
-    type: typeof TOGGLE_FOLLOWING_IN_PROGRESS
-    followingInProgress: boolean
-    userId: number
-}
-
-export const toggleFollowingInProgress = (
-    followingInProgress: boolean,
-    userId: number
-): ToggleFollowingInProgressActionType => ({
-    type: TOGGLE_FOLLOWING_IN_PROGRESS,
-    followingInProgress,
-    userId,
-})
 
 //TC type
-type ThunkType = ThunkAction<void, AppStateType, unknown, ActionsTypes>
+type ThunkType = BaseThunkType<ActionsTypes>
 
-//TC
 export const unfollow =
     (userId: number): ThunkType =>
     async (dispatch) => {
-        dispatch(toggleFollowingInProgress(true, userId))
+        dispatch(actions.toggleFollowingInProgress(true, userId))
         //side-effect
         let response = true
 
-        dispatch(toggleFollowingInProgress(false, userId))
+        dispatch(actions.toggleFollowingInProgress(false, userId))
         if (response) {
-            dispatch(unfollowSucces(userId))
+            dispatch(actions.unfollowSucces(userId))
         }
     }
 
 export const follow =
     (userId: number): ThunkType =>
     async (dispatch) => {
-        dispatch(toggleFollowingInProgress(true, userId))
+        dispatch(actions.toggleFollowingInProgress(true, userId))
         //side-effect
         let response = true
 
-        dispatch(toggleFollowingInProgress(false, userId))
+        dispatch(actions.toggleFollowingInProgress(false, userId))
         if (response) {
-            dispatch(followSucces(userId))
+            dispatch(actions.followSucces(userId))
         }
     }
 

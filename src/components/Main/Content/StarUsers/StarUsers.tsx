@@ -5,8 +5,6 @@ import s from './StarUsers.module.scss'
 type PropsType = {
     users: any[]
     
-    followSucces: (userId: number) => void
-    unfollowSucces: (userId: number) => void
 	unfollow: (userId: number) => void
     follow: (userId: number) => void
 	setUsersStars: (users: any) => void

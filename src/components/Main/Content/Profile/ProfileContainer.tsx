@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import {
     addNewPost,
-    setUserProfile,
     getUserProfile,
     getUserStatus,
     updateUserStatus,
@@ -10,7 +9,7 @@ import {
     saveProfile,
     deletePost,
     updatePost,
-    updatePostMode,
+    actions
 } from '../../../../redux/profile-reducer'
 import Profile from './Profile'
 
@@ -124,8 +123,9 @@ export default compose(
     connect(
         mapStateToProps,
         {
+            setUserProfile: actions.setUserProfile,
+            updatePostMode: actions.updatePostMode,
             addNewPost,
-            setUserProfile,
             getUserProfile,
             getUserStatus,
             updateUserStatus,
@@ -133,7 +133,6 @@ export default compose(
             saveProfile,
             deletePost,
             updatePost,
-            updatePostMode,
         }
     ),
     withRouter,

@@ -6,14 +6,8 @@ import s from './User.module.scss'
 
 type PropsType = {
     u: UserType
-  
     followingInProgress: number[]
 
-    followSucces: (userId: number) => void
-    unfollowSucces: (userId: number) => void
-    
-    // requestUsers: (currentPage: number, pageSize: number) => void
-    // updateUsers: (pageNumber: number, pageSize: number) => void
     unfollow: (userId: number) => void
     follow: (userId: number) => void
 }

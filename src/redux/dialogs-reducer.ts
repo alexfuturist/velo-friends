@@ -1,11 +1,9 @@
 import { DialogType, DialogMessagesType } from './../types/types'
-import { reset } from 'redux-form'
-import { ThunkAction } from 'redux-thunk'
-import { AppStateType } from './redux-store'
+import { FormAction, reset } from 'redux-form'
+import { BaseLocalThunkType, InferActionsTypes } from './redux-store'
 
-const ADD_MESSAGE = 'ADD-MESSAGE'
-const REFRESH_CURRENT_TEXT_OF_MESSAGE = 'REFRESH_CURRENT_TEXT_OF_MESSAGE'
-const SET_CURRENT_TEXT_OF_MESSAGE = 'SET_CURRENT_TEXT_OF_MESSAGE'
+//State
+type InitialStateType = typeof initialState
 
 let initialState = {
     dialogs: [
@@ -194,14 +192,13 @@ let initialState = {
     ] as Array<DialogMessagesType>,
 }
 
-type InitialStateType = typeof initialState
-
+//Reducer
 const dialogsReducer = (
     state = initialState,
     action: ActionsTypes
 ): InitialStateType => {
     switch (action.type) {
-        case ADD_MESSAGE: {
+        case 'VF/DIALOGS/ADD_MESSAGE': {
             let dialogsMessagesItemAvaileble = [
                 ...state.dialogsMessages.filter(
                     (dm) => dm.id == action.dialogId
@@ -247,7 +244,7 @@ const dialogsReducer = (
             }
         }
 
-        case REFRESH_CURRENT_TEXT_OF_MESSAGE: {
+        case 'VF/DIALOGS/REFRESH_CURRENT_TEXT_OF_MESSAGE': {
             return {
                 ...state,
                 dialogsMessages: [
@@ -263,7 +260,7 @@ const dialogsReducer = (
             }
         }
 
-        case SET_CURRENT_TEXT_OF_MESSAGE: {
+        case 'VF/DIALOGS/SET_CURRENT_TEXT_OF_MESSAGE': {
             let dialogsMessagesItemAvaileble = [
                 ...state.dialogsMessages.filter(
                     (dm) => dm.id == action.dialogId
@@ -308,105 +305,43 @@ const dialogsReducer = (
 }
 
 //AC Types
-type ActionsTypes =
-    | AddMessageActionType
-    | RefreshCurrentTextOfMessageActionType
-    | SetCurrentTextOfMessageActionType
+type ActionsTypes = InferActionsTypes<typeof actions>
 
-//AC
-type AddMessageActionType = {
-    type: typeof ADD_MESSAGE
-    newMessageText: string
-    dialogId: number
+export const actions = {
+    addMessage: (newMessageText: string, dialogId: number) =>
+        ({
+            type: 'VF/DIALOGS/ADD_MESSAGE',
+            newMessageText: newMessageText,
+            dialogId: dialogId,
+        } as const),
+    refreshCurrentTextOfMessage: (dialogId: number) =>
+        ({
+            type: 'VF/DIALOGS/REFRESH_CURRENT_TEXT_OF_MESSAGE',
+            dialogId: dialogId,
+        } as const),
+    setCurrentTextOfMessage: (currentTextOfMessage: string, dialogId: number) =>
+        ({
+            type: 'VF/DIALOGS/SET_CURRENT_TEXT_OF_MESSAGE',
+            currentTextOfMessage: currentTextOfMessage,
+            dialogId: dialogId,
+        } as const),
 }
-
-export const addMessage = (
-    newMessageText: string,
-    dialogId: number
-): AddMessageActionType => ({
-    type: ADD_MESSAGE,
-    newMessageText: newMessageText,
-    dialogId: dialogId,
-})
-
-//AC
-type RefreshCurrentTextOfMessageActionType = {
-    type: typeof REFRESH_CURRENT_TEXT_OF_MESSAGE
-    dialogId: number
-}
-
-export const refreshCurrentTextOfMessage = (
-    dialogId: number
-): RefreshCurrentTextOfMessageActionType => ({
-    type: REFRESH_CURRENT_TEXT_OF_MESSAGE,
-    dialogId: dialogId,
-})
-
-//AC
-export type SetCurrentTextOfMessageActionType = {
-    type: typeof SET_CURRENT_TEXT_OF_MESSAGE
-    currentTextOfMessage: string
-    dialogId: number
-}
-
-export const setCurrentTextOfMessage = (
-    currentTextOfMessage: string,
-    dialogId: number
-): SetCurrentTextOfMessageActionType => ({
-    type: SET_CURRENT_TEXT_OF_MESSAGE,
-    currentTextOfMessage: currentTextOfMessage,
-    dialogId: dialogId,
-})
 
 //TC Type
-type ThunkType = ThunkAction<void, AppStateType, unknown, ActionsTypes>
+type LocalThunkType = BaseLocalThunkType<ActionsTypes | FormAction>
 
-//TC
 export const addNewMessage =
-    (newMessageText: string, dialogId: number): ThunkType =>
+    (newMessageText: string, dialogId: number): LocalThunkType =>
     (dispatch) => {
         if (newMessageText.length > 0) {
-            dispatch(addMessage(newMessageText, dialogId))
-            dispatch(refreshCurrentTextOfMessage(dialogId))
-            //@ts-ignore
+            dispatch(actions.addMessage(newMessageText, dialogId))
+            dispatch(actions.refreshCurrentTextOfMessage(dialogId))
             dispatch(reset('DialogsAddNewMessage'))
         }
     }
 
-export const resetNewMessageField = (): ThunkType => (dispatch) => {
-    //@ts-ignore
+export const resetNewMessageField = (): LocalThunkType => (dispatch) => {
     dispatch(reset('DialogsAddNewMessage'))
 }
 
 export default dialogsReducer
-
-// //найти объект переписки из массива переписок
-// let dialogMessages = {
-//     ...state.dialogsMessages.filter(dm => dm.id === action.dialogId)
-// };
-
-// let id = +`${Math.max(...state.dialogsMessages
-//         .filter( messagesItems => messagesItems.id === action.dialogId)
-//         .map( (p)=> p.id ))+1}`;
-
-// const newProjects = projects.map(p =>
-//     p.value === 'jquery-ui' ?
-//     {
-//         ...p,
-//         desc: 'new description'
-//     } :
-//     p
-// );
-
-// return {
-//     ...state,
-//     dialogsMessages: [...state.dialogsMessages.map((dm) => {
-//         return (
-//             dm.id == action.dialogId ? {
-//                 ...dm,
-//                 messages: [...dm.messages, newMessage],
-//             } :
-//             dm
-//         )
-//     })]
-// };

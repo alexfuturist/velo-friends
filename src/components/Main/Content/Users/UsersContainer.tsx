@@ -4,9 +4,6 @@ import { compose } from 'redux'
 import { withAuthRedirect } from '../../../../hoc/AuthRedirect'
 import { AppStateType } from '../../../../redux/redux-store'
 import {
-    followSucces,
-    unfollowSucces,
-    toggleFollowingInProgress,
     requestUsers,
     updateUsers,
     unfollow,
@@ -32,9 +29,6 @@ type PropsType = {
     isFetching: boolean
     followingInProgress: number[]
 
-    followSucces: (userId: number) => void
-    unfollowSucces: (userId: number) => void
-    // toggleFollowingInProgress: (followingInProgress: number[], userId: number) => void
     requestUsers: (currentPage: number, pageSize: number) => void
     updateUsers: (pageNumber: number, pageSize: number) => void
     unfollow: (userId: number) => void
@@ -59,11 +53,9 @@ class UsersContainer extends React.Component<PropsType> {
                     totalUsersCount={this.props.totalUsersCount}
                     pageSize={this.props.pageSize}
                     currentPage={this.props.currentPage}
-                    onPageChanged={this.onPageChanged}
                     users={this.props.users}
-                    unfollowSucces={this.props.unfollowSucces}
-                    followSucces={this.props.followSucces}
                     followingInProgress={this.props.followingInProgress}
+                    onPageChanged={this.onPageChanged}
                     unfollow={this.props.unfollow}
                     follow={this.props.follow}
                 />
@@ -86,9 +78,6 @@ let mapStateToProps = (state: AppStateType) => {
 
 export default compose(
     connect(mapStateToProps, {
-        followSucces,
-        unfollowSucces,
-        toggleFollowingInProgress,
         requestUsers,
         updateUsers,
         unfollow,

@@ -4,8 +4,8 @@ import DialogsItems from './DialogsItems/DialogsItems'
 import MessagesItems from './MessagesItems/MessagesItems'
 import { render } from '@testing-library/react'
 import AddNewMessage from './AddNewMessage/AddNewMessage'
-import { DialogMessagesType, DialogType } from '../../../../types/types'
-import { SetCurrentTextOfMessageActionType } from '../../../../redux/dialogs-reducer'
+// import { DialogMessagesType, DialogType } from '../../../../types/types'
+// import { SetCurrentTextOfMessageActionType } from '../../../../redux/dialogs-reducer'
 
 // type PropsType = {
 //     dialogs: DialogType[]

@@ -141,7 +141,6 @@ const Login: React.FC<PropsType> = ({
             formData.rememberMe,
             formData.captcha
         )
-        // console.log(formData.email, formData.password, formData.rememberMe, formData.captcha);
     }
 
     if (isAuth) {

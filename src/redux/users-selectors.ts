@@ -1,5 +1,6 @@
 import { AppStateType } from "./redux-store";
 
+//USERS
 export const getUsers = (state: AppStateType) => {
     return state.usersPage.users
 };
@@ -24,7 +25,7 @@ export const getFollowingInProgress = (state: AppStateType) => {
     return state.usersPage.followingInProgress
 };
 
-//
+//STAR-USERS
 export const getStars = (state: AppStateType) => {
     return state.starUsersPage.users
 };
