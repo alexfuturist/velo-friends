@@ -5,9 +5,9 @@ import { withAuthRedirect } from '../../../../hoc/AuthRedirect'
 import { AppStateType } from '../../../../redux/redux-store'
 import {
     requestUsers,
-    updateUsers,
     unfollow,
     follow,
+    filterType,
 } from '../../../../redux/users-reducer'
 import {
     getUsers,
@@ -16,6 +16,7 @@ import {
     getCurrentPage,
     getIsFetching,
     getFollowingInProgress,
+    getFilter,
 } from '../../../../redux/users-selectors'
 import { UserType } from '../../../../types/types'
 import { Preloader } from '../../../Common/Preloader'
@@ -26,11 +27,11 @@ type PropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    filter: filterType
     isFetching: boolean
     followingInProgress: number[]
 
-    requestUsers: (currentPage: number, pageSize: number) => void
-    updateUsers: (pageNumber: number, pageSize: number) => void
+    requestUsers: (pageNumber: number, pageSize: number, filter: filterType) => void
     unfollow: (userId: number) => void
     follow: (userId: number) => void
 }
@@ -38,11 +39,19 @@ type PropsType = {
 //внутренний контейнер
 class UsersContainer extends React.Component<PropsType> {
     componentDidMount() {
-        this.props.requestUsers(this.props.currentPage, this.props.pageSize)
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize, this.props.filter)
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.updateUsers(pageNumber, this.props.pageSize)
+        this.props.requestUsers(
+            pageNumber,
+            this.props.pageSize,
+            this.props.filter
+        )
+    }
+
+    onFilterChanged = (filter: filterType) => {
+        this.props.requestUsers(1, this.props.pageSize, filter)
     }
 
     render() {
@@ -56,8 +65,10 @@ class UsersContainer extends React.Component<PropsType> {
                     users={this.props.users}
                     followingInProgress={this.props.followingInProgress}
                     onPageChanged={this.onPageChanged}
+                    onFilterChanged={this.onFilterChanged}
                     unfollow={this.props.unfollow}
                     follow={this.props.follow}
+                    isFetching={this.props.isFetching}
                 />
             </div>
         )
@@ -71,6 +82,7 @@ let mapStateToProps = (state: AppStateType) => {
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
+        filter: getFilter(state),
         isFetching: getIsFetching(state),
         followingInProgress: getFollowingInProgress(state),
     }
@@ -79,7 +91,6 @@ let mapStateToProps = (state: AppStateType) => {
 export default compose(
     connect(mapStateToProps, {
         requestUsers,
-        updateUsers,
         unfollow,
         follow,
     }),

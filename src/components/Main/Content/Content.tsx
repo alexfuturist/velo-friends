@@ -20,9 +20,9 @@ import StarUsersContainer from './StarUsers/StarUsersContainer'
 // import DialogsContainer from './Dialogs/DialogsContainer'
 // import UsersContainer from './Users/UsersContainer'
 // import Login from '../../Login/Login'
-const DialogsContainer = React.lazy(() => import('./Dialogs/DialogsContainer'));
-const UsersContainer = React.lazy(() => import('./Users/UsersContainer'));
-const Login = React.lazy(() => import('../../Login/Login'));
+const DialogsContainer = React.lazy(() => import('./Dialogs/DialogsContainer'))
+const UsersContainer = React.lazy(() => import('./Users/UsersContainer'))
+const Login = React.lazy(() => import('../../Login/Login'))
 
 const Content = () => {
     return (

@@ -15,10 +15,10 @@ type FolloWUnfollowResponseType = {
 }
 
 export const usersAPI = {
-    getUsers(currentPage: number, pageSize: number) {
+    getUsers(currentPage: number, pageSize: number, term: string = '', friend: boolean | null = null) {
         return instance
             .get<GetUsersResponseType>(
-                `users?page=${currentPage}&count=${pageSize}`
+                `users?page=${currentPage}&count=${pageSize}&term=${term}`+ (friend===null ? '' : `&friend=${friend}`)
             )
             .then((res) => res.data)
     },

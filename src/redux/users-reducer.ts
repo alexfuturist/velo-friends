@@ -11,9 +11,15 @@ let initialState = {
     pageSize: 5,
     currentPage: 1,
     totalUsersCount: 0,
+    filter: {
+        term: '',
+        friend: null as null | boolean,
+    },
     isFetching: false, //preloader
     followingInProgress: [] as Array<number>, //array of users ids
 }
+
+export type filterType = typeof initialState.filter
 
 //Reducer
 const usersReducer = (
@@ -83,6 +89,13 @@ const usersReducer = (
             }
         }
 
+        case 'VF/USERS/SET_FILTER': {
+            return {
+                ...state,
+                filter: action.payload,
+            }
+        }
+
         case 'VF/USERS/TOGGLE_IS_FETCHING': {
             return {
                 ...state,
@@ -135,6 +148,11 @@ export const actions = {
             type: 'VF/USERS/SET_TOTAL_USERS_COUNT',
             totalCount,
         } as const),
+    setFilter: (filter: filterType) =>
+        ({
+            type: 'VF/USERS/SET_FILTER',
+            payload: filter,
+        } as const),
     toggleIsFetching: (isFetching: boolean) =>
         ({
             type: 'VF/USERS/TOGGLE_IS_FETCHING',
@@ -152,30 +170,23 @@ export const actions = {
 type ThunkType = BaseThunkType<ActionsTypes>
 
 export const requestUsers =
-    (currentPage: number, pageSize: number): ThunkType =>
+    (pageNumber: number, pageSize: number, filter: filterType): ThunkType =>
     async (dispatch) => {
         dispatch(actions.toggleIsFetching(true))
+        dispatch(actions.setCurrentPage(pageNumber))
+        dispatch(actions.setFilter(filter))
 
         let response = await usersAPI.getUsers(
-            (currentPage = 1),
-            (pageSize = 10)
+            pageNumber,
+            pageSize,
+            filter.term,
+            filter.friend
         )
+        console.log(response)
 
         dispatch(actions.toggleIsFetching(false))
         dispatch(actions.setUsers(response.items))
         dispatch(actions.setTotalUsersCount(response.totalCount))
-    }
-
-export const updateUsers =
-    (pageNumber: number, pageSize: number): ThunkType =>
-    async (dispatch) => {
-        dispatch(actions.toggleIsFetching(true))
-        dispatch(actions.setCurrentPage(pageNumber))
-
-        let data = await usersAPI.getUsers(pageNumber, pageSize)
-
-        dispatch(actions.toggleIsFetching(false))
-        dispatch(actions.setUsers(data.items))
     }
 
 export const unfollow =

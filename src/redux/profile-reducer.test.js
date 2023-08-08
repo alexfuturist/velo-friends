@@ -6,7 +6,7 @@ import profileReducer, {
     addPost
 } from './profile-reducer';
 
-it('new post shuold be added', () => {
+it('new post should be added', () => {
     //1.test data
     let action = addPost("hello");
     let state = {
