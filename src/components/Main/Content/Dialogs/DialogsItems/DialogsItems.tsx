@@ -1,17 +1,21 @@
-import React from 'react'
-import { DialogType } from '../../../../../types/types'
-import DialogItem from './DialogItem/DialogItem'
+import React from 'react';
+import { DialogType } from '../../../../../types/types';
+import DialogItem from './DialogItem/DialogItem';
 
 type PropsType = {
-    dialogs: DialogType[]
-}
+  dialogs: DialogType[];
+};
 
 export const DialogsItems: React.FC<PropsType> = (props) => {
-    let dialogsItems = props.dialogs.map((d) => (
-        <DialogItem name={d.name} key={d.id} id={d.id} />
-    ))
+  const dialogsItems = props.dialogs.map((d) => (
+    <DialogItem
+      name={d.name}
+      key={d.id}
+      id={d.id}
+    />
+  ));
 
-    return <div>{dialogsItems}</div>
-}
+  return <div>{dialogsItems}</div>;
+};
 
-export default DialogsItems
+export default DialogsItems;

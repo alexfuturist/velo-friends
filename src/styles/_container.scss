@@ -1,62 +1,59 @@
-// ==== <WRAPPER> ======//
+/* ==== <WRAPPER> ====== */
 .wrapper {
-    width: 100%;
-    min-height: 100%;
-    overflow: hidden;
-
-    &.loaded {}
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
 }
 
-//===== <MAIN GRID > ======//
+/* ===== <MAIN GRID > ====== */
 .container {
+  /* -- MOBILE (< 576px) -- */
+  @media (max-width: $md4+px) {
+    width: 100%;
+    padding: 0 10px;
+  }
 
-    // -- MOBILE (< 576px) --//
-    @media (max-width: $md4+px) {
-        width: 100%;
-        padding: 0 10px;
-    }
+  /* -- MOBILE (horizontally) (>= 576px) -- */
+  @media (min-width: $md4+px) and (max-width: $md3+px) {
+    width: 100%;
+    padding: 0 10px;
+  }
 
-    // -- MOBILE (horizontally) (>= 576px) --//
-    @media (min-width: $md4+px) and (max-width: $md3+px) {
-        width: 100%;
-        padding: 0 10px;
-    }
+  /* -- TABLET (>= 768px) -- */
+  @media (min-width: $md3+px) and (max-width: $md2+px) {
+    width: 100%;
+    padding: 0 10px;
+  }
 
-    // -- TABLET (>= 768px) --//
-    @media (min-width: $md3+px) and (max-width: $md2+px) {
-        width: 100%;
-        padding: 0 10px;
-    }
+  /* -- DESKTOP (>= 992px) -- */
+  @media (min-width: $md2+px) and (max-width: $md1+px) {
+    width: 100%;
+    padding: 0 10px;
+    margin: 0 auto;
+  }
 
-    // -- DESKTOP (>= 992px) --//
-    @media (min-width: $md2+px) and (max-width: $md1+px) {
-        width: 100%;
-        padding: 0 10px;
-        margin: 0 auto;
-    }
-
-    // -- DESKTOP (>= 1170px) --//
-    @media (min-width: $md1+px) {
-        width: 100%;
-        max-width: $maxwidth + px;
-        padding: 0 10px;
-        margin: 0 auto;
-    }
+  /* -- DESKTOP (>= 1170px) -- */
+  @media (min-width: $md1+px) {
+    width: 100%;
+    max-width: $maxwidth + px;
+    padding: 0 10px;
+    margin: 0 auto;
+  }
 }
 
-//===== <MAIN GRID blank> ======//
+/* ===== <MAIN GRID blank> ====== */
 
-// -- MOBILE (< 576px) --//
+/*  -- MOBILE (< 576px) -- */
 @media (max-width: $md4+px) {}
 
-// -- MOBILE (horizontally) (>= 576px) --//
+/* -- MOBILE (horizontally) (>= 576px) -- */
 @media (min-width: $md4+px) and (max-width: $md3+px) {}
 
-// -- TABLET (>= 768px) --//
+/* -- TABLET (>= 768px) -- */
 @media (min-width: $md3+px) and (max-width: $md2+px) {}
 
-// -- DESKTOP (>= 992px) --//
+/* -- DESKTOP (>= 992px) -- */
 @media (min-width: $md2+px) and (max-width: $md1+px) {}
 
-// -- DESKTOP (>= 1170px) --//
+/* -- DESKTOP (>= 1170px) -- */
 @media (min-width: $md1+px) {}

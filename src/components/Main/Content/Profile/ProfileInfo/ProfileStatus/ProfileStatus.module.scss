@@ -1,39 +1,39 @@
 .profileStatus {
-    font-size: 16px;
+  font-size: 16px;
 
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .profileStatus__Title {
-    
+  /* 123 */  
 }
 
 .profileStatus__Description {
-    margin-top: 10px;
-    margin-bottom: 15px;
-    height: 16px; 
+  margin-top: 10px;
+  margin-bottom: 15px;
+  height: 16px; 
 
-    padding-top: 5px;
-    padding-bottom: 20px;
-    border-bottom: 1px dashed rgb(188, 206, 238);
+  padding-top: 5px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed rgb(188 206 238);
 
+  transition-duration: 0.5s;
+
+  &:hover {
+    border-bottom: 1px dashed rgb(218 243 219);
+    background: rgb(233 240 253);
     transition-duration: 0.5s;
-
-    &:hover {
-        border-bottom: 1px dashed rgb(218, 243, 219);
-        background: rgb(233, 240, 253);
-        transition-duration: 0.5s;
-    }
+  }
 }
 
 .profileStatus__input {
-    margin-top: 11px;
-    margin-bottom: 16px;
+  margin-top: 11px;
+  margin-bottom: 16px;
 
-    width: 226px;
-    line-height: 1;
+  width: 226px;
+  line-height: 1;
 
-    background-color: rgb(233, 240, 253);
+  background-color: rgb(233 240 253);
 
-    overflow: hidden;
+  overflow: hidden;
 }

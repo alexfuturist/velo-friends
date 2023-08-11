@@ -1,97 +1,94 @@
 .profileCover {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 
-    height: 270px;
+  height: 270px;
 }
 
 .profileCover__img {
-    width: 100%;
-    object-fit: cover;
+  width: 100%;
+  object-fit: cover;
 }
 
 .profileInfo {
-    display: flex;
+  display: flex;
 
-    width: 100%;
-    padding: 20px;
+  width: 100%;
+  padding: 20px;
 }
 
-//Левая часть профиля
 .profileInfo__PhotoWrapper {
-    margin-right: 30px;
+  margin-right: 30px;
 }
 
 .profileInfo__PhotoImage {
-    width: 220px;
+  width: 220px;
 }
 
-//Кнопка загрузки аватара
 .input__wrapper {
-    width: 100%;
-    position: relative;
-    margin: 14px 0;
-    text-align: center;
+  width: 100%;
+  position: relative;
+  margin: 14px 0;
+  text-align: center;
 }
 
 .input__file {
-    opacity: 0;
-    visibility: hidden;
-    position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
 }
 
 .input__fileButton {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 290px;
-    height: 30px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 290px;
+  height: 30px;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 
-    background: cornflowerblue;
-    color: #fff;
-    border-radius: 3px;
+  background: cornflowerblue;
+  color: #fff;
+  border-radius: 3px;
 
-    cursor: pointer;
+  cursor: pointer;
+  transition-duration: 0.5s;
+
+  &:hover {
+    background: rgb(63 151 63);
     transition-duration: 0.5s;
+  }
 
-    &:hover {
-        background: rgb(63, 151, 63);
-        transition-duration: 0.5s;
-    }
-
-    &:active {
-        background: rgb(52, 124, 52);
-        transition-duration: 0.5s;
-    }
+  &:active {
+    background: rgb(52 124 52);
+    transition-duration: 0.5s;
+  }
 }
 
 .input__fileIcon {
-    height: 30px;
-    width: 40px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-right: 1px solid #fff;
+  height: 30px;
+  width: 40px;
+  display: -webkit-box;
+  display: flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #fff;
 
-    &::after {
-        content: "";
-        position: absolute;
-        left: 14px;
-        top: 6px;
-        transform: translateY(-25%);
-        width: 12px;
-        height: 12px;
-        border: solid #ffffff;
-        border-width: 0 2px 2px 0;
-        transform: rotate(45deg);
-    }
+  &::after {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
 }
 
 .input__fileButtonText {
-    margin-left: 36px;
+  margin-left: 36px;
 }

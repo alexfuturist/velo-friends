@@ -1,29 +1,29 @@
 .newPosts {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    left:0px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 .newPosts__title {
-    font-size: 20px;
-    margin-bottom: 15px;
+  font-size: 20px;
+  margin-bottom: 15px;
 }
 
 .newPosts__text {
-    width: 100%;
-    margin-bottom: 15px;
+  width: 100%;
+  margin-bottom: 15px;
 
-    padding: 20px;
+  padding: 20px;
 
-    background-color: rgb(236, 236, 236);
+  background-color: rgb(236 236 236);
 }
 
 .newPosts__button {
-    display: block;
-    margin-left: auto;
+  display: block;
+  margin-left: auto;
 }
 
 .newPosts__button:hover {
-    color: rgb(255, 221, 27);
+  color: rgb(255 221 27);
 }

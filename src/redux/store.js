@@ -139,7 +139,6 @@
 //         console.log('state was changed');
 //     },
 
-
 //     dispatch(action: any) {
 
 //         this._state.content.profilePage = profileReducer(this._state.content.profilePage, action);
@@ -152,7 +151,7 @@
 //         return this._state;
 //     },
 
-//     //функция колбэк - переписывает метод _renderEntireTree() 
+//     //функция колбэк - переписывает метод _renderEntireTree()
 //     //с заглушки на функцию отрисовки из index.js
 //     subscribe(observer) {
 //         this._renderEntireTree = observer; //паттерн

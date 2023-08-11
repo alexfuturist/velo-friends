@@ -1,23 +1,25 @@
-// <MIXINS>==============================
+/* <MIXINS>============================== */
 @import "_mixins.scss";
 
-// <FONTS>===============================
+/* <FONTS>===============================  */
 @import "_fonts.scss";
 
-// <VARIABLES>===========================
+/* <VARIABLES>===========================  */
 @import "_variables.scss";
 
-// <NORMILIZE>===========================
+/* <NORMILIZE>===========================  */
 @import "_normalize.scss";
 @import "_nullstyle.scss";
 
-// <ADAPTIVE>============================
+/* <ADAPTIVE>============================  */
 @import "_container.scss";
 
-// <GENERAL>=============================
+/* <GENERAL>=============================  */
 @import "_general.scss";
-// @import "_scrollbar.scss";
+@import "_scrollbar.scss";  
 
-// <ANIMATION>=========
-// @import "_aos.scss";
-// @import "_my-animate.scss";
+/* <ANIMATION>=========  */
+
+/* @import "_aos.scss";  */
+
+/* @import "_my-animate.scss";  */

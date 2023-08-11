@@ -1,42 +1,43 @@
 .dialogs {
-    padding: 40px;
+  padding: 40px;
 
-    /* height: 100%; */
-    height: calc(100vh - 120px);
+  /* height: 100%; */
+  height: calc(100vh - 120px);
 
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 .dialogsTitle {
-    width: 100%;
-    margin-bottom: 40px;
+  width: 100%;
+  margin-bottom: 40px;
 
-    text-transform: uppercase;
-    font-size: 20px;
+  text-transform: uppercase;
+  font-size: 20px;
 }
 
 .dialogsContent {
-    flex-grow: 1;
+  flex-grow: 1;
 
-    /* height: 100%; */
+  /* height: 100%; */
 
-    height: calc(100vh - 320px);
-    display: flex;
+  height: calc(100vh - 320px);
+  display: flex;
 }
 
 .dialogsColumn {
-    position: relative;
+  position: relative;
 
-    width: 25%;
+  width: 25%;
 
-    flex-shrink: 0;
+  flex-shrink: 0;
 
-    overflow-y: auto;
-    /* overflow:hidden; */
+  overflow-y: auto;
+
+  /* overflow:hidden; */
 }
 
 /* .dialogsColumn::before {
@@ -50,37 +51,22 @@
     background-color: cornflowerblue;
 } */
 
-.dialog {}
-
-
-
 .messagesColumn {
-    position: relative;
+  position: relative;
 
-    margin-left: 40px;
+  margin-left: 40px;
 
-    width: 70%;
-}
-
-.messagesColumn::before {
-    /* content: '';
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: -40px;
-    width: 2px;
-
-    background-color: rgb(219, 224, 233); */
+  width: 70%;
 }
 
 .messagesItems {
-    overscroll-behavior: contain;
-    overflow-y: auto;
-    height: 100%;
+  overscroll-behavior: contain;
+  overflow-y: auto;
 
-    padding-top: 20px;
-    height: calc(100vh - 440px);
-    /* если скролл дошел до предела, не скроллить родителя */
+  padding-top: 20px;
+  height: calc(100vh - 440px);
+
+  /* если скролл дошел до предела, не скроллить родителя */
 }
 
 

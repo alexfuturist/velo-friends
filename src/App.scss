@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap');
+@import 'https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap';
+
 .app {
   min-height: 100vh;
 
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(235 235 235);
 
   /* font-family: 'Source Sans Pro', sans-serif; */
 
-  font-family: 'Oswald', sans-serif;
+  font-family: Oswald, sans-serif;
   font-weight: 400;
 }
 
