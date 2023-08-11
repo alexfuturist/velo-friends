@@ -1,11 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom';
-import { store } from './redux/redux-store';
 import { Provider } from 'react-redux';
-import App from './App';
-import './index.scss';
+import './app/index.scss';
 import { createRoot } from 'react-dom/client';
+import App from './app/App';
+import { store } from './app/redux/redux-store';
 
 const container = document.getElementById('root');
 const root = createRoot(container as HTMLElement);

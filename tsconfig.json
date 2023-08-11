@@ -21,7 +21,7 @@
     "noFallthroughCasesInSwitch": true,
     "types": [
       "redux-thunk",
-    ]
+    ],
     // // //
     // "outDir": "./build/",
     // "noImplicitAny": true,
@@ -30,13 +30,13 @@
     // "jsx": "react-jsx",
     // "allowJs": true,
     // "moduleResolution": "node",
-    // "baseUrl": ".",
-    // "paths": {
-    //   "*": ["./src/*"]
-    // },
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["src/*"]
+    },
     // "esModuleInterop": true,
     // "allowSyntheticDefaultImports": true,
   },
-  "include": ["src"],
+  // "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
