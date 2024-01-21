@@ -1,8 +1,8 @@
-import React from 'react';
-import userPhotoDefault from 'src/shared/assets/images/user_default.png';
-import cn from 'classnames';
+import React from "react";
+import userPhotoDefault from "src/shared/assets/images/user_default.png";
+import cn from "classnames";
 
-import s from './MessagesItem.module.scss';
+import s from "./MessagesItem.module.scss";
 
 type PropsType = {
   photos: string;
@@ -12,7 +12,7 @@ type PropsType = {
 };
 
 const MessagesItem: React.FC<PropsType> = (props) => {
-  if (props.name == 'Я') {
+  if (props.name == "Я") {
     return (
       <div className={cn(s.messageWrapper, s.owner)}>
         <div className={s.messageAuthor}>

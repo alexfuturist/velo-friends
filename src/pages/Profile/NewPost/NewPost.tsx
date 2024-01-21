@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Field, reduxForm } from 'redux-form';
-import s from './NewPost.module.scss';
-import { required } from 'src/shared/lib/utils/validators';
+import React, { useEffect, useState } from "react";
+import { Field, reduxForm } from "redux-form";
+import s from "./NewPost.module.scss";
+import { required } from "src/shared/lib/utils/validators";
 
 // const maxLength600 = maxLengthCreator(600);
 // const minLength1 = minLengthCreator(1);
@@ -27,7 +27,7 @@ const AddNewPostForm: React.FC = (props: any) => {
 };
 
 const AddNewPostFormRedux = reduxForm({
-  form: 'ProfileAddNewPost',
+  form: "ProfileAddNewPost",
 })(AddNewPostForm);
 
 const AddNewPost = (props: any) => {

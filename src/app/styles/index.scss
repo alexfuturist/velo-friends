@@ -1,25 +1,25 @@
 /* <MIXINS>============================== */
-@import "_mixins.scss";
+@import "mixins.scss";
 
 /* <FONTS>===============================  */
-@import "_fonts.scss";
+@import "fonts.scss";
 
 /* <VARIABLES>===========================  */
-@import "_variables.scss";
+@import "variables.scss";
 
 /* <NORMILIZE>===========================  */
-@import "_normalize.scss";
-@import "_nullstyle.scss";
+@import "normalize.scss";
+@import "nullstyle.scss";
 
 /* <ADAPTIVE>============================  */
-@import "_container.scss";
+@import "container.scss";
 
 /* <GENERAL>=============================  */
-@import "_general.scss";
-@import "_scrollbar.scss";  
+@import "general.scss";
+@import "scrollbar.scss";
 
 /* <ANIMATION>=========  */
 
-/* @import "_aos.scss";  */
+/* @import "aos.scss";  */
 
-/* @import "_my-animate.scss";  */
+/* @import "my-animate.scss";  */

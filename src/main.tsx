@@ -1,12 +1,11 @@
-import React from 'react';
-import { HashRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import './app/index.scss';
-import { createRoot } from 'react-dom/client';
-import App from './app/App';
-import { store } from './app/redux/redux-store';
+import React from "react";
+import { HashRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { createRoot } from "react-dom/client";
+import { store } from "./app/redux/redux-store";
+import App from "./app/App";
 
-const container = document.getElementById('root');
+const container = document.getElementById("root");
 const root = createRoot(container as HTMLElement);
 root.render(
   <React.StrictMode>

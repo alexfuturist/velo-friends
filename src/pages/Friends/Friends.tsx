@@ -1,4 +1,4 @@
-import { withAuthRedirect } from 'src/shared/lib/hoc/AuthRedirect';
+import { withAuthRedirect } from "src/shared/lib/hoc/AuthRedirect";
 // import { withAuthRedirect } from '../../../../hoc/AuthRedirect';
 
 const Friends = () => {

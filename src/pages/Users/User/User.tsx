@@ -1,8 +1,8 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import userPhotoDefault from 'src/shared/assets/images/user_default.png';
-import s from './User.module.scss';
-import { UserType } from 'src/shared/types';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import userPhotoDefault from "src/shared/assets/images/user_default.png";
+import s from "./User.module.scss";
+import { UserType } from "src/shared/types";
 
 type PropsType = {
   u: UserType;
@@ -19,7 +19,7 @@ const User: React.FC<PropsType> = ({ u, ...props }) => {
       className={s.users__item}
     >
       <div className={s.users__img}>
-        <NavLink to={'/profile/' + u.id}>
+        <NavLink to={"/profile/" + u.id}>
           <img
             src={u.photos.small !== null ? u.photos.small : userPhotoDefault}
             alt=""
@@ -55,11 +55,11 @@ const User: React.FC<PropsType> = ({ u, ...props }) => {
       <div className={s.users__info}>
         <div className={s.users__infoTop}>
           <p className={s.users__name}>{u.name}</p>
-          <p className={s.users__city}>{'city'},</p>
+          <p className={s.users__city}>{"city"},</p>
         </div>
         <div className={s.users__infoBottom}>
           <p className={s.users__status}>{u.status}</p>
-          <p className={s.users__country}>{'country'}</p>
+          <p className={s.users__country}>{"country"}</p>
         </div>
       </div>
     </div>

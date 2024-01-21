@@ -1,17 +1,17 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 // eslint-disable-next-line
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
-import { maxLengthCreator, minLengthCreator, required } from '../../../shared/lib/utils/validators';
+import { maxLengthCreator, minLengthCreator, required } from "../../../shared/lib/utils/validators";
 // import { Element } from '../../../shared/ui/FormControls/FormControls';
-import { login, getCaptchaUrl } from 'src/app/redux/auth-reducer';
-import s from './Login.module.scss';
-import { Redirect } from 'react-router-dom';
-import { FormControls } from 'src/shared/ui/FormControls';
+import { login, getCaptchaUrl } from "src/app/redux/auth-reducer";
+import s from "./Login.module.scss";
+import { Redirect } from "react-router-dom";
+import { FormControls } from "src/shared/ui/FormControls";
 // import { AppStateType } from '../../redux/redux-store';
 
 //1-LoginForm
-const Input = FormControls('input');
+const Input = FormControls("input");
 const maxLength15 = maxLengthCreator(15);
 const minLength4 = minLengthCreator(4);
 
@@ -35,7 +35,7 @@ const LoginForm: React.FC<
           name="email"
           component={Input}
           type="text"
-          placeholder={'login'}
+          placeholder={"login"}
           validate={[required]}
         />
       </div>
@@ -46,7 +46,7 @@ const LoginForm: React.FC<
           name="password"
           component={Input}
           type="password"
-          placeholder={'password'}
+          placeholder={"password"}
           validate={[required, minLength4, maxLength15]}
         />
       </div>
@@ -106,7 +106,7 @@ const LoginForm: React.FC<
 
 //2-Container ReduxForm
 const LoginReduxForm = reduxForm<LoginFormValuesType, LoginOwnFormProps>({
-  form: 'login',
+  form: "login",
 })(LoginForm);
 
 //3-Component Login
@@ -136,7 +136,7 @@ const Login: React.FC<PropsType> = ({ captchaUrl, isAuth, login, getCaptchaUrl }
   };
 
   if (isAuth) {
-    return <Redirect to={'/profile'} />;
+    return <Redirect to={"/profile"} />;
   }
 
   return (

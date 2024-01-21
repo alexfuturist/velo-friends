@@ -1,7 +1,7 @@
-import React from 'react';
-import { PostType, ProfileInfoType } from '../../../../../shared/types';
-import Post from './Post/Post';
-import s from './Posts.module.scss';
+import React from "react";
+import { PostType, ProfileInfoType } from "../../../../../shared/types";
+import Post from "./Post/Post";
+import s from "./Posts.module.scss";
 
 type PropsType = {
   posts: PostType[];

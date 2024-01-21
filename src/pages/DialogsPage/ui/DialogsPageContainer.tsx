@@ -1,16 +1,13 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'redux';
-// import { withAuthRedirect } from '../../../../hoc/AuthRedirect';
-import { addNewMessage, resetNewMessageField, actions } from 'src/app/redux/dialogs-reducer';
-import Dialogs from './Dialogs';
-import { getUserProfile } from 'src/app/redux/profile-reducer';
-import { DialogMessagesType, DialogType } from 'src/shared/types';
-import { AppStateType } from 'src/app/redux/redux-store';
-import { withAuthRedirect } from 'src/shared/lib/hoc/AuthRedirect';
-// import { AppStateType } from '../../../../redux/redux-store';
-// import { DialogMessagesType, DialogType } from '../../../../shared/types';
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { compose } from "redux";
+import { addNewMessage, resetNewMessageField, actions } from "src/app/redux/dialogs-reducer";
+import Dialogs from "./DialogsPage";
+import { getUserProfile } from "src/app/redux/profile-reducer";
+import { DialogMessagesType, DialogType } from "src/shared/types";
+import { AppStateType } from "src/app/redux/redux-store";
+import { withAuthRedirect } from "src/shared/lib/hoc/AuthRedirect";
 
 type MapStatePropsType = {
   dialogs: DialogType[];

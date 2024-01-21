@@ -1,9 +1,9 @@
-import React, { ChangeEvent, useState } from 'react';
-import s from './ProfileInfo.module.scss';
-import userPhotoDefault from 'src/shared/assets/images/user_default.png';
-import ProfileData from './ProfileData/ProfileData';
-import ProfileDataFormRedux from './ProfileDataForm/ProfileDataForm';
-import { ProfileInfoType } from 'src/shared/types';
+import React, { ChangeEvent, useState } from "react";
+import s from "./ProfileInfo.module.scss";
+import userPhotoDefault from "src/shared/assets/images/user_default.png";
+import ProfileData from "./ProfileData/ProfileData";
+import ProfileDataFormRedux from "./ProfileDataForm/ProfileDataForm";
+import { ProfileInfoType } from "src/shared/types";
 
 type PropsType = {
   profileInfo: ProfileInfoType;

@@ -1,8 +1,8 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
-import s from './Navbar.module.css';
-import { AppStateType } from '../../../redux/redux-store';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import s from "./Navbar.module.css";
+import { AppStateType } from "../../../redux/redux-store";
 
 type PropsType = {
   isAuth: boolean;

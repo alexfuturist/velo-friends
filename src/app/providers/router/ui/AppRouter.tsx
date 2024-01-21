@@ -1,19 +1,19 @@
-import { Suspense } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import StarUsersContainer from 'src/pages/StarUsers/StarUsersContainer';
-import ProfileContainer from 'src/pages/Profile/ProfileContainer';
-import Photos from 'src/pages/Photos/Photos';
-import Routes from 'src/pages/Routes/Routes';
-import Music from 'src/pages/Music/Music';
-import Settings from 'src/pages/Settings/Settings';
-import Friends from 'src/pages/Friends/Friends';
-import DialogsContainer from 'src/pages/Dialogs/DialogsContainer';
-import Login from 'src/features/ui/Login/Login';
-import UsersContainer from 'src/pages/Users/UsersContainer';
-import AboutProject from 'src/pages/AboutProject/AboutProject';
+import { Suspense, lazy } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import StarUsersContainer from "src/pages/StarUsers/StarUsersContainer";
+import ProfileContainer from "src/pages/Profile/ProfileContainer";
+import Photos from "src/pages/Photos/Photos";
+import Routes from "src/pages/Routes/Routes";
+import Music from "src/pages/Music/Music";
+import Settings from "src/pages/Settings/Settings";
+import Friends from "src/pages/Friends/Friends";
+import Login from "src/features/ui/Login/Login";
+// import UsersContainer from 'src/pages/Users/UsersContainer';
+import { AboutProject } from "src/pages/AboutProject";
+import { DialogsPage } from "src/pages/DialogsPage";
 
 // const DialogsContainer = React.lazy(() => import('./Dialogs/DialogsContainer'));
-// const UsersContainer = React.lazy(() => import('./Users/UsersContainer'));
+const UsersContainerLazy = lazy(() => import("src/pages/Users/UsersContainer"));
 // const Login = React.lazy(() => import('../../Login/Login'));
 
 interface AppRouterProps {
@@ -40,11 +40,11 @@ export const AppRouter = ({ className }: AppRouterProps) => {
           />
           <Route
             path="/dialogs/:dialogId?"
-            render={() => <DialogsContainer />}
+            render={() => <DialogsPage />}
           />
           <Route
             path="/users"
-            render={() => <UsersContainer />}
+            render={() => <UsersContainerLazy />}
           />
           <Route
             path="/starusers"

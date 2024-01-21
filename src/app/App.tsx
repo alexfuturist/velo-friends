@@ -1,22 +1,14 @@
-import React, { Component } from 'react';
-
-import 'src/app/styles/_normalize.scss';
-import 'src/app/styles/_nullstyle.scss';
-import 'src/app/styles/__scrollbar.scss';
-import './App.scss';
-
-// import HeaderContainer from './components/Header/HeaderContainer';
-import { initializeApp } from './redux/app-reducer';
-import { connect } from 'react-redux';
-
-import { compose } from 'redux';
-import { withRouter } from 'react-router-dom';
-// import { Preloader } from './components/Common/Preloader';
-import { AppStateType } from './redux/redux-store';
-import { Preloader } from 'src/shared/ui/Preloader';
-import HeaderContainer from 'src/widgets/Header/HeaderContainer';
-import Navbar from 'src/widgets/Navbar/Navbar';
-import { AppRouter } from './providers/router/ui/AppRouter';
+import React, { Component } from "react";
+import { initializeApp } from "./redux/app-reducer";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { withRouter } from "react-router-dom";
+import { AppStateType } from "./redux/redux-store";
+import { Preloader } from "src/shared/ui/Preloader";
+import HeaderContainer from "src/widgets/Header/HeaderContainer";
+import Navbar from "src/widgets/Navbar/Navbar";
+import { AppRouter } from "./providers/router/ui/AppRouter";
+import "./App.scss";
 
 type MapStatePropsType = {
   initialized: boolean;

@@ -1,10 +1,10 @@
 // import { ResultCodeForCaptcha, ResultCodes } from './../api/api';
-import { stopSubmit } from 'redux-form';
-import { BaseThunkType, InferActionsTypes } from './redux-store';
-import { ResultCodeForCaptcha, ResultCodes } from 'src/shared/api/api';
+import { stopSubmit } from "redux-form";
+import { BaseThunkType, InferActionsTypes } from "./redux-store";
+import { ResultCodeForCaptcha, ResultCodes } from "src/shared/api/api";
 // import { authAPI } from 'shared/api/auth-api';
-import { securityAPI } from 'src/shared/api/security-api';
-import { authAPI } from 'src/shared/api/auth-api';
+import { securityAPI } from "src/shared/api/security-api";
+import { authAPI } from "src/shared/api/auth-api";
 // import { authAPI } from '../api/auth-api';
 // import { securityAPI } from '../api/security-api';
 
@@ -22,8 +22,8 @@ const initialState = {
 //Reducer
 const authReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
   switch (action.type) {
-    case 'VF/AUTH/SET_AUTH_USER_DATA':
-    case 'VF/AUTH/GET_CAPTCHA_URL_SUCCESS':
+    case "VF/AUTH/SET_AUTH_USER_DATA":
+    case "VF/AUTH/GET_CAPTCHA_URL_SUCCESS":
       return {
         ...state,
         ...action.payload,
@@ -44,7 +44,7 @@ export const actions = {
     login: string | null,
     isAuth = true,
   ) => ({
-    type: 'VF/AUTH/SET_AUTH_USER_DATA',
+    type: "VF/AUTH/SET_AUTH_USER_DATA",
     payload: {
       userId,
       email,
@@ -53,7 +53,7 @@ export const actions = {
     },
   }),
   getCaptchaUrlSuccess: (captchaUrl: string | null) => ({
-    type: 'VF/AUTH/GET_CAPTCHA_URL_SUCCESS',
+    type: "VF/AUTH/GET_CAPTCHA_URL_SUCCESS",
     payload: {
       captchaUrl,
     },
@@ -68,14 +68,14 @@ export const getAuthUserData = (): ThunkType => async (dispatch) => {
 
   try {
     const response = await authAPI.me();
-    console.log('response', response);
+    console.log("response", response);
 
     if (response.resultCode === ResultCodes.Success) {
       const { id, email, login } = response.data;
       dispatch(actions.setAuthUserData(id, email, login));
     }
   } catch (error) {
-    console.log('error', error);
+    console.log("error", error);
   }
 };
 
@@ -92,11 +92,11 @@ export const login =
         dispatch(getCaptchaUrl());
       }
 
-      const message = response.messages.length > 0 ? response.messages[0] : 'some error';
+      const message = response.messages.length > 0 ? response.messages[0] : "some error";
 
       dispatch(
         //@ts-ignore
-        stopSubmit('login', {
+        stopSubmit("login", {
           _error: message,
         }),
       );

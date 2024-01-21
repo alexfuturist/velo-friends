@@ -1,10 +1,10 @@
-import React from 'react';
-import User from './User/User';
-import UsersSearchForm from './UsersSearchForm/UsersSearchForm';
-import s from './Users.module.scss';
-import { filterType } from 'src/app/redux/users-reducer';
-import { Paginator } from 'src/shared/ui/Paginator';
-import { UserType } from 'src/shared/types';
+import React from "react";
+import User from "./User/User";
+import UsersSearchForm from "./UsersSearchForm/UsersSearchForm";
+import s from "./Users.module.scss";
+import { filterType } from "src/app/redux/users-reducer";
+import { Paginator } from "src/shared/ui/Paginator";
+import { UserType } from "src/shared/types";
 
 type PropsType = {
   users: UserType[];

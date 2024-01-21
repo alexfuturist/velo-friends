@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import s from './ProfileStatus.module.scss';
+import React, { ChangeEvent, useEffect, useState } from "react";
+import s from "./ProfileStatus.module.scss";
 
 type PropsType = {
   status?: string;

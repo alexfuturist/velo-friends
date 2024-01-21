@@ -1,4 +1,4 @@
-import s from './Loader.module.scss';
+import s from "./Loader.module.scss";
 
 export const Loader = (props) => {
   return (
