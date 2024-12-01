@@ -1,13 +1,12 @@
-import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
-import dialogsReducer from './dialogs-reducer';
-import profileReducer from './profile-reducer';
-import usersReducer from './users-reducer';
-import starUsersReducer from './star-users-reducer';
-import authReducer from './auth-reducer';
-import appReducer from './app-reducer';
-// eslint-disable-next-line
-import thunkMiddleware, { ThunkAction } from 'redux-thunk';
-import { reducer as formReducer } from 'redux-form';
+import { applyMiddleware, combineReducers, compose, createStore } from "redux";
+import dialogsReducer from "./dialogs-reducer";
+import profileReducer from "./profile-reducer";
+import usersReducer from "./users-reducer";
+import starUsersReducer from "./star-users-reducer";
+import authReducer from "./auth-reducer";
+import appReducer from "./app-reducer";
+import thunkMiddleware, { type ThunkAction } from "redux-thunk";
+import { reducer as formReducer } from "redux-form";
 
 const rootReducer = combineReducers({
   profilePage: profileReducer,

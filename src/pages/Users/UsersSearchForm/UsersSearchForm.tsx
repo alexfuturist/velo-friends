@@ -1,9 +1,9 @@
-import React from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field } from "formik";
 // import Loader from './../../../../Common/Loader/Loader';
 // import { DebounceInput } from 'react-debounce-input';
-import s from './UsersSearchForm.module.scss';
-import { filterType } from '../../../../../redux/users-reducer';
+import s from "./UsersSearchForm.module.scss";
+import { filterType } from "src/app/redux/users-reducer";
+import React from "react";
 
 type propsType = {
   isFetching: boolean;
@@ -23,7 +23,7 @@ const UsersSearchForm: React.FC<propsType> = React.memo(function UsersSearchForm
     <div className={s.wrapper}>
       <h1>Пошук серед велосипедистів</h1>
       <Formik
-        initialValues={{ term: '', friend: null }}
+        initialValues={{ term: "", friend: null }}
         onSubmit={(values, { setSubmitting }) => {
           props.onFilterChanged(values);
           setSubmitting(false);

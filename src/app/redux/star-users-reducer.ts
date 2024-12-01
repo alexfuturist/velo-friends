@@ -1,5 +1,5 @@
-import { UserType } from '../shared/types';
-import { BaseThunkType, InferActionsTypes } from './redux-store';
+import { UserType } from "src/shared/types";
+import { BaseThunkType, InferActionsTypes } from "./redux-store";
 
 //State
 type InitialStateType = typeof initialState;
@@ -16,7 +16,7 @@ const initialState = {
 //Reducer
 const starUsersReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
   switch (action.type) {
-    case 'VF/STAR-USERS/FOLLOW': {
+    case "VF/STAR-USERS/FOLLOW": {
       //возвращаем объект (новый state)
       return {
         //cкопировали state
@@ -40,7 +40,7 @@ const starUsersReducer = (state = initialState, action: ActionsTypes): InitialSt
       };
     }
 
-    case 'VF/STAR-USERS/UNFOLLOW': {
+    case "VF/STAR-USERS/UNFOLLOW": {
       return {
         ...state,
         users: state.users.map((u) => {
@@ -56,7 +56,7 @@ const starUsersReducer = (state = initialState, action: ActionsTypes): InitialSt
       };
     }
 
-    case 'VF/STAR-USERS/SET_USERS_STARS': {
+    case "VF/STAR-USERS/SET_USERS_STARS": {
       return {
         ...state,
         //добавляем новых юзеров из экшена (склеиваем два массива)
@@ -64,14 +64,14 @@ const starUsersReducer = (state = initialState, action: ActionsTypes): InitialSt
       };
     }
 
-    case 'VF/STAR-USERS/TOGGLE_IS_FETCHING': {
+    case "VF/STAR-USERS/TOGGLE_IS_FETCHING": {
       return {
         ...state,
         isFetching: action.isFetching,
       };
     }
 
-    case 'VF/STAR-USERS/TOGGLE_FOLLOWING_IN_PROGRESS': {
+    case "VF/STAR-USERS/TOGGLE_FOLLOWING_IN_PROGRESS": {
       return {
         ...state,
         followingInProgress: action.followingInProgress
@@ -91,27 +91,27 @@ type ActionsTypes = InferActionsTypes<typeof actions>;
 export const actions = {
   followSucces: (userId: number) =>
     ({
-      type: 'VF/STAR-USERS/FOLLOW',
+      type: "VF/STAR-USERS/FOLLOW",
       userId,
     }) as const,
   unfollowSucces: (userId: number) =>
     ({
-      type: 'VF/STAR-USERS/UNFOLLOW',
+      type: "VF/STAR-USERS/UNFOLLOW",
       userId,
     }) as const,
   setUsersStars: (users: Array<UserType>) =>
     ({
-      type: 'VF/STAR-USERS/SET_USERS_STARS',
+      type: "VF/STAR-USERS/SET_USERS_STARS",
       users,
     }) as const,
   toggleIsFetching: (isFetching: boolean) =>
     ({
-      type: 'VF/STAR-USERS/TOGGLE_IS_FETCHING',
+      type: "VF/STAR-USERS/TOGGLE_IS_FETCHING",
       isFetching,
     }) as const,
   toggleFollowingInProgress: (followingInProgress: boolean, userId: number) =>
     ({
-      type: 'VF/STAR-USERS/TOGGLE_FOLLOWING_IN_PROGRESS',
+      type: "VF/STAR-USERS/TOGGLE_FOLLOWING_IN_PROGRESS",
       followingInProgress,
       userId,
     }) as const,

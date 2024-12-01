@@ -1,6 +1,6 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import s from './Header.module.scss';
+import { NavLink } from "react-router-dom";
+import s from "./Header.module.scss";
+import React from "react";
 
 type PropsType = {
   isAuth: boolean;
@@ -30,7 +30,7 @@ const Header: React.FC<PropsType> = ({ isAuth, login, logout }) => {
           ) : (
             <NavLink
               className={s.loginLink}
-              to={'/login'}
+              to={"/login"}
             >
               Авторизуватись
             </NavLink>

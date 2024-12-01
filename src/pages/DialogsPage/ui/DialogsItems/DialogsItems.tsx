@@ -1,6 +1,6 @@
-import React from 'react';
-import { DialogType } from '../../../../../shared/types';
-import DialogItem from './DialogItem/DialogItem';
+import React from "react";
+import { DialogType } from "src/shared/types";
+import DialogItem from "./DialogItem/DialogItem";
 
 type PropsType = {
   dialogs: DialogType[];

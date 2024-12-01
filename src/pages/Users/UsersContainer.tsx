@@ -1,9 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+import { connect } from "react-redux";
+import { compose } from "redux";
 // import { withAuthRedirect } from '../../../../hoc/AuthRedirect';
-// import { AppStateType } from '../../../../redux/redux-store';
-import { requestUsers, unfollow, follow, filterType } from 'src/app/redux/users-reducer';
+import { AppStateType } from "src/app/redux/redux-store";
+import { requestUsers, unfollow, follow, filterType } from "src/app/redux/users-reducer";
 // import {
 //   getUsers,
 //   getPageSize,
@@ -15,8 +14,8 @@ import { requestUsers, unfollow, follow, filterType } from 'src/app/redux/users-
 // } from '../../../../redux/users-selectors';
 // import { UserType } from '../../../../shared/types';
 // import { Preloader } from '../../../../shared/ui/Preloader';
-import Users from './Users';
-import { Preloader } from 'src/shared/ui/Preloader';
+import Users from "./Users";
+import { Preloader } from "src/shared/ui/Preloader";
 import {
   getCurrentPage,
   getFilter,
@@ -25,8 +24,10 @@ import {
   getPageSize,
   getTotalUsersCount,
   getUsers,
-} from 'src/app/redux/users-selectors';
-import { withAuthRedirect } from 'src/shared/lib/hoc/AuthRedirect';
+} from "src/app/redux/users-selectors";
+import { withAuthRedirect } from "src/shared/lib/hoc/AuthRedirect";
+import { UserType } from "src/shared/types";
+import React from "react";
 
 type PropsType = {
   users: UserType[];

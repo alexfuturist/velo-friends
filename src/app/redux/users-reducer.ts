@@ -1,10 +1,7 @@
-// import { ResultCodes } from './../api/api';
-// import { UserType } from '../shared/types';
-import { UserType } from 'src/shared/types';
-import { BaseThunkType, InferActionsTypes } from './redux-store';
-import { usersAPI } from 'src/shared/api/users-api';
-import { ResultCodes } from 'src/shared/api/api';
-// import { usersAPI } from '../api/users-api';
+import { UserType } from "src/shared/types";
+import { BaseThunkType, InferActionsTypes } from "./redux-store";
+import { usersAPI } from "src/shared/api/users-api";
+import { ResultCodes } from "src/shared/api/api";
 
 //State
 type InitialStateType = typeof initialState;
@@ -15,7 +12,7 @@ const initialState = {
   currentPage: 1,
   totalUsersCount: 0,
   filter: {
-    term: '',
+    term: "",
     friend: null as null | boolean,
   },
   isFetching: false, //preloader
@@ -27,7 +24,7 @@ export type filterType = typeof initialState.filter;
 //Reducer
 const usersReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
   switch (action.type) {
-    case 'VF/USERS/FOLLOW': {
+    case "VF/USERS/FOLLOW": {
       //возвращаем объект (новый state)
       return {
         //cкопировали state
@@ -51,7 +48,7 @@ const usersReducer = (state = initialState, action: ActionsTypes): InitialStateT
       };
     }
 
-    case 'VF/USERS/UNFOLLOW': {
+    case "VF/USERS/UNFOLLOW": {
       return {
         ...state,
         users: state.users.map((u) => {
@@ -67,7 +64,7 @@ const usersReducer = (state = initialState, action: ActionsTypes): InitialStateT
       };
     }
 
-    case 'VF/USERS/SET_USERS': {
+    case "VF/USERS/SET_USERS": {
       return {
         ...state,
         //добавляем новых юзеров из экшена (склеиваем два массива)
@@ -75,35 +72,35 @@ const usersReducer = (state = initialState, action: ActionsTypes): InitialStateT
       };
     }
 
-    case 'VF/USERS/SET_CURRENT_PAGE': {
+    case "VF/USERS/SET_CURRENT_PAGE": {
       return {
         ...state,
         currentPage: action.currentPage,
       };
     }
 
-    case 'VF/USERS/SET_TOTAL_USERS_COUNT': {
+    case "VF/USERS/SET_TOTAL_USERS_COUNT": {
       return {
         ...state,
         totalUsersCount: action.totalCount,
       };
     }
 
-    case 'VF/USERS/SET_FILTER': {
+    case "VF/USERS/SET_FILTER": {
       return {
         ...state,
         filter: action.payload,
       };
     }
 
-    case 'VF/USERS/TOGGLE_IS_FETCHING': {
+    case "VF/USERS/TOGGLE_IS_FETCHING": {
       return {
         ...state,
         isFetching: action.isFetching,
       };
     }
 
-    case 'VF/USERS/TOGGLE_FOLLOWING_IN_PROGRESS': {
+    case "VF/USERS/TOGGLE_FOLLOWING_IN_PROGRESS": {
       return {
         ...state,
         followingInProgress: action.followingInProgress
@@ -123,42 +120,42 @@ type ActionsTypes = InferActionsTypes<typeof actions>;
 export const actions = {
   followSucces: (userId: number) =>
     ({
-      type: 'VF/USERS/FOLLOW',
+      type: "VF/USERS/FOLLOW",
       userId,
     }) as const,
   unfollowSucces: (userId: number) =>
     ({
-      type: 'VF/USERS/UNFOLLOW',
+      type: "VF/USERS/UNFOLLOW",
       userId,
     }) as const,
   setUsers: (users: Array<UserType>) =>
     ({
-      type: 'VF/USERS/SET_USERS',
+      type: "VF/USERS/SET_USERS",
       users,
     }) as const,
   setCurrentPage: (currentPage: number) =>
     ({
-      type: 'VF/USERS/SET_CURRENT_PAGE',
+      type: "VF/USERS/SET_CURRENT_PAGE",
       currentPage,
     }) as const,
   setTotalUsersCount: (totalCount: number) =>
     ({
-      type: 'VF/USERS/SET_TOTAL_USERS_COUNT',
+      type: "VF/USERS/SET_TOTAL_USERS_COUNT",
       totalCount,
     }) as const,
   setFilter: (filter: filterType) =>
     ({
-      type: 'VF/USERS/SET_FILTER',
+      type: "VF/USERS/SET_FILTER",
       payload: filter,
     }) as const,
   toggleIsFetching: (isFetching: boolean) =>
     ({
-      type: 'VF/USERS/TOGGLE_IS_FETCHING',
+      type: "VF/USERS/TOGGLE_IS_FETCHING",
       isFetching,
     }) as const,
   toggleFollowingInProgress: (followingInProgress: boolean, userId: number) =>
     ({
-      type: 'VF/USERS/TOGGLE_FOLLOWING_IN_PROGRESS',
+      type: "VF/USERS/TOGGLE_FOLLOWING_IN_PROGRESS",
       followingInProgress,
       userId,
     }) as const,

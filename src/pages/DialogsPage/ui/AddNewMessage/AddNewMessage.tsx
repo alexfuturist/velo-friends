@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
-import s from './AddNewMessage.module.scss';
-import { Field, reduxForm } from 'redux-form';
-import { required } from 'src/shared/lib/utils/validators';
-// import { required } from '../../../../../shared/lib/utils/validators';
+import { useEffect } from "react";
+import s from "./AddNewMessage.module.scss";
+import { Field, reduxForm } from "redux-form";
+import { required } from "src/shared/lib/utils/validators";
 
 const AddNewMessageForm = (props: any) => {
   return (
@@ -24,7 +23,7 @@ const AddNewMessageForm = (props: any) => {
 };
 
 const AddNewMessageFormRedux = reduxForm({
-  form: 'DialogsAddNewMessage',
+  form: "DialogsAddNewMessage",
   enableReinitialize: true,
   destroyOnUnmount: false,
 })(AddNewMessageForm);
@@ -39,7 +38,7 @@ const AddNewMessage = (props: any) => {
       return props.dialogsMessages.filter((item: any) => item.id == +props.dialogId)[0]
         .newMessageText;
     } else {
-      return '';
+      return "";
     }
   };
 

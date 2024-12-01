@@ -1,6 +1,6 @@
-import s from './Loader.module.scss';
+import s from "./Loader.module.scss";
 
-export const Loader = (props) => {
+export const Loader = () => {
   return (
     <div className={s.loader}>
       <svg

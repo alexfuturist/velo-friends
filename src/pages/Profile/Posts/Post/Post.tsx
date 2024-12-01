@@ -1,8 +1,8 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import userPhotoDefault from 'src/shared/assets/images/user_default.png';
-import cn from 'classnames';
-import s from './Post.module.scss';
-import { ProfileInfoType } from 'src/shared/types';
+import React, { ChangeEvent, useEffect, useState } from "react";
+import userPhotoDefault from "src/shared/assets/images/user_default.png";
+import cn from "classnames";
+import s from "./Post.module.scss";
+import { ProfileInfoType } from "src/shared/types";
 
 type PropsType = {
   profileInfo: ProfileInfoType;
@@ -111,7 +111,7 @@ const Post: React.FC<PropsType> = (props) => {
               autoFocus={true}
               onFocus={function (e) {
                 const val = e.target.value;
-                e.target.value = '';
+                e.target.value = "";
                 e.target.value = val;
               }}
             />

@@ -1,5 +1,6 @@
-import { PhotosType, ProfileInfoType } from '../shared/types';
-import { instance } from './api';
+// import { PhotosType, ProfileInfoType } from '../shared/types';
+import { PhotosType, ProfileInfoType } from "../types";
+import { instance } from "./api";
 
 //PROFILE
 type GetProfileResponseType = {
@@ -47,12 +48,12 @@ export const profileAPI = {
   },
   updatePhoto(photoFile: any) {
     const formData = new FormData();
-    formData.append('image', photoFile);
+    formData.append("image", photoFile);
 
     return instance
       .put<ResponseType<UpdatePhotoResponseDataType>>(`profile/photo`, formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       })
       .then((res) => res.data);

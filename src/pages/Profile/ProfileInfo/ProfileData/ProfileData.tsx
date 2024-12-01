@@ -1,11 +1,11 @@
-import React from 'react';
-import { ProfileInfoType } from '../../../../../../shared/types';
-import ProfileStatusWithHooks from '../ProfileStatus/ProfileStatusWithHooks';
-import s from './ProfileData.module.scss';
+import React from "react";
+import { ProfileInfoType } from "src/shared/types";
+import ProfileStatusWithHooks from "../ProfileStatus/ProfileStatusWithHooks";
+import s from "./ProfileData.module.scss";
 
 type PropsType = {
   profileInfo: ProfileInfoType;
-  status: string | null;
+  status: string;
   isOwner: boolean;
 
   getUserStatus: (userId: number) => void;
@@ -37,7 +37,7 @@ const ProfileData: React.FC<PropsType> = ({
 
         <div className={s.profileInfo__Parametr}>
           <span className={s.bold}>Шукаю роботу:&#160;</span>
-          {profileInfo.lookingForAJob ? 'так' : 'ні'}
+          {profileInfo.lookingForAJob ? "так" : "ні"}
         </div>
 
         <div className={s.profileInfo__Parametr}>

@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
-import s from './Profile.module.css';
+import React, { useEffect } from "react";
+import s from "./Profile.module.css";
 
-import AddNewPost from './NewPost/NewPost';
-import Posts from './Posts/Posts';
-import ProfileInfo from './ProfileInfo/ProfileInfo';
-import { PostType, ProfileInfoType } from 'src/shared/types';
+import AddNewPost from "./NewPost/NewPost";
+import Posts from "./Posts/Posts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import { PostType, ProfileInfoType } from "src/shared/types";
 
 type PropsType = {
   profileInfo: ProfileInfoType;
-  status: string | null;
+  status: string;
   posts: PostType[];
   // newPostText: state.profilePage.newPostText
   authorizedUserId: number | null;

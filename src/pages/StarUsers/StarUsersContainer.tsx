@@ -1,16 +1,16 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { AppStateType } from 'src/app/redux/redux-store';
-import { unfollow, follow, actions } from 'src/app/redux/star-users-reducer';
-import StarUsers from './StarUsers';
-import { withAuthRedirect } from 'src/shared/lib/hoc/AuthRedirect';
-import { Preloader } from 'src/shared/ui/Preloader';
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { AppStateType } from "src/app/redux/redux-store";
+import { unfollow, follow, actions } from "src/app/redux/star-users-reducer";
+import StarUsers from "./StarUsers";
+import { withAuthRedirect } from "src/shared/lib/hoc/AuthRedirect";
+import { Preloader } from "src/shared/ui/Preloader";
 import {
   getFollowingInProgressStars,
   getIsFetchingStars,
   getStars,
-} from 'src/app/redux/users-selectors';
+} from "src/app/redux/users-selectors";
+import React from "react";
 
 type PropsType = {
   users: any[];

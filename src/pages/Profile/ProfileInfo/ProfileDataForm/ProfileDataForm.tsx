@@ -1,8 +1,8 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { ProfileInfoType } from '../../../../../../shared/types';
-import ProfileStatusWithHooks from '../ProfileStatus/ProfileStatusWithHooks';
-import s from './ProfileDataForm.module.scss';
+import { Field, reduxForm } from "redux-form";
+import { ProfileInfoType } from "src/shared/types";
+import ProfileStatusWithHooks from "../ProfileStatus/ProfileStatusWithHooks";
+import s from "./ProfileDataForm.module.scss";
+import React from "react";
 
 type PropsType = {
   profileInfo: ProfileInfoType;

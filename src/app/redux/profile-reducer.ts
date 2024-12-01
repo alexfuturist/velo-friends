@@ -1,17 +1,16 @@
-// eslint-disable-next-line
-import { FormAction, reset, stopSubmit } from 'redux-form';
-import userPhotoDefault from 'src/shared/assets/images/user_default.png';
-import { BaseLocalThunkType, BaseThunkType, InferActionsTypes } from './redux-store';
-import { PhotosType, PostType, ProfileInfoType } from 'src/shared/types';
-import { profileAPI } from 'src/shared/api/profile-api';
-import { ResultCodes } from 'src/shared/api/api';
+import { type FormAction, reset, stopSubmit } from "redux-form";
+import userPhotoDefault from "src/shared/assets/images/user_default.png";
+import { BaseLocalThunkType, BaseThunkType, InferActionsTypes } from "./redux-store";
+import { PhotosType, PostType, ProfileInfoType } from "src/shared/types";
+import { profileAPI } from "src/shared/api/profile-api";
+import { ResultCodes } from "src/shared/api/api";
 
 //State
 type InitialStateType = typeof initialState;
 
 const initialState = {
   profileInfo: {
-    aboutMe: 'про мене',
+    aboutMe: "про мене",
     contacts: {
       facebook: null,
       website: null,
@@ -23,7 +22,7 @@ const initialState = {
       mainLink: null,
     },
     lookingForAJob: true,
-    lookingForAJobDescription: 'js',
+    lookingForAJobDescription: "js",
     fullName: "Им'я",
     userId: null,
     photos: {
@@ -31,30 +30,30 @@ const initialState = {
       large: userPhotoDefault,
     },
   } as ProfileInfoType,
-  status: 'Статус має бути тут' as string | null,
+  status: "Статус має бути тут" as string,
   posts: [
     {
       id: 0,
       message:
-        'А настройки профиля отправляются на сервер после изменения, поэтому можно редактировать и перезагружать, всё должно сохраниться и обновиться.)',
+        "А настройки профиля отправляются на сервер после изменения, поэтому можно редактировать и перезагружать, всё должно сохраниться и обновиться.)",
     },
     {
       id: 1,
       message:
-        'Все эти посты работают со стейтом Redux, но пока не написали API для их хранения на сервере и поэтому после полной перезагрузки странички они возвращаются по дефолту..',
+        "Все эти посты работают со стейтом Redux, но пока не написали API для их хранения на сервере и поэтому после полной перезагрузки странички они возвращаются по дефолту..",
     },
     {
       id: 2,
       message:
-        'Дууууже довгий пост. Він показує що, слова переносяться автоматичооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо, навіть якщо клавіша залипла:)',
+        "Дууууже довгий пост. Він показує що, слова переносяться автоматичооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо, навіть якщо клавіша залипла:)",
     },
     {
       id: 3,
-      message: '✅Привіт, хто хоче покататись?',
+      message: "✅Привіт, хто хоче покататись?",
     },
     {
       id: 4,
-      message: '🕝Сьогодні починаю нову програму! Поїхали!',
+      message: "🕝Сьогодні починаю нову програму! Поїхали!",
     },
   ] as Array<PostType>,
   isUpdatePostMode: false,
@@ -63,7 +62,7 @@ const initialState = {
 //Reducer
 const profileReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
   switch (action.type) {
-    case 'VF/PROFILE/ADD_POST': {
+    case "VF/PROFILE/ADD_POST": {
       const newPost = {
         id: +`${Math.max(...state.posts.map((p) => p.id)) + 1}`,
         message: action.newPostText,
@@ -77,21 +76,21 @@ const profileReducer = (state = initialState, action: ActionsTypes): InitialStat
       };
     }
 
-    case 'VF/PROFILE/SET_USER_PROFILE': {
+    case "VF/PROFILE/SET_USER_PROFILE": {
       return {
         ...state,
         profileInfo: action.profileInfo,
       };
     }
 
-    case 'VF/PROFILE/SET_USER_STATUS': {
+    case "VF/PROFILE/SET_USER_STATUS": {
       return {
         ...state,
         status: action.status,
       };
     }
 
-    case 'VF/PROFILE/UPDATE_PHOTO_SUCCESS': {
+    case "VF/PROFILE/UPDATE_PHOTO_SUCCESS": {
       return {
         ...state,
         profileInfo: {
@@ -101,14 +100,14 @@ const profileReducer = (state = initialState, action: ActionsTypes): InitialStat
       };
     }
 
-    case 'VF/PROFILE/DELETE_POST': {
+    case "VF/PROFILE/DELETE_POST": {
       return {
         ...state,
-        posts: [...state.posts.filter((item, index) => index !== action.index)],
+        posts: [...state.posts.filter((_, index) => index !== action.index)],
       };
     }
 
-    case 'VF/PROFILE/UPDATE_POST': {
+    case "VF/PROFILE/UPDATE_POST": {
       const updatePost = {
         id: +`${state.posts[action.index].id}`,
         message: action.message,
@@ -128,7 +127,7 @@ const profileReducer = (state = initialState, action: ActionsTypes): InitialStat
       };
     }
 
-    case 'VF/PROFILE/UPDATE_POST_MODE': {
+    case "VF/PROFILE/UPDATE_POST_MODE": {
       return {
         ...state,
         isUpdatePostMode: action.flag,
@@ -146,38 +145,38 @@ type ActionsTypes = InferActionsTypes<typeof actions>;
 export const actions = {
   addPost: (newPostText: string) =>
     ({
-      type: 'VF/PROFILE/ADD_POST',
+      type: "VF/PROFILE/ADD_POST",
       newPostText: newPostText,
     }) as const,
   setUserProfile: (profileInfo: ProfileInfoType) =>
     ({
-      type: 'VF/PROFILE/SET_USER_PROFILE',
+      type: "VF/PROFILE/SET_USER_PROFILE",
       profileInfo: profileInfo,
     }) as const,
   setUserStatus: (status: string) =>
     ({
-      type: 'VF/PROFILE/SET_USER_STATUS',
+      type: "VF/PROFILE/SET_USER_STATUS",
       status: status,
     }) as const,
   updatePhotoSuccess: (photos: PhotosType) =>
     ({
-      type: 'VF/PROFILE/UPDATE_PHOTO_SUCCESS',
+      type: "VF/PROFILE/UPDATE_PHOTO_SUCCESS",
       photos,
     }) as const,
   deletePostSuccess: (postIndex: number) =>
     ({
-      type: 'VF/PROFILE/DELETE_POST',
+      type: "VF/PROFILE/DELETE_POST",
       index: postIndex,
     }) as const,
   updatePostSuccess: (postIndex: number, message: string) =>
     ({
-      type: 'VF/PROFILE/UPDATE_POST',
+      type: "VF/PROFILE/UPDATE_POST",
       index: postIndex,
       message: message,
     }) as const,
   updatePostMode: (flag: boolean) =>
     ({
-      type: 'VF/PROFILE/UPDATE_POST_MODE',
+      type: "VF/PROFILE/UPDATE_POST_MODE",
       flag: flag,
     }) as const,
 };
@@ -190,7 +189,7 @@ export const addNewPost =
   (newPostText: string): LocalThunkType =>
   (dispatch) => {
     dispatch(actions.addPost(newPostText));
-    dispatch(reset('ProfileAddNewPost'));
+    dispatch(reset("ProfileAddNewPost"));
   };
 
 export const getUserProfile =
@@ -240,7 +239,7 @@ export const saveProfile =
       dispatch(getUserProfile(userId));
     } else {
       dispatch(
-        stopSubmit('edit-profile', {
+        stopSubmit("edit-profile", {
           _error: response.messages[0],
         }),
       );

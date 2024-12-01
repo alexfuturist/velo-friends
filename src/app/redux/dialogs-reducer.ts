@@ -1,7 +1,6 @@
-import { DialogType, DialogMessagesType } from '../shared/types';
-// eslint-disable-next-line
-import { FormAction, reset } from 'redux-form';
-import { BaseLocalThunkType, InferActionsTypes } from './redux-store';
+import { DialogType, DialogMessagesType } from "src/shared/types";
+import { type FormAction, reset } from "redux-form";
+import { BaseLocalThunkType, InferActionsTypes } from "./redux-store";
 
 //State
 type InitialStateType = typeof initialState;
@@ -10,79 +9,79 @@ const initialState = {
   dialogs: [
     {
       id: 1,
-      name: 'Михайло',
+      name: "Михайло",
     },
     {
       id: 2,
-      name: 'Віка',
+      name: "Віка",
     },
     {
       id: 3,
-      name: 'Софія',
+      name: "Софія",
     },
     {
       id: 4,
-      name: 'Іван',
+      name: "Іван",
     },
     {
       id: 5,
-      name: 'Клара',
+      name: "Клара",
     },
     {
       id: 6,
-      name: 'Христина',
+      name: "Христина",
     },
     {
       id: 7,
-      name: 'Давид',
+      name: "Давид",
     },
     {
       id: 8,
-      name: 'Ігор',
+      name: "Ігор",
     },
     {
       id: 9,
-      name: 'Інна',
+      name: "Інна",
     },
     {
       id: 10,
-      name: 'Аліна',
+      name: "Аліна",
     },
     {
       id: 11,
-      name: 'Наталя',
+      name: "Наталя",
     },
     {
       id: 12,
-      name: 'Ірина',
+      name: "Ірина",
     },
     {
       id: 13,
-      name: 'Тетяна',
+      name: "Тетяна",
     },
     {
       id: 14,
-      name: 'Володимир',
+      name: "Володимир",
     },
     {
       id: 15,
-      name: 'Віталій',
+      name: "Віталій",
     },
     {
       id: 16,
-      name: 'Олександр',
+      name: "Олександр",
     },
     {
       id: 17,
-      name: 'Валерій',
+      name: "Валерій",
     },
     {
       id: 18,
-      name: 'Святослав',
+      name: "Святослав",
     },
     {
       id: 19,
-      name: 'Петро',
+      name: "Петро",
     },
   ] as Array<DialogType>,
   dialogsMessages: [
@@ -91,100 +90,100 @@ const initialState = {
       messages: [
         {
           id: 1,
-          name: 'вело-радник',
-          messagesText: 'Виберіть діалог зі списку контактів щоби почати спілкування.',
+          name: "вело-радник",
+          messagesText: "Виберіть діалог зі списку контактів щоби почати спілкування.",
         },
       ],
-      newMessageText: '',
+      newMessageText: "",
     },
     {
       id: 1,
       messages: [
         {
           id: 1,
-          name: 'Михайло',
-          messagesText: 'Здаров! Вже замінив колесо?',
+          name: "Михайло",
+          messagesText: "Здаров! Вже замінив колесо?",
         },
         {
           id: 2,
-          name: 'Я',
-          messagesText: 'Привіт.',
+          name: "Я",
+          messagesText: "Привіт.",
         },
         {
           id: 3,
-          name: 'Я',
-          messagesText: 'Так вже відремонтував і встановив нові катафоти!',
+          name: "Я",
+          messagesText: "Так вже відремонтував і встановив нові катафоти!",
         },
         {
           id: 4,
-          name: 'Михайло',
-          messagesText: 'Тоді завтра на 10:30 їдемо 20км по маршруту Б.',
+          name: "Михайло",
+          messagesText: "Тоді завтра на 10:30 їдемо 20км по маршруту Б.",
         },
         {
           id: 5,
-          name: 'Я',
-          messagesText: 'ОК',
+          name: "Я",
+          messagesText: "ОК",
         },
         {
           id: 6,
-          name: 'Михайло',
-          messagesText: 'До зустрічі.',
+          name: "Михайло",
+          messagesText: "До зустрічі.",
         },
       ],
-      newMessageText: '',
+      newMessageText: "",
     },
     {
       id: 2,
       messages: [
         {
           id: 1,
-          name: 'Віка',
-          messagesText: 'Привіт! Коли їдемо на стадіон?',
+          name: "Віка",
+          messagesText: "Привіт! Коли їдемо на стадіон?",
         },
         {
           id: 2,
-          name: 'Я',
-          messagesText: 'Привіт. Ще маю трохи повчити react, потім їдемо!',
+          name: "Я",
+          messagesText: "Привіт. Ще маю трохи повчити react, потім їдемо!",
         },
         {
           id: 3,
-          name: 'Віка',
-          messagesText: 'Добре, після дощу їдемо 10км по парку.',
+          name: "Віка",
+          messagesText: "Добре, після дощу їдемо 10км по парку.",
         },
       ],
-      newMessageText: '',
+      newMessageText: "",
     },
     {
       id: 3,
       messages: [
         {
           id: 1,
-          name: 'Софія',
-          messagesText: 'Привіт. А коли змагання на велотреку?',
+          name: "Софія",
+          messagesText: "Привіт. А коли змагання на велотреку?",
         },
         {
           id: 2,
-          name: 'Я',
-          messagesText: 'Здається в суботу.',
+          name: "Я",
+          messagesText: "Здається в суботу.",
         },
         {
           id: 3,
-          name: 'Я',
-          messagesText: 'але треба перевірити..',
+          name: "Я",
+          messagesText: "але треба перевірити..",
         },
       ],
-      newMessageText: '',
+      newMessageText: "",
     },
     {
       id: 4,
       messages: [
         {
           id: 1,
-          name: 'Іван',
-          messagesText: 'Друже, в тебе десь був запасний підшипник?',
+          name: "Іван",
+          messagesText: "Друже, в тебе десь був запасний підшипник?",
         },
       ],
-      newMessageText: '',
+      newMessageText: "",
     },
   ] as Array<DialogMessagesType>,
 };
@@ -192,7 +191,7 @@ const initialState = {
 //Reducer
 const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
   switch (action.type) {
-    case 'VF/DIALOGS/ADD_MESSAGE': {
+    case "VF/DIALOGS/ADD_MESSAGE": {
       const dialogsMessagesItemAvaileble = [
         ...state.dialogsMessages.filter((dm) => dm.id == action.dialogId),
       ];
@@ -201,14 +200,14 @@ const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStat
 
       const newMessage = {
         id: +id,
-        name: 'Я',
+        name: "Я",
         messagesText: action.newMessageText,
       };
 
       const dialogsMessagesMockup = {
         id: action.dialogId,
         messages: [newMessage],
-        newMessageText: '',
+        newMessageText: "",
       };
 
       if (dialogsMessagesItemAvaileble.length > 0) {
@@ -233,7 +232,7 @@ const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStat
       }
     }
 
-    case 'VF/DIALOGS/REFRESH_CURRENT_TEXT_OF_MESSAGE': {
+    case "VF/DIALOGS/REFRESH_CURRENT_TEXT_OF_MESSAGE": {
       return {
         ...state,
         dialogsMessages: [
@@ -241,7 +240,7 @@ const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStat
             return dm.id == action.dialogId
               ? {
                   ...dm,
-                  newMessageText: '',
+                  newMessageText: "",
                 }
               : dm;
           }),
@@ -249,7 +248,7 @@ const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStat
       };
     }
 
-    case 'VF/DIALOGS/SET_CURRENT_TEXT_OF_MESSAGE': {
+    case "VF/DIALOGS/SET_CURRENT_TEXT_OF_MESSAGE": {
       const dialogsMessagesItemAvaileble = [
         ...state.dialogsMessages.filter((dm) => dm.id == action.dialogId),
       ];
@@ -293,18 +292,18 @@ type ActionsTypes = InferActionsTypes<typeof actions>;
 export const actions = {
   addMessage: (newMessageText: string, dialogId: number) =>
     ({
-      type: 'VF/DIALOGS/ADD_MESSAGE',
+      type: "VF/DIALOGS/ADD_MESSAGE",
       newMessageText: newMessageText,
       dialogId: dialogId,
     }) as const,
   refreshCurrentTextOfMessage: (dialogId: number) =>
     ({
-      type: 'VF/DIALOGS/REFRESH_CURRENT_TEXT_OF_MESSAGE',
+      type: "VF/DIALOGS/REFRESH_CURRENT_TEXT_OF_MESSAGE",
       dialogId: dialogId,
     }) as const,
   setCurrentTextOfMessage: (currentTextOfMessage: string, dialogId: number) =>
     ({
-      type: 'VF/DIALOGS/SET_CURRENT_TEXT_OF_MESSAGE',
+      type: "VF/DIALOGS/SET_CURRENT_TEXT_OF_MESSAGE",
       currentTextOfMessage: currentTextOfMessage,
       dialogId: dialogId,
     }) as const,
@@ -319,12 +318,12 @@ export const addNewMessage =
     if (newMessageText.length > 0) {
       dispatch(actions.addMessage(newMessageText, dialogId));
       dispatch(actions.refreshCurrentTextOfMessage(dialogId));
-      dispatch(reset('DialogsAddNewMessage'));
+      dispatch(reset("DialogsAddNewMessage"));
     }
   };
 
 export const resetNewMessageField = (): LocalThunkType => (dispatch) => {
-  dispatch(reset('DialogsAddNewMessage'));
+  dispatch(reset("DialogsAddNewMessage"));
 };
 
 export default dialogsReducer;

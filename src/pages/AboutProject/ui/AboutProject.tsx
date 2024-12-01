@@ -1,13 +1,10 @@
-import { withAuthRedirect } from 'src/shared/lib/hoc/AuthRedirect';
-import s from './AboutProject.module.scss';
-import cn from 'classnames';
+import { withAuthRedirect } from "src/shared/lib/hoc/AuthRedirect";
+import s from "./AboutProject.module.scss";
+import cn from "classnames";
 
-const AboutProject = () => {
+export const AboutProjectComponent = () => {
   return (
     <div className={s.aboutProject}>
-      {/* <p className={s.aboutProject__title}>
-                Всем привет, я Александр и это мой первый проект на React.
-            </p> */}
       <p className={s.aboutProject__title}>Використані наступні технології та бібліотеки:</p>
       <ul className={s.stack}>
         <li className={s.stack__item}>
@@ -58,39 +55,39 @@ const AboutProject = () => {
         <li className={s.list__item}>
           <span>Сторінка Профілю:</span>
           <p>
-            {' '}
-            - можливість зміни фотографії, статуса та інформації{' '}
+            {" "}
+            - можливість зміни фотографії, статуса та інформації{" "}
             <span className={s.list__itemPink}>(працює з redux+сервер-API)</span>.
           </p>
           <p>
-            {' '}
-            - можливість додавання, редагування, видалення постів{' '}
+            {" "}
+            - можливість додавання, редагування, видалення постів{" "}
             <span className={s.list__itemBlue}>(працює локально з redux)</span>.
           </p>
         </li>
         <li className={s.list__item}>
           <span>{`Сторінка "Мої підписки":`}</span>
           <p>
-            {' '}
-            - пагінація, preloader, можливість переходу на сторінку юзера{' '}
+            {" "}
+            - пагінація, preloader, можливість переходу на сторінку юзера{" "}
             <span className={s.list__itemPink}>(працює з redux+сервер-API)</span>.
           </p>
           <p>
-            {' '}
-            - можливість підписуватись на сторінки інших юзерів{' '}
+            {" "}
+            - можливість підписуватись на сторінки інших юзерів{" "}
             <span className={s.list__itemPink}>(працює з redux+сервер-API)</span>.
           </p>
         </li>
         <li className={s.list__item}>
           <span>{`Сторінка "Повідомлення":`}</span>
           <p>
-            {' '}
-            - можливість вибору діалогу та додавання нового повідомлення.{' '}
+            {" "}
+            - можливість вибору діалогу та додавання нового повідомлення.{" "}
             <span className={s.list__itemBlue}>(працює локально з redux)</span>
           </p>
           <p>
-            {' '}
-            - збереження чорнетки повідомлення для кожного діалогу.{' '}
+            {" "}
+            - збереження чорнетки повідомлення для кожного діалогу.{" "}
             <span className={s.list__itemBlue}>(працює локально з redux)</span>
           </p>
         </li>
@@ -133,4 +130,4 @@ const AboutProject = () => {
   );
 };
 
-export default withAuthRedirect(AboutProject);
+export const AboutProject = withAuthRedirect(AboutProjectComponent);

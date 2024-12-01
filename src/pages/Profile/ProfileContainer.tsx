@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 import {
   addNewPost,
   getUserProfile,
@@ -10,20 +10,20 @@ import {
   deletePost,
   updatePost,
   actions,
-} from 'src/app/redux/profile-reducer';
-import Profile from './Profile';
+} from "src/app/redux/profile-reducer";
+import Profile from "./Profile";
 
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 // import { withAuthRedirect } from '../../../../hoc/AuthRedirect';
-import { compose } from 'redux';
-import { PostType, ProfileInfoType } from 'src/shared/types';
-import { withAuthRedirect } from 'src/shared/lib/hoc/AuthRedirect';
-// import { AppStateType } from '../../../../redux/redux-store';
+import { compose } from "redux";
+import { PostType, ProfileInfoType } from "src/shared/types";
+import { withAuthRedirect } from "src/shared/lib/hoc/AuthRedirect";
+import { AppStateType } from "src/app/redux/redux-store";
 // import { PostType, ProfileInfoType } from '../../../../shared/types';
 
 type MapStatePropsType = {
   profileInfo: ProfileInfoType;
-  status: string | null;
+  status: string;
   posts: PostType[];
   // newPostText: state.profilePage.newPostText
   authorizedUserId: number | null;

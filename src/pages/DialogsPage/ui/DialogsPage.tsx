@@ -1,8 +1,7 @@
-import React from 'react';
-import s from './Dialogs.module.scss';
-import DialogsItems from './DialogsItems/DialogsItems';
-import MessagesItems from './MessagesItems/MessagesItems';
-import AddNewMessage from './AddNewMessage/AddNewMessage';
+import s from "./Dialogs.module.scss";
+import DialogsItems from "./DialogsItems/DialogsItems";
+import MessagesItems from "./MessagesItems/MessagesItems";
+import AddNewMessage from "./AddNewMessage/AddNewMessage";
 // import { DialogMessagesType, DialogType } from '../../../../types/types'
 // import { SetCurrentTextOfMessageActionType } from '../../../../redux/dialogs-reducer'
 

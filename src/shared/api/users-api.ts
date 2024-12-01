@@ -1,5 +1,5 @@
-import { UserType } from '../shared/types';
-import { instance } from './api';
+import { UserType } from "../types";
+import { instance } from "./api";
 
 //USERS
 type GetUsersResponseType = {
@@ -15,11 +15,11 @@ type FolloWUnfollowResponseType = {
 };
 
 export const usersAPI = {
-  getUsers(currentPage: number, pageSize: number, term = '', friend: boolean | null = null) {
+  getUsers(currentPage: number, pageSize: number, term = "", friend: boolean | null = null) {
     return instance
       .get<GetUsersResponseType>(
         `users?page=${currentPage}&count=${pageSize}&term=${term}` +
-          (friend === null ? '' : `&friend=${friend}`),
+          (friend === null ? "" : `&friend=${friend}`),
       )
       .then((res) => res.data);
   },

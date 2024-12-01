@@ -1,6 +1,6 @@
-import React from 'react';
-import { DialogMessagesType } from '../../../../../shared/types';
-import MessagesItem from './MessagesItem/MessagesItem';
+import { DialogMessagesType, MessageType } from "src/shared/types";
+import MessagesItem from "./MessagesItem/MessagesItem";
+import React from "react";
 
 type PropsType = {
   dialogsMessages: DialogMessagesType[];
@@ -12,7 +12,7 @@ type PropsType = {
 class MessagesItems extends React.Component<PropsType> {
   scrollToBottom = () => {
     //@ts-ignore
-    this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
   };
 
   componentDidUpdate() {
@@ -33,7 +33,7 @@ class MessagesItems extends React.Component<PropsType> {
     ];
 
     if (messagesArray.length > 0) {
-      const messagesItems = messagesArray[0].messages.map((m) => (
+      const messagesItems = messagesArray[0].messages.map((m: MessageType) => (
         <MessagesItem
           name={m.name}
           messageText={m.messagesText}
@@ -51,7 +51,7 @@ class MessagesItems extends React.Component<PropsType> {
       <div id="toBottom">
         {this.getMessagesItems()}
         <div
-          style={{ float: 'left', clear: 'both' }}
+          style={{ float: "left", clear: "both" }}
           ref={(el) => {
             //@ts-ignore
             this.messagesEnd = el;
